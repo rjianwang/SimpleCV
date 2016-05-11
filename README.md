@@ -1,6 +1,6 @@
 Bijou CV
 ===
-Here are some bijou computer vision projects.
+Here are some small and awesome computer vision projects.
 
 Have fun!
 
