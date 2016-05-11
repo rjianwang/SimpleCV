@@ -1,7 +1,7 @@
-Plate Recognition
+Vehicle Plate Recognition
 ===
 
-##Environments:
+###Environments:
 Ubuntu 16.04
 
 OpenCV-2.4.9
