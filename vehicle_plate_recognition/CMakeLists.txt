@@ -1,0 +1,3 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
+PROJECT( plate_recognition )
+ADD_SUBDIRECTORY(src bin)

@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.5)
+PROJECT( plate_recognition )
+FIND_PACKAGE( OpenCV REQUIRED )
+ADD_EXECUTABLE( run main.cpp ImageRecognition.cpp OCR.cpp Plate.cpp)
+TARGET_LINK_LIBRARIES( run ${OpenCV_LIBS} )

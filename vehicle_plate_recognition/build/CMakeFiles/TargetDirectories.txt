@@ -1,0 +1,5 @@
+/home/sony/Projects/bijou_cv/plate_recognition/build/CMakeFiles/edit_cache.dir
+/home/sony/Projects/bijou_cv/plate_recognition/build/CMakeFiles/rebuild_cache.dir
+/home/sony/Projects/bijou_cv/plate_recognition/build/bin/CMakeFiles/edit_cache.dir
+/home/sony/Projects/bijou_cv/plate_recognition/build/bin/CMakeFiles/rebuild_cache.dir
+/home/sony/Projects/bijou_cv/plate_recognition/build/bin/CMakeFiles/run.dir
