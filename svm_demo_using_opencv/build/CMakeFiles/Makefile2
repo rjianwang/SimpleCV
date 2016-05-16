@@ -54,21 +54,21 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sony/Projects/bijou_cv/svm_demo_with_opencv
+CMAKE_SOURCE_DIR = /home/sony/Projects/bijou_cv/svm_demo_using_opencv
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build
+CMAKE_BINARY_DIR = /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build
 
 #=============================================================================
 # Directory level rules for directory bin
 
 # Convenience name for "all" pass in the directory.
-bin/all: bin/CMakeFiles/svm.dir/all
+bin/all: bin/CMakeFiles/non_linear_svms.dir/all
 
 .PHONY : bin/all
 
 # Convenience name for "clean" pass in the directory.
-bin/clean: bin/CMakeFiles/svm.dir/clean
+bin/clean: bin/CMakeFiles/non_linear_svms.dir/clean
 
 .PHONY : bin/clean
 
@@ -78,39 +78,39 @@ bin/preinstall:
 .PHONY : bin/preinstall
 
 #=============================================================================
-# Target rules for target bin/CMakeFiles/svm.dir
+# Target rules for target bin/CMakeFiles/non_linear_svms.dir
 
 # All Build rule for target.
-bin/CMakeFiles/svm.dir/all:
-	$(MAKE) -f bin/CMakeFiles/svm.dir/build.make bin/CMakeFiles/svm.dir/depend
-	$(MAKE) -f bin/CMakeFiles/svm.dir/build.make bin/CMakeFiles/svm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sony/Projects/bijou_cv/svm_demo_with_opencv/build/CMakeFiles --progress-num=1,2 "Built target svm"
-.PHONY : bin/CMakeFiles/svm.dir/all
+bin/CMakeFiles/non_linear_svms.dir/all:
+	$(MAKE) -f bin/CMakeFiles/non_linear_svms.dir/build.make bin/CMakeFiles/non_linear_svms.dir/depend
+	$(MAKE) -f bin/CMakeFiles/non_linear_svms.dir/build.make bin/CMakeFiles/non_linear_svms.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sony/Projects/bijou_cv/svm_demo_using_opencv/build/CMakeFiles --progress-num=1,2 "Built target non_linear_svms"
+.PHONY : bin/CMakeFiles/non_linear_svms.dir/all
 
 # Include target in all.
-all: bin/CMakeFiles/svm.dir/all
+all: bin/CMakeFiles/non_linear_svms.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-bin/CMakeFiles/svm.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 bin/CMakeFiles/svm.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build/CMakeFiles 0
-.PHONY : bin/CMakeFiles/svm.dir/rule
+bin/CMakeFiles/non_linear_svms.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 bin/CMakeFiles/non_linear_svms.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build/CMakeFiles 0
+.PHONY : bin/CMakeFiles/non_linear_svms.dir/rule
 
 # Convenience name for target.
-svm: bin/CMakeFiles/svm.dir/rule
+non_linear_svms: bin/CMakeFiles/non_linear_svms.dir/rule
 
-.PHONY : svm
-
-# clean rule for target.
-bin/CMakeFiles/svm.dir/clean:
-	$(MAKE) -f bin/CMakeFiles/svm.dir/build.make bin/CMakeFiles/svm.dir/clean
-.PHONY : bin/CMakeFiles/svm.dir/clean
+.PHONY : non_linear_svms
 
 # clean rule for target.
-clean: bin/CMakeFiles/svm.dir/clean
+bin/CMakeFiles/non_linear_svms.dir/clean:
+	$(MAKE) -f bin/CMakeFiles/non_linear_svms.dir/build.make bin/CMakeFiles/non_linear_svms.dir/clean
+.PHONY : bin/CMakeFiles/non_linear_svms.dir/clean
+
+# clean rule for target.
+clean: bin/CMakeFiles/non_linear_svms.dir/clean
 
 .PHONY : clean
 

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sony/Projects/bijou_cv/svm_demo_with_opencv
+CMAKE_SOURCE_DIR = /home/sony/Projects/bijou_cv/svm_demo_using_opencv
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build
+CMAKE_BINARY_DIR = /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,14 +80,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build/CMakeFiles /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build/bin/CMakeFiles/progress.marks
-	cd /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build && $(MAKE) -f CMakeFiles/Makefile2 bin/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build/CMakeFiles 0
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build/CMakeFiles /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build/bin/CMakeFiles/progress.marks
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f CMakeFiles/Makefile2 bin/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build && $(MAKE) -f CMakeFiles/Makefile2 bin/clean
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f CMakeFiles/Makefile2 bin/clean
 .PHONY : clean
 
 # The main clean target
@@ -97,33 +97,33 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build && $(MAKE) -f CMakeFiles/Makefile2 bin/preinstall
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f CMakeFiles/Makefile2 bin/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build && $(MAKE) -f CMakeFiles/Makefile2 bin/preinstall
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f CMakeFiles/Makefile2 bin/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
-bin/CMakeFiles/svm.dir/rule:
-	cd /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build && $(MAKE) -f CMakeFiles/Makefile2 bin/CMakeFiles/svm.dir/rule
-.PHONY : bin/CMakeFiles/svm.dir/rule
+bin/CMakeFiles/non_linear_svms.dir/rule:
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f CMakeFiles/Makefile2 bin/CMakeFiles/non_linear_svms.dir/rule
+.PHONY : bin/CMakeFiles/non_linear_svms.dir/rule
 
 # Convenience name for target.
-svm: bin/CMakeFiles/svm.dir/rule
+non_linear_svms: bin/CMakeFiles/non_linear_svms.dir/rule
 
-.PHONY : svm
+.PHONY : non_linear_svms
 
 # fast build rule for target.
-svm/fast:
-	cd /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build && $(MAKE) -f bin/CMakeFiles/svm.dir/build.make bin/CMakeFiles/svm.dir/build
-.PHONY : svm/fast
+non_linear_svms/fast:
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f bin/CMakeFiles/non_linear_svms.dir/build.make bin/CMakeFiles/non_linear_svms.dir/build
+.PHONY : non_linear_svms/fast
 
 svm.o: svm.cpp.o
 
@@ -131,7 +131,7 @@ svm.o: svm.cpp.o
 
 # target to build an object file
 svm.cpp.o:
-	cd /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build && $(MAKE) -f bin/CMakeFiles/svm.dir/build.make bin/CMakeFiles/svm.dir/svm.cpp.o
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f bin/CMakeFiles/non_linear_svms.dir/build.make bin/CMakeFiles/non_linear_svms.dir/svm.cpp.o
 .PHONY : svm.cpp.o
 
 svm.i: svm.cpp.i
@@ -140,7 +140,7 @@ svm.i: svm.cpp.i
 
 # target to preprocess a source file
 svm.cpp.i:
-	cd /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build && $(MAKE) -f bin/CMakeFiles/svm.dir/build.make bin/CMakeFiles/svm.dir/svm.cpp.i
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f bin/CMakeFiles/non_linear_svms.dir/build.make bin/CMakeFiles/non_linear_svms.dir/svm.cpp.i
 .PHONY : svm.cpp.i
 
 svm.s: svm.cpp.s
@@ -149,7 +149,7 @@ svm.s: svm.cpp.s
 
 # target to generate assembly for a file
 svm.cpp.s:
-	cd /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build && $(MAKE) -f bin/CMakeFiles/svm.dir/build.make bin/CMakeFiles/svm.dir/svm.cpp.s
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f bin/CMakeFiles/non_linear_svms.dir/build.make bin/CMakeFiles/non_linear_svms.dir/svm.cpp.s
 .PHONY : svm.cpp.s
 
 # Help Target
@@ -160,7 +160,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... svm"
+	@echo "... non_linear_svms"
 	@echo "... svm.o"
 	@echo "... svm.i"
 	@echo "... svm.s"
@@ -175,6 +175,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

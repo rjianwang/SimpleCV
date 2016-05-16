@@ -1,4 +1,4 @@
-# Install script for directory: /home/sony/Projects/bijou_cv/svm_demo_with_opencv
+# Install script for directory: /home/sony/Projects/bijou_cv/svm_demo_using_opencv
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/sony/Projects/bijou_cv/svm_demo_with_opencv/build/bin/cmake_install.cmake")
+  include("/home/sony/Projects/bijou_cv/svm_demo_using_opencv/build/bin/cmake_install.cmake")
 
 endif()
 
@@ -46,5 +46,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/sony/Projects/bijou_cv/svm_demo_with_opencv/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/sony/Projects/bijou_cv/svm_demo_using_opencv/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

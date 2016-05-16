@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sony/Projects/bijou_cv/svm_demo_with_opencv
+CMAKE_SOURCE_DIR = /home/sony/Projects/bijou_cv/svm_demo_using_opencv
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build
+CMAKE_BINARY_DIR = /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build/CMakeFiles /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build/CMakeFiles /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/svm_demo_with_opencv/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named svm
+# Target rules for targets named non_linear_svms
 
 # Build rule for target.
-svm: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 svm
-.PHONY : svm
+non_linear_svms: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 non_linear_svms
+.PHONY : non_linear_svms
 
 # fast build rule for target.
-svm/fast:
-	$(MAKE) -f bin/CMakeFiles/svm.dir/build.make bin/CMakeFiles/svm.dir/build
-.PHONY : svm/fast
+non_linear_svms/fast:
+	$(MAKE) -f bin/CMakeFiles/non_linear_svms.dir/build.make bin/CMakeFiles/non_linear_svms.dir/build
+.PHONY : non_linear_svms/fast
 
 # Help Target
 help:
@@ -131,7 +131,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... svm"
+	@echo "... non_linear_svms"
 .PHONY : help
 
 

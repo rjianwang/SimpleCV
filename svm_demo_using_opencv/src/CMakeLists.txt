@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
-PROJECT( svm )
+PROJECT( non_linear_svms )
 FIND_PACKAGE( OpenCV REQUIRED )
-ADD_EXECUTABLE( svm svm.cpp)
-TARGET_LINK_LIBRARIES( svm ${OpenCV_LIBS} )
+ADD_EXECUTABLE( non_linear_svms svm.cpp)
+TARGET_LINK_LIBRARIES( non_linear_svms ${OpenCV_LIBS} )

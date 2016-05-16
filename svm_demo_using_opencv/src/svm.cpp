@@ -13,7 +13,7 @@ void help()
 {
 	cout<< "\n--------------------------------------------------------------------------" << endl
 		<< "This program shows Support Vector Machines for Non-Linearly Separable Data. " << endl
-		<< "Usage:"                                                               << endl
+		<< "Usage: "                                                               
 		<< "./non_linear_svms" << endl
 		<< "--------------------------------------------------------------------------"   << endl
 		<< endl;
@@ -46,12 +46,12 @@ int main()
 	rng.fill(c, RNG::UNIFORM, Scalar(1), Scalar(HEIGHT));
 
 	// Generate random points for the class 2
-	trainClass = trainData.rowRange(2*NTRAINING_SAMPLES-nLinearSamples, 2*NTRAINING_SAMPLES);
+	trainClass = trainData.rowRange(2 * NTRAINING_SAMPLES - nLinearSamples, 2 * NTRAINING_SAMPLES);
 	// The x coordinate of the points is in [0.6, 1]
 	c = trainClass.colRange(0 , 1); 
-	rng.fill(c, RNG::UNIFORM, Scalar(0.6*WIDTH), Scalar(WIDTH));
+	rng.fill(c, RNG::UNIFORM, Scalar(0.6 * WIDTH), Scalar(WIDTH));
 	// The y coordinate of the points is in [0, 1)
-	c = trainClass.colRange(1,2);
+	c = trainClass.colRange(1, 2);
 	rng.fill(c, RNG::UNIFORM, Scalar(1), Scalar(HEIGHT));
 
 	//------------------ Set up the non-linearly separable part of the training data ---------------

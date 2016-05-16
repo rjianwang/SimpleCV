@@ -1,3 +1,3 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
-PROJECT( svm )
+PROJECT( non_linear_svms )
 ADD_SUBDIRECTORY(src bin)

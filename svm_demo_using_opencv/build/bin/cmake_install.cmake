@@ -1,4 +1,4 @@
-# Install script for directory: /home/sony/Projects/bijou_cv/svm_demo_with_opencv/src
+# Install script for directory: /home/sony/Projects/bijou_cv/svm_demo_using_opencv/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
