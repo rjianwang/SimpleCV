@@ -47,5 +47,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "bin/CMakeFiles/non_linear_svms.dir/DependInfo.cmake"
+  "bin/CMakeFiles/svm.dir/DependInfo.cmake"
   )

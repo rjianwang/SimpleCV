@@ -111,19 +111,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-bin/CMakeFiles/non_linear_svms.dir/rule:
-	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f CMakeFiles/Makefile2 bin/CMakeFiles/non_linear_svms.dir/rule
-.PHONY : bin/CMakeFiles/non_linear_svms.dir/rule
+bin/CMakeFiles/svm.dir/rule:
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f CMakeFiles/Makefile2 bin/CMakeFiles/svm.dir/rule
+.PHONY : bin/CMakeFiles/svm.dir/rule
 
 # Convenience name for target.
-non_linear_svms: bin/CMakeFiles/non_linear_svms.dir/rule
+svm: bin/CMakeFiles/svm.dir/rule
 
-.PHONY : non_linear_svms
+.PHONY : svm
 
 # fast build rule for target.
-non_linear_svms/fast:
-	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f bin/CMakeFiles/non_linear_svms.dir/build.make bin/CMakeFiles/non_linear_svms.dir/build
-.PHONY : non_linear_svms/fast
+svm/fast:
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f bin/CMakeFiles/svm.dir/build.make bin/CMakeFiles/svm.dir/build
+.PHONY : svm/fast
 
 svm.o: svm.cpp.o
 
@@ -131,7 +131,7 @@ svm.o: svm.cpp.o
 
 # target to build an object file
 svm.cpp.o:
-	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f bin/CMakeFiles/non_linear_svms.dir/build.make bin/CMakeFiles/non_linear_svms.dir/svm.cpp.o
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f bin/CMakeFiles/svm.dir/build.make bin/CMakeFiles/svm.dir/svm.cpp.o
 .PHONY : svm.cpp.o
 
 svm.i: svm.cpp.i
@@ -140,7 +140,7 @@ svm.i: svm.cpp.i
 
 # target to preprocess a source file
 svm.cpp.i:
-	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f bin/CMakeFiles/non_linear_svms.dir/build.make bin/CMakeFiles/non_linear_svms.dir/svm.cpp.i
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f bin/CMakeFiles/svm.dir/build.make bin/CMakeFiles/svm.dir/svm.cpp.i
 .PHONY : svm.cpp.i
 
 svm.s: svm.cpp.s
@@ -149,7 +149,7 @@ svm.s: svm.cpp.s
 
 # target to generate assembly for a file
 svm.cpp.s:
-	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f bin/CMakeFiles/non_linear_svms.dir/build.make bin/CMakeFiles/non_linear_svms.dir/svm.cpp.s
+	cd /home/sony/Projects/bijou_cv/svm_demo_using_opencv/build && $(MAKE) -f bin/CMakeFiles/svm.dir/build.make bin/CMakeFiles/svm.dir/svm.cpp.s
 .PHONY : svm.cpp.s
 
 # Help Target
@@ -160,7 +160,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... non_linear_svms"
+	@echo "... svm"
 	@echo "... svm.o"
 	@echo "... svm.i"
 	@echo "... svm.s"

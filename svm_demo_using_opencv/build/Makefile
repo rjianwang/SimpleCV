@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named non_linear_svms
+# Target rules for targets named svm
 
 # Build rule for target.
-non_linear_svms: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 non_linear_svms
-.PHONY : non_linear_svms
+svm: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 svm
+.PHONY : svm
 
 # fast build rule for target.
-non_linear_svms/fast:
-	$(MAKE) -f bin/CMakeFiles/non_linear_svms.dir/build.make bin/CMakeFiles/non_linear_svms.dir/build
-.PHONY : non_linear_svms/fast
+svm/fast:
+	$(MAKE) -f bin/CMakeFiles/svm.dir/build.make bin/CMakeFiles/svm.dir/build
+.PHONY : svm/fast
 
 # Help Target
 help:
@@ -131,7 +131,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... non_linear_svms"
+	@echo "... svm"
 .PHONY : help
 
 

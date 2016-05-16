@@ -7,8 +7,6 @@
 #IncludeRegexTransform: 
 
 /home/sony/Projects/bijou_cv/svm_demo_using_opencv/src/svm.cpp
-iostream
--
 opencv2/core/core.hpp
 -
 opencv2/highgui/highgui.hpp
