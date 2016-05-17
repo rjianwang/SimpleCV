@@ -54,21 +54,21 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sony/Projects/bijou_cv/plate_recognition
+CMAKE_SOURCE_DIR = /home/sony/Projects/bijou_cv/vehicle_plate_recognition
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sony/Projects/bijou_cv/plate_recognition/build
+CMAKE_BINARY_DIR = /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build
 
 #=============================================================================
 # Directory level rules for directory bin
 
 # Convenience name for "all" pass in the directory.
-bin/all: bin/CMakeFiles/run.dir/all
+bin/all: bin/CMakeFiles/plate_recognition.dir/all
 
 .PHONY : bin/all
 
 # Convenience name for "clean" pass in the directory.
-bin/clean: bin/CMakeFiles/run.dir/clean
+bin/clean: bin/CMakeFiles/plate_recognition.dir/clean
 
 .PHONY : bin/clean
 
@@ -78,39 +78,39 @@ bin/preinstall:
 .PHONY : bin/preinstall
 
 #=============================================================================
-# Target rules for target bin/CMakeFiles/run.dir
+# Target rules for target bin/CMakeFiles/plate_recognition.dir
 
 # All Build rule for target.
-bin/CMakeFiles/run.dir/all:
-	$(MAKE) -f bin/CMakeFiles/run.dir/build.make bin/CMakeFiles/run.dir/depend
-	$(MAKE) -f bin/CMakeFiles/run.dir/build.make bin/CMakeFiles/run.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sony/Projects/bijou_cv/plate_recognition/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target run"
-.PHONY : bin/CMakeFiles/run.dir/all
+bin/CMakeFiles/plate_recognition.dir/all:
+	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/depend
+	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target plate_recognition"
+.PHONY : bin/CMakeFiles/plate_recognition.dir/all
 
 # Include target in all.
-all: bin/CMakeFiles/run.dir/all
+all: bin/CMakeFiles/plate_recognition.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-bin/CMakeFiles/run.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/plate_recognition/build/CMakeFiles 5
-	$(MAKE) -f CMakeFiles/Makefile2 bin/CMakeFiles/run.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/plate_recognition/build/CMakeFiles 0
-.PHONY : bin/CMakeFiles/run.dir/rule
+bin/CMakeFiles/plate_recognition.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/CMakeFiles 5
+	$(MAKE) -f CMakeFiles/Makefile2 bin/CMakeFiles/plate_recognition.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/CMakeFiles 0
+.PHONY : bin/CMakeFiles/plate_recognition.dir/rule
 
 # Convenience name for target.
-run: bin/CMakeFiles/run.dir/rule
+plate_recognition: bin/CMakeFiles/plate_recognition.dir/rule
 
-.PHONY : run
-
-# clean rule for target.
-bin/CMakeFiles/run.dir/clean:
-	$(MAKE) -f bin/CMakeFiles/run.dir/build.make bin/CMakeFiles/run.dir/clean
-.PHONY : bin/CMakeFiles/run.dir/clean
+.PHONY : plate_recognition
 
 # clean rule for target.
-clean: bin/CMakeFiles/run.dir/clean
+bin/CMakeFiles/plate_recognition.dir/clean:
+	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/clean
+.PHONY : bin/CMakeFiles/plate_recognition.dir/clean
+
+# clean rule for target.
+clean: bin/CMakeFiles/plate_recognition.dir/clean
 
 .PHONY : clean
 

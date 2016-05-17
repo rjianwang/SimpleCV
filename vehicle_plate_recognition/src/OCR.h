@@ -1,14 +1,11 @@
-#ifndef OCR_h
-#define OCR_h
+#pragma once
 
+#include "StdAfx.h"
 #include <string.h>
 #include <vector>
 
 #include "Plate.h"
 
-#include <opencv/cv.h>
-#include <opencv/highgui.h>
-#include <opencv/cvaux.h>
 #include <opencv/ml.h>
 
 using namespace std;
@@ -56,5 +53,3 @@ private:
 	CvKNearest knnClassifier;
 	int K;
 };
-
-#endif

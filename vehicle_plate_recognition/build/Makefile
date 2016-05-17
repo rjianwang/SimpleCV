@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sony/Projects/bijou_cv/plate_recognition
+CMAKE_SOURCE_DIR = /home/sony/Projects/bijou_cv/vehicle_plate_recognition
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sony/Projects/bijou_cv/plate_recognition/build
+CMAKE_BINARY_DIR = /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/plate_recognition/build/CMakeFiles /home/sony/Projects/bijou_cv/plate_recognition/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/CMakeFiles /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/plate_recognition/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named run
+# Target rules for targets named plate_recognition
 
 # Build rule for target.
-run: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 run
-.PHONY : run
+plate_recognition: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 plate_recognition
+.PHONY : plate_recognition
 
 # fast build rule for target.
-run/fast:
-	$(MAKE) -f bin/CMakeFiles/run.dir/build.make bin/CMakeFiles/run.dir/build
-.PHONY : run/fast
+plate_recognition/fast:
+	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/build
+.PHONY : plate_recognition/fast
 
 # Help Target
 help:
@@ -131,7 +131,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... run"
+	@echo "... plate_recognition"
 .PHONY : help
 
 

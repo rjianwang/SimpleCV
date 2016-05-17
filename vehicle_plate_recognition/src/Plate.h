@@ -1,25 +1,17 @@
-#ifndef Plate_h
-#define Plate_h
+#pragma once
+
+#include "StdAfx.h"
 
 #include <string.h>
 #include <vector>
 
-#include <opencv/cv.h>
-#include <opencv/highgui.h>
-#include <opencv/cvaux.h>
-
-using namespace std;
-using namespace cv;
-
 class Plate{
 public:
 	Plate();
-	Plate(Mat img, Rect pos);
-	string str();
-	Rect position;
-	Mat plateImg;
-	vector<char> chars;
-	vector<Rect> charsPos;
+	Plate(cv::Mat img, cv::Rect pos);
+    std::string str();
+    cv::Rect position;
+    cv::Mat image;
+    std::vector<char> chars;
+    std::vector<cv::Rect> charsPos;
 };
-
-#endif

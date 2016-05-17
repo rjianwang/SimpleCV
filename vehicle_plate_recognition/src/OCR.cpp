@@ -82,7 +82,7 @@ bool OCR::verifySizes(Mat r){
 
 // ãÐÖµ·Ö¸î
 vector<CharSegment> OCR::segment(Plate plate){
-	Mat input = plate.plateImg;
+	Mat input = plate.image;
 	vector<CharSegment> output;
 	Mat thresholdImage;
 	threshold(input, thresholdImage, 60, 255, CV_THRESH_BINARY_INV);

@@ -1,4 +1,4 @@
-# Install script for directory: /home/sony/Projects/bijou_cv/plate_recognition/src
+# Install script for directory: /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

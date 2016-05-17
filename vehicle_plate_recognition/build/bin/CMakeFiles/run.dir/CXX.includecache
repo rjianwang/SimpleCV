@@ -6,17 +6,17 @@
 
 #IncludeRegexTransform: 
 
-/home/sony/Projects/bijou_cv/plate_recognition/src/ImageRecognition.cpp
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/old.src/ImageRecognition.cpp
 ImageRecognition.h
-/home/sony/Projects/bijou_cv/plate_recognition/src/ImageRecognition.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/old.src/ImageRecognition.h
 
-/home/sony/Projects/bijou_cv/plate_recognition/src/ImageRecognition.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/old.src/ImageRecognition.h
 string.h
 -
 vector
 -
 Plate.h
-/home/sony/Projects/bijou_cv/plate_recognition/src/Plate.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/old.src/Plate.h
 opencv/cv.h
 -
 opencv/highgui.h
@@ -24,17 +24,17 @@ opencv/highgui.h
 opencv/cvaux.h
 -
 
-/home/sony/Projects/bijou_cv/plate_recognition/src/OCR.cpp
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/old.src/OCR.cpp
 OCR.h
-/home/sony/Projects/bijou_cv/plate_recognition/src/OCR.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/old.src/OCR.h
 
-/home/sony/Projects/bijou_cv/plate_recognition/src/OCR.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/old.src/OCR.h
 string.h
 -
 vector
 -
 Plate.h
-/home/sony/Projects/bijou_cv/plate_recognition/src/Plate.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/old.src/Plate.h
 opencv/cv.h
 -
 opencv/highgui.h
@@ -44,11 +44,11 @@ opencv/cvaux.h
 opencv/ml.h
 -
 
-/home/sony/Projects/bijou_cv/plate_recognition/src/Plate.cpp
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/old.src/Plate.cpp
 Plate.h
-/home/sony/Projects/bijou_cv/plate_recognition/src/Plate.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/old.src/Plate.h
 
-/home/sony/Projects/bijou_cv/plate_recognition/src/Plate.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/old.src/Plate.h
 string.h
 -
 vector
@@ -60,7 +60,7 @@ opencv/highgui.h
 opencv/cvaux.h
 -
 
-/home/sony/Projects/bijou_cv/plate_recognition/src/main.cpp
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/old.src/main.cpp
 opencv/cv.h
 -
 opencv/highgui.h
@@ -74,9 +74,9 @@ iostream
 vector
 -
 ImageRecognition.h
-/home/sony/Projects/bijou_cv/plate_recognition/src/ImageRecognition.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/old.src/ImageRecognition.h
 OCR.h
-/home/sony/Projects/bijou_cv/plate_recognition/src/OCR.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/old.src/OCR.h
 
 /usr/local/include/opencv/cv.h
 opencv2/core/core_c.h

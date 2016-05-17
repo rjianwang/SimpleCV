@@ -3,15 +3,15 @@
 Plate::Plate(){
 }
 
-Plate::Plate(Mat img, Rect pos){
-	plateImg = img;
+Plate::Plate(cv::Mat img, cv::Rect pos){
+	image = img;
 	position = pos;
 }
 
-string Plate::str(){
-	string result = "";
-	vector<int> orderIndex;
-	vector<int> xpositions;
+std::string Plate::str(){
+    std::string result = "";
+    std::vector<int> orderIndex;
+    std::vector<int> xpositions;
 	for (int i = 0; i< charsPos.size(); i++){
 		orderIndex.push_back(i);
 		xpositions.push_back(charsPos[i].x);

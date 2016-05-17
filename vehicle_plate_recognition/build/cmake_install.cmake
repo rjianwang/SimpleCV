@@ -1,4 +1,4 @@
-# Install script for directory: /home/sony/Projects/bijou_cv/plate_recognition
+# Install script for directory: /home/sony/Projects/bijou_cv/vehicle_plate_recognition
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/sony/Projects/bijou_cv/plate_recognition/build/bin/cmake_install.cmake")
+  include("/home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/bin/cmake_install.cmake")
 
 endif()
 
@@ -46,5 +46,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/sony/Projects/bijou_cv/plate_recognition/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
