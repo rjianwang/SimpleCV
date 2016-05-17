@@ -1,0 +1,5 @@
+/home/sony/Projects/bijou_cv/kmeans_demo_using_opencv/build/CMakeFiles/edit_cache.dir
+/home/sony/Projects/bijou_cv/kmeans_demo_using_opencv/build/CMakeFiles/rebuild_cache.dir
+/home/sony/Projects/bijou_cv/kmeans_demo_using_opencv/build/bin/CMakeFiles/edit_cache.dir
+/home/sony/Projects/bijou_cv/kmeans_demo_using_opencv/build/bin/CMakeFiles/rebuild_cache.dir
+/home/sony/Projects/bijou_cv/kmeans_demo_using_opencv/build/bin/CMakeFiles/kmeans.dir
