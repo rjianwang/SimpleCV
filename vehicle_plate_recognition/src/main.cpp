@@ -12,8 +12,8 @@ int main(int argc, char* argv[])
 
     // Detect and segment plate
     ImageSegmentation detector;
-    detector.saveRecognition = true;
-    detector.showSteps = true;
+    detector.saveRecognition = false;
+    detector.DEBUG = false;
     std::vector<Plate> plates_temp = detector.segment(img);
 
     // Load training data
@@ -23,11 +23,11 @@ int main(int argc, char* argv[])
     fs["TrainingData"] >> trainData;
     fs["classes"] >> labelData;
 
-    // Use SVM classifier to classify plate
+    // SVM classifier
     SVMClassifier svmClassifier;
     svmClassifier.train(trainData, labelData);
 
-    // 
+    // classify plates using SVM 
     std::vector<Plate> plates;
     for (int i = 0; i < plates_temp.size(); i++)
     {
@@ -39,8 +39,10 @@ int main(int argc, char* argv[])
             plates.push_back(plates_temp[i]);
     }
 
+    std::cout << "=============================================\n";
     std::cout << "Num plates detected: " << plates.size() << "\n";
 
+    // OCR
     OCR ocr;
     ocr.saveSegments = true;
     ocr.DEBUG = false;

@@ -5,6 +5,8 @@
 
 ImageSegmentation::ImageSegmentation()
 {
+    DEBUG = false;
+    saveRecognition = false;
 }
 
 
@@ -81,13 +83,13 @@ std::vector<Plate> ImageSegmentation::segment(cv::Mat img)
 		1,				// 计算导数值时可选的缩放因子，默认值是1
 		0,				// 表示在结果存入目标图之前可选的delta值，默认值为0
 		cv::BORDER_DEFAULT); // 边界模式，默认值为BORDER_DEFAULT
-	if (showSteps)
+	if (DEBUG)
 		cv::imshow("Sobel", sobel);
 
 	// 阈值分割得到二值图像，所采用的阈值由Otsu算法得到
 	cv::Mat threshold;
 	cv::threshold(sobel, threshold, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
-	if (showSteps)
+	if (DEBUG)
 		cv::imshow("Threshold Image", threshold);
 
 
@@ -95,7 +97,7 @@ std::vector<Plate> ImageSegmentation::segment(cv::Mat img)
 	// 定义一个结构元素structuringElement，维度为17 * 3
 	cv::Mat structuringElement = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(17, 3));
 	cv::morphologyEx(threshold, threshold, CV_MOP_CLOSE, structuringElement);
-	if (showSteps)
+	if (DEBUG)
 		cv::imshow("Close", threshold);
 
 	// 找到可能的车牌的轮廓
@@ -173,7 +175,7 @@ std::vector<Plate> ImageSegmentation::segment(cv::Mat img)
 				cv::Scalar(upDiff, upDiff, upDiff),
 				flags);
 		}
-		if (showSteps)
+		if (DEBUG)
 			cv::imshow("MASK", mask);
 
 		// 得到裁剪掩码后，检查其有效尺寸
@@ -229,7 +231,7 @@ std::vector<Plate> ImageSegmentation::segment(cv::Mat img)
 		}
 	}
 
-	if (showSteps)
+	if (DEBUG)
 		cv::imshow("Contours", result);
 
 	return plates;

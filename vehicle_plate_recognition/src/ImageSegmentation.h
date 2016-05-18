@@ -14,7 +14,7 @@ public:
 
 public:
 	std::string filename;
-	bool showSteps;
+	bool DEBUG;
 	bool saveRecognition;
 
 public:
