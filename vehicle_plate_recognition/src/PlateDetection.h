@@ -6,11 +6,11 @@
 
 class Plate;
 
-class ImageSegmentation
+class PlateDetection
 {
 public:
-	ImageSegmentation();
-	~ImageSegmentation();
+	PlateDetection();
+	~PlateDetection();
 
 public:
 	std::string filename;

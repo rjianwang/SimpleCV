@@ -81,28 +81,28 @@ bin/CMakeFiles/plate_recognition.dir/main.cpp.o.provides: bin/CMakeFiles/plate_r
 bin/CMakeFiles/plate_recognition.dir/main.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/main.cpp.o
 
 
-bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
-bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o: ../src/ImageSegmentation.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o"
-	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o -c /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ImageSegmentation.cpp
+bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
+bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o: ../src/PlateDetection.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o"
+	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o -c /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/PlateDetection.cpp
 
-bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.i"
-	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ImageSegmentation.cpp > CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.i
+bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/PlateDetection.cpp.i"
+	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/PlateDetection.cpp > CMakeFiles/plate_recognition.dir/PlateDetection.cpp.i
 
-bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.s"
-	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ImageSegmentation.cpp -o CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.s
+bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/PlateDetection.cpp.s"
+	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/PlateDetection.cpp -o CMakeFiles/plate_recognition.dir/PlateDetection.cpp.s
 
-bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o.requires:
+bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.requires:
 
-.PHONY : bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o.requires
+.PHONY : bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.requires
 
-bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o.requires
-	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o.provides.build
-.PHONY : bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o.provides
+bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.requires
+	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.provides.build
+.PHONY : bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.provides
 
-bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o
+bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o
 
 
 bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
@@ -180,7 +180,7 @@ bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o.provides.build: bin/CMa
 # Object files for target plate_recognition
 plate_recognition_OBJECTS = \
 "CMakeFiles/plate_recognition.dir/main.cpp.o" \
-"CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o" \
+"CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o" \
 "CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o" \
 "CMakeFiles/plate_recognition.dir/Plate.cpp.o" \
 "CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o"
@@ -189,7 +189,7 @@ plate_recognition_OBJECTS = \
 plate_recognition_EXTERNAL_OBJECTS =
 
 bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/main.cpp.o
-bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o
+bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o
 bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o
 bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o
 bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o
@@ -225,7 +225,7 @@ bin/CMakeFiles/plate_recognition.dir/build: bin/plate_recognition
 .PHONY : bin/CMakeFiles/plate_recognition.dir/build
 
 bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/main.cpp.o.requires
-bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o.requires
+bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.requires
 bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o.requires
 bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o.requires
 bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o.requires

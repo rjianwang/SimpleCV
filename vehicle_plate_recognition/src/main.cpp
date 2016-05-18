@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
 #include <vector>
-#include "ImageSegmentation.h"
+#include "PlateDetection.h"
 #include "Plate.h"
 #include "SVMClassifier.h"
 #include "OCR.cpp"
@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
     }
 
     // Detect and segment plate
-    ImageSegmentation detector;
+    PlateDetection detector;
     detector.saveRecognition = false;
     detector.DEBUG = false;
     std::vector<Plate> plates_temp = detector.segment(img);

@@ -36,9 +36,8 @@ bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o
  /usr/local/include/opencv2/video/background_segm.hpp
  /usr/local/include/opencv2/video/tracking.hpp
  /usr/local/include/opencv2/video/video.hpp
-bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o
- /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ImageSegmentation.cpp
- /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ImageSegmentation.h
+bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o
+ /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/Plate.cpp
  /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/Plate.h
  /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/StdAfx.h
  /usr/local/include/opencv/cvaux.h
@@ -72,9 +71,10 @@ bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o
  /usr/local/include/opencv2/video/background_segm.hpp
  /usr/local/include/opencv2/video/tracking.hpp
  /usr/local/include/opencv2/video/video.hpp
-bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o
- /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/Plate.cpp
+bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o
  /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/Plate.h
+ /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/PlateDetection.cpp
+ /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/PlateDetection.h
  /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/StdAfx.h
  /usr/local/include/opencv/cvaux.h
  /usr/local/include/opencv2/calib3d/calib3d.hpp
@@ -144,10 +144,10 @@ bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o
  /usr/local/include/opencv2/video/video.hpp
 bin/CMakeFiles/plate_recognition.dir/main.cpp.o
  /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ANNClassifier.h
- /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ImageSegmentation.h
  /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/OCR.cpp
  /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/OCR.h
  /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/Plate.h
+ /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/PlateDetection.h
  /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/SVMClassifier.h
  /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/StdAfx.h
  /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/main.cpp

@@ -18,22 +18,6 @@ string
 opencv2/ml/ml.hpp
 -
 
-/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ImageSegmentation.cpp
-time.h
--
-ImageSegmentation.h
-/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ImageSegmentation.h
-Plate.h
-/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/Plate.h
-
-/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ImageSegmentation.h
-StdAfx.h
-/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/StdAfx.h
-vector
--
-Plate.h
-/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/Plate.h
-
 /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/OCR.cpp
 OCR.h
 /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/OCR.h
@@ -64,6 +48,22 @@ string.h
 vector
 -
 
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/PlateDetection.cpp
+time.h
+-
+PlateDetection.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/PlateDetection.h
+Plate.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/Plate.h
+
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/PlateDetection.h
+StdAfx.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/StdAfx.h
+vector
+-
+Plate.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/Plate.h
+
 /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/SVMClassifier.cpp
 SVMClassifier.h
 /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/SVMClassifier.h
@@ -93,8 +93,8 @@ StdAfx.h
 /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/StdAfx.h
 vector
 -
-ImageSegmentation.h
-/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ImageSegmentation.h
+PlateDetection.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/PlateDetection.h
 Plate.h
 /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/Plate.h
 SVMClassifier.h

@@ -1,20 +1,20 @@
 #include <time.h>
 
-#include "ImageSegmentation.h"
+#include "PlateDetection.h"
 #include "Plate.h"
 
-ImageSegmentation::ImageSegmentation()
+PlateDetection::PlateDetection()
 {
     DEBUG = false;
     saveRecognition = false;
 }
 
 
-ImageSegmentation::~ImageSegmentation()
+PlateDetection::~PlateDetection()
 {
 }
 
-cv::Mat ImageSegmentation::histeq(cv::Mat img)
+cv::Mat PlateDetection::histeq(cv::Mat img)
 {
 	cv::Mat imt(img.size(), img.type());
 	// 若输入图像为彩色，需要在HSV空间中做直方图均衡处理
@@ -37,7 +37,7 @@ cv::Mat ImageSegmentation::histeq(cv::Mat img)
 	return imt;
 }
 
-bool ImageSegmentation::verifySizes(cv::RotatedRect ROI)
+bool PlateDetection::verifySizes(cv::RotatedRect ROI)
 {
 	// 以下设置车牌默认参数，用于识别矩形区域内是否为目标车牌
 	float error = 0.4;
@@ -61,7 +61,7 @@ bool ImageSegmentation::verifySizes(cv::RotatedRect ROI)
 	return true;
 }
 
-std::vector<Plate> ImageSegmentation::segment(cv::Mat img)
+std::vector<Plate> PlateDetection::segment(cv::Mat img)
 {
 	std::vector<Plate> plates;
 

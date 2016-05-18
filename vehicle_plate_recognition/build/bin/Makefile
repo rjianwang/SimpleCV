@@ -152,33 +152,6 @@ ANNClassifier.cpp.s:
 	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.s
 .PHONY : ANNClassifier.cpp.s
 
-ImageSegmentation.o: ImageSegmentation.cpp.o
-
-.PHONY : ImageSegmentation.o
-
-# target to build an object file
-ImageSegmentation.cpp.o:
-	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.o
-.PHONY : ImageSegmentation.cpp.o
-
-ImageSegmentation.i: ImageSegmentation.cpp.i
-
-.PHONY : ImageSegmentation.i
-
-# target to preprocess a source file
-ImageSegmentation.cpp.i:
-	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.i
-.PHONY : ImageSegmentation.cpp.i
-
-ImageSegmentation.s: ImageSegmentation.cpp.s
-
-.PHONY : ImageSegmentation.s
-
-# target to generate assembly for a file
-ImageSegmentation.cpp.s:
-	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ImageSegmentation.cpp.s
-.PHONY : ImageSegmentation.cpp.s
-
 Plate.o: Plate.cpp.o
 
 .PHONY : Plate.o
@@ -205,6 +178,33 @@ Plate.s: Plate.cpp.s
 Plate.cpp.s:
 	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/Plate.cpp.s
 .PHONY : Plate.cpp.s
+
+PlateDetection.o: PlateDetection.cpp.o
+
+.PHONY : PlateDetection.o
+
+# target to build an object file
+PlateDetection.cpp.o:
+	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o
+.PHONY : PlateDetection.cpp.o
+
+PlateDetection.i: PlateDetection.cpp.i
+
+.PHONY : PlateDetection.i
+
+# target to preprocess a source file
+PlateDetection.cpp.i:
+	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.i
+.PHONY : PlateDetection.cpp.i
+
+PlateDetection.s: PlateDetection.cpp.s
+
+.PHONY : PlateDetection.s
+
+# target to generate assembly for a file
+PlateDetection.cpp.s:
+	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.s
+.PHONY : PlateDetection.cpp.s
 
 SVMClassifier.o: SVMClassifier.cpp.o
 
@@ -272,12 +272,12 @@ help:
 	@echo "... ANNClassifier.o"
 	@echo "... ANNClassifier.i"
 	@echo "... ANNClassifier.s"
-	@echo "... ImageSegmentation.o"
-	@echo "... ImageSegmentation.i"
-	@echo "... ImageSegmentation.s"
 	@echo "... Plate.o"
 	@echo "... Plate.i"
 	@echo "... Plate.s"
+	@echo "... PlateDetection.o"
+	@echo "... PlateDetection.i"
+	@echo "... PlateDetection.s"
 	@echo "... SVMClassifier.o"
 	@echo "... SVMClassifier.i"
 	@echo "... SVMClassifier.s"
