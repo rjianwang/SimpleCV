@@ -125,6 +125,33 @@ plate_recognition/fast:
 	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/build
 .PHONY : plate_recognition/fast
 
+ANNClassifier.o: ANNClassifier.cpp.o
+
+.PHONY : ANNClassifier.o
+
+# target to build an object file
+ANNClassifier.cpp.o:
+	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o
+.PHONY : ANNClassifier.cpp.o
+
+ANNClassifier.i: ANNClassifier.cpp.i
+
+.PHONY : ANNClassifier.i
+
+# target to preprocess a source file
+ANNClassifier.cpp.i:
+	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.i
+.PHONY : ANNClassifier.cpp.i
+
+ANNClassifier.s: ANNClassifier.cpp.s
+
+.PHONY : ANNClassifier.s
+
+# target to generate assembly for a file
+ANNClassifier.cpp.s:
+	cd /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.s
+.PHONY : ANNClassifier.cpp.s
+
 ImageSegmentation.o: ImageSegmentation.cpp.o
 
 .PHONY : ImageSegmentation.o
@@ -242,6 +269,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... plate_recognition"
+	@echo "... ANNClassifier.o"
+	@echo "... ANNClassifier.i"
+	@echo "... ANNClassifier.s"
 	@echo "... ImageSegmentation.o"
 	@echo "... ImageSegmentation.i"
 	@echo "... ImageSegmentation.s"

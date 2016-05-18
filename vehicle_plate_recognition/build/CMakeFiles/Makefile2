@@ -84,7 +84,7 @@ bin/preinstall:
 bin/CMakeFiles/plate_recognition.dir/all:
 	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/depend
 	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target plate_recognition"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target plate_recognition"
 .PHONY : bin/CMakeFiles/plate_recognition.dir/all
 
 # Include target in all.
@@ -94,7 +94,7 @@ all: bin/CMakeFiles/plate_recognition.dir/all
 
 # Build rule for subdir invocation for target.
 bin/CMakeFiles/plate_recognition.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 bin/CMakeFiles/plate_recognition.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/sony/Projects/bijou_cv/vehicle_plate_recognition/build/CMakeFiles 0
 .PHONY : bin/CMakeFiles/plate_recognition.dir/rule

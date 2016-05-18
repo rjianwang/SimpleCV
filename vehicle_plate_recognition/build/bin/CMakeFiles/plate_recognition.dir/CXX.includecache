@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ANNClassifier.cpp
+ANNClassifier.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ANNClassifier.h
+
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ANNClassifier.h
+StdAfx.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/StdAfx.h
+string
+-
+opencv2/ml/ml.hpp
+-
+
 /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ImageSegmentation.cpp
 time.h
 -
@@ -25,6 +37,8 @@ Plate.h
 /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/OCR.cpp
 OCR.h
 /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/OCR.h
+ANNClassifier.h
+/home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/ANNClassifier.h
 
 /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/OCR.h
 StdAfx.h
@@ -35,7 +49,7 @@ vector
 -
 Plate.h
 /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/Plate.h
-opencv/ml.h
+opencv2/ml/ml.hpp
 -
 
 /home/sony/Projects/bijou_cv/vehicle_plate_recognition/src/Plate.cpp
@@ -115,14 +129,6 @@ opencv2/legacy/blobtrack.hpp
 /usr/local/include/opencv/opencv2/legacy/blobtrack.hpp
 opencv2/contrib/contrib.hpp
 /usr/local/include/opencv/opencv2/contrib/contrib.hpp
-
-/usr/local/include/opencv/ml.h
-opencv2/core/core_c.h
-/usr/local/include/opencv/opencv2/core/core_c.h
-opencv2/core/core.hpp
-/usr/local/include/opencv/opencv2/core/core.hpp
-opencv2/ml/ml.hpp
-/usr/local/include/opencv/opencv2/ml/ml.hpp
 
 /usr/local/include/opencv2/calib3d/calib3d.hpp
 opencv2/core/core.hpp

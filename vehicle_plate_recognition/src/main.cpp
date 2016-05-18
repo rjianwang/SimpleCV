@@ -41,14 +41,14 @@ int main(int argc, char* argv[])
 
     std::cout << "Num plates detected: " << plates.size() << "\n";
 
-    OCR ocr("OCR.xml");
+    OCR ocr;
     ocr.saveSegments = true;
     ocr.DEBUG = false;
     for (int i = 0; i < plates.size(); i++)
     {
         Plate plate = plates[i];
 
-        std::string plateNumber = ocr.run(&plate);
+        std::string plateNumber = ocr.ocr(&plate);
         std::string licensePlate = plate.str();
         std::cout << "=============================================\n";
         std::cout << "License plate number: " << licensePlate << "\n";
