@@ -6,9 +6,32 @@
 #include "SVMClassifier.h"
 #include "OCR.cpp"
 
+void helper(int argc, char* argv[])
+{
+    std::cout << "=============================================" << std::endl;;
+    std::cout << std::endl;
+    std::cout << "         Vehicle Plate Recognition" << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << "Usage: " << argv[0] << " <image> " << std::endl;
+    std::cout << "=============================================" << std::endl;;
+
+    std::cout << std::endl;
+}
+
 int main(int argc, char* argv[])
 {
-    cv::Mat img = cv::imread("plates/2715DTZ.jpg");
+    helper(argc, argv);
+    cv::Mat img;
+    if (argc == 2)
+    {
+        img = cv::imread(argv[1]);
+    }
+    else
+    {
+        std::cout << "Invalid Arguments." << std::endl;
+        return -1;
+    }
 
     // Detect and segment plate
     ImageSegmentation detector;
@@ -39,7 +62,6 @@ int main(int argc, char* argv[])
             plates.push_back(plates_temp[i]);
     }
 
-    std::cout << "=============================================\n";
     std::cout << "Num plates detected: " << plates.size() << "\n";
 
     // OCR
@@ -52,7 +74,6 @@ int main(int argc, char* argv[])
 
         std::string plateNumber = ocr.ocr(&plate);
         std::string licensePlate = plate.str();
-        std::cout << "=============================================\n";
         std::cout << "License plate number: " << licensePlate << "\n";
         std::cout << "=============================================\n";
         cv::rectangle(img, plate.position, cv::Scalar(0, 0, 200));
