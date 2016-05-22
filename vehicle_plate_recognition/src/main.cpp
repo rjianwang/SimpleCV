@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
     // Detect and segment plate
     PlateDetection detector;
     detector.saveRecognition = false;
-    detector.DEBUG = false;
+    detector.DEBUG = false;;
     std::vector<Plate> plates_temp = detector.segment(img);
 
     // Load training data
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
     }
 
     std::cout << "Num plates detected: " << plates.size() << "\n";
-
+    
     // OCR
     OCR ocr;
     ocr.saveSegments = true;

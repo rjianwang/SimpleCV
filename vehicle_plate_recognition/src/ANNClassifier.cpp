@@ -39,15 +39,9 @@ void ANNClassifier::train(const cv::Mat &trainData,
         }
     }
 
-    CvANN_MLP_TrainParams params;
-    params.train_method = CvANN_MLP_TrainParams::BACKPROP;
-    params.bp_dw_scale = 0.1;
-    params.bp_moment_scale = 0.1;
-
     cv::Mat weights(1, trainData.rows, CV_32FC1, cv::Scalar::all(1));
 
     ann.train(trainData, trainClasses, weights);
-    //ann.train(trainData, trainClasses, cv::Mat(), cv::Mat(), params);
 }
 
 int ANNClassifier::predict(const cv::Mat &sample)

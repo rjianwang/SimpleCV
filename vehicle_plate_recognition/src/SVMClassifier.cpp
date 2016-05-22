@@ -2,16 +2,15 @@
 
 SVMClassifier::SVMClassifier()
 {
-    SVM_params.svm_type =CvSVM::C_SVC;
-    SVM_params.kernel_type = CvSVM::LINEAR;
+    SVM_params.svm_type = CvSVM::C_SVC;
+    SVM_params.kernel_type = CvSVM::LINEAR; // CvSVM::LINEAR
     SVM_params.degree = 0;
-    SVM_params.gamma = 1;
-    SVM_params.coef0 = 0;
+    SVM_params.gamma = 1; 
+    SVM_params.coef0 = 0; 
     SVM_params.C = 1;
-    SVM_params.nu = 0;
-    SVM_params.p = 0;
+    SVM_params.nu = 0;    
+    SVM_params.p = 0;     
     SVM_params.term_crit = cvTermCriteria(CV_TERMCRIT_ITER, 1000, 0.01);
-
 
     svmClassifier = NULL;
 }

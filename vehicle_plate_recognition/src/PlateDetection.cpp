@@ -17,8 +17,8 @@ PlateDetection::~PlateDetection()
 cv::Mat PlateDetection::histeq(cv::Mat img)
 {
 	cv::Mat imt(img.size(), img.type());
-	// ÈôÊäÈëÍ¼ÏñÎª²ÊÉ«£¬ĞèÒªÔÚHSV¿Õ¼äÖĞ×öÖ±·½Í¼¾ùºâ´¦Àí
-	// ÔÙ×ª»»»ØRGB¸ñÊ½
+	// è‹¥è¾“å…¥å›¾åƒä¸ºå½©è‰²ï¼Œéœ€è¦åœ¨HSVç©ºé—´ä¸­åšç›´æ–¹å›¾å‡è¡¡å¤„ç†
+	// å†è½¬æ¢å›RGBæ ¼å¼
 	if (img.channels() == 3)
 	{
 		cv::Mat hsv;
@@ -29,7 +29,7 @@ cv::Mat PlateDetection::histeq(cv::Mat img)
 		cv::merge(hsvSplit, hsv);
 		cv::cvtColor(hsv, imt, CV_HSV2BGR);
 	}
-	// ÈôÊäÈëÍ¼ÏñÎª»Ò¶ÈÍ¼£¬Ö±½Ó×öÖ±·½Í¼¾ùºâ´¦Àí
+	// è‹¥è¾“å…¥å›¾åƒä¸ºç°åº¦å›¾ï¼Œç›´æ¥åšç›´æ–¹å›¾å‡è¡¡å¤„ç†
 	else if (img.channels() == 1){
 		equalizeHist(img, imt);
 	}
@@ -39,13 +39,13 @@ cv::Mat PlateDetection::histeq(cv::Mat img)
 
 bool PlateDetection::verifySizes(cv::RotatedRect ROI)
 {
-	// ÒÔÏÂÉèÖÃ³µÅÆÄ¬ÈÏ²ÎÊı£¬ÓÃÓÚÊ¶±ğ¾ØĞÎÇøÓòÄÚÊÇ·ñÎªÄ¿±ê³µÅÆ
+	// ä»¥ä¸‹è®¾ç½®è½¦ç‰Œé»˜è®¤å‚æ•°ï¼Œç”¨äºè¯†åˆ«çŸ©å½¢åŒºåŸŸå†…æ˜¯å¦ä¸ºç›®æ ‡è½¦ç‰Œ
 	float error = 0.4;
-	// Î÷°àÑÀ³µÅÆ¿í¸ß±È: 520 / 110 = 4.7272
+	// è¥¿ç­ç‰™è½¦ç‰Œå®½é«˜æ¯”: 520 / 110 = 4.7272
 	float aspect = 4.7272;
-	// Éè¶¨ÇøÓòÃæ»ıµÄ×îĞ¡/×î´ó³ß´ç£¬²»ÔÚ´Ë·¶Î§ÄÚµÄ²»±»ÊÓÎª³µÅÆ
-	int min = 15 * aspect * 15;    // 15¸öÏñËØ
-	int max = 125 * aspect * 125;  // 125¸öÏñËØ
+	// è®¾å®šåŒºåŸŸé¢ç§¯çš„æœ€å°/æœ€å¤§å°ºå¯¸ï¼Œä¸åœ¨æ­¤èŒƒå›´å†…çš„ä¸è¢«è§†ä¸ºè½¦ç‰Œ
+	int min = 15 * aspect * 15;    // 15ä¸ªåƒç´ 
+	int max = 125 * aspect * 125;  // 125ä¸ªåƒç´ 
 	float rmin = aspect - aspect * error;
 	float rmax = aspect + aspect * error;
 
@@ -54,7 +54,7 @@ bool PlateDetection::verifySizes(cv::RotatedRect ROI)
 	if (r<1)
 		r = (float)ROI.size.height / (float)ROI.size.width;
 
-	// ÅĞ¶ÏÊÇ·ñ·ûºÏÒÔÉÏ²ÎÊı
+	// åˆ¤æ–­æ˜¯å¦ç¬¦åˆä»¥ä¸Šå‚æ•°
 	if ((area < min || area > max) || (r < rmin || r > rmax))
 		return false;
 
@@ -65,52 +65,52 @@ std::vector<Plate> PlateDetection::segment(cv::Mat img)
 {
 	std::vector<Plate> plates;
 
-	// Í¼Ïñ×ª»»Îª»Ò¶ÈÍ¼
+	// å›¾åƒè½¬æ¢ä¸ºç°åº¦å›¾
 	cv::Mat gray;
 	cv::cvtColor(img, gray, CV_BGR2GRAY);
 
-	// ¾ùÖµÂË²¨£¬È¥Ôë
+	// å‡å€¼æ»¤æ³¢ï¼Œå»å™ª
 	cv::blur(gray, gray, cv::Size(5, 5));
 
-	// SobelËã×Ó¼ì²â±ßÔµ
+	// Sobelç®—å­æ£€æµ‹è¾¹ç¼˜
 	cv::Mat sobel;
-	Sobel(gray,			// ÊäÈëÍ¼Ïñ
-		sobel,			// Êä³öÍ¼Ïñ
-		CV_8U,			//Êä³öÍ¼ÏñµÄÉî¶È
-		1,				// x·½ÏòÉÏµÄ²î·Ö½×Êı
-		0,				// y·½ÏòÉÏµÄ²î·Ö½×Êı
-		3,				// À©Õ¹SobelºËµÄ´óĞ¡£¬±ØĞëÊÇ1,3,5»ò7
-		1,				// ¼ÆËãµ¼ÊıÖµÊ±¿ÉÑ¡µÄËõ·ÅÒò×Ó£¬Ä¬ÈÏÖµÊÇ1
-		0,				// ±íÊ¾ÔÚ½á¹û´æÈëÄ¿±êÍ¼Ö®Ç°¿ÉÑ¡µÄdeltaÖµ£¬Ä¬ÈÏÖµÎª0
-		cv::BORDER_DEFAULT); // ±ß½çÄ£Ê½£¬Ä¬ÈÏÖµÎªBORDER_DEFAULT
+	Sobel(gray,			// è¾“å…¥å›¾åƒ
+		sobel,			// è¾“å‡ºå›¾åƒ
+		CV_8U,			//è¾“å‡ºå›¾åƒçš„æ·±åº¦
+		1,				// xæ–¹å‘ä¸Šçš„å·®åˆ†é˜¶æ•°
+		0,				// yæ–¹å‘ä¸Šçš„å·®åˆ†é˜¶æ•°
+		3,				// æ‰©å±•Sobelæ ¸çš„å¤§å°ï¼Œå¿…é¡»æ˜¯1,3,5æˆ–7
+		1,				// è®¡ç®—å¯¼æ•°å€¼æ—¶å¯é€‰çš„ç¼©æ”¾å› å­ï¼Œé»˜è®¤å€¼æ˜¯1
+		0,				// è¡¨ç¤ºåœ¨ç»“æœå­˜å…¥ç›®æ ‡å›¾ä¹‹å‰å¯é€‰çš„deltaå€¼ï¼Œé»˜è®¤å€¼ä¸º0
+		cv::BORDER_DEFAULT); // è¾¹ç•Œæ¨¡å¼ï¼Œé»˜è®¤å€¼ä¸ºBORDER_DEFAULT
 	if (DEBUG)
 		cv::imshow("Sobel", sobel);
 
-	// ãĞÖµ·Ö¸îµÃµ½¶şÖµÍ¼Ïñ£¬Ëù²ÉÓÃµÄãĞÖµÓÉOtsuËã·¨µÃµ½
+	// é˜ˆå€¼åˆ†å‰²å¾—åˆ°äºŒå€¼å›¾åƒï¼Œæ‰€é‡‡ç”¨çš„é˜ˆå€¼ç”±Otsuç®—æ³•å¾—åˆ°
 	cv::Mat threshold;
 	cv::threshold(sobel, threshold, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
 	if (DEBUG)
 		cv::imshow("Threshold Image", threshold);
 
 
-	// Ê¹ÓÃmorphologyExº¯ÊıµÃµ½°üº¬³µÅÆµÄÇøÓò£¨µ«²»°üº¬³µÅÆºÅ£©
-	// ¶¨ÒåÒ»¸ö½á¹¹ÔªËØstructuringElement£¬Î¬¶ÈÎª17 * 3
+	// ä½¿ç”¨morphologyExå‡½æ•°å¾—åˆ°åŒ…å«è½¦ç‰Œçš„åŒºåŸŸï¼ˆä½†ä¸åŒ…å«è½¦ç‰Œå·ï¼‰
+	// å®šä¹‰ä¸€ä¸ªç»“æ„å…ƒç´ structuringElementï¼Œç»´åº¦ä¸º17 * 3
 	cv::Mat structuringElement = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(17, 3));
 	cv::morphologyEx(threshold, threshold, CV_MOP_CLOSE, structuringElement);
 	if (DEBUG)
 		cv::imshow("Close", threshold);
 
-	// ÕÒµ½¿ÉÄÜµÄ³µÅÆµÄÂÖÀª
+	// æ‰¾åˆ°å¯èƒ½çš„è½¦ç‰Œçš„è½®å»“
 	std::vector<std::vector<cv::Point> > contours;
 	findContours(threshold,
-		contours, // ¼ì²âµÄÂÖÀªÊı×é£¬Ã¿Ò»¸öÂÖÀªÓÃÒ»¸öpointÀàĞÍµÄvector±íÊ¾
-		CV_RETR_EXTERNAL, // ±íÊ¾Ö»¼ì²âÍâÂÖÀª
-		CV_CHAIN_APPROX_NONE); // ÂÖÀªµÄ½üËÆ°ì·¨£¬ÕâÀï´æ´¢ËùÓĞµÄÂÖÀªµã
+		contours, // æ£€æµ‹çš„è½®å»“æ•°ç»„ï¼Œæ¯ä¸€ä¸ªè½®å»“ç”¨ä¸€ä¸ªpointç±»å‹çš„vectorè¡¨ç¤º
+		CV_RETR_EXTERNAL, // è¡¨ç¤ºåªæ£€æµ‹å¤–è½®å»“
+		CV_CHAIN_APPROX_NONE); // è½®å»“çš„è¿‘ä¼¼åŠæ³•ï¼Œè¿™é‡Œå­˜å‚¨æ‰€æœ‰çš„è½®å»“ç‚¹
 
-	// ¶ÔÃ¿¸öÂÖÀª¼ì²âºÍÌáÈ¡×îĞ¡ÇøÓòµÄÓĞ½ç¾ØĞÎÇøÓò
+	// å¯¹æ¯ä¸ªè½®å»“æ£€æµ‹å’Œæå–æœ€å°åŒºåŸŸçš„æœ‰ç•ŒçŸ©å½¢åŒºåŸŸ
 	std::vector<std::vector<cv::Point> >::iterator itc = contours.begin();
 	std::vector<cv::RotatedRect> rects;
-	// ÈôÃ»ÓĞ´ïµ½Éè¶¨µÄ¿í¸ß±ÈÒªÇó£¬ÒÆÈ¥¸ÃÇøÓò
+	// è‹¥æ²¡æœ‰è¾¾åˆ°è®¾å®šçš„å®½é«˜æ¯”è¦æ±‚ï¼Œç§»å»è¯¥åŒºåŸŸ
 	while (itc != contours.end())
 	{
 		cv::RotatedRect ROI = cv::minAreaRect(cv::Mat(*itc));
@@ -123,49 +123,49 @@ std::vector<Plate> PlateDetection::segment(cv::Mat img)
 		}
 	}
 
-	// ÔÚ°×É«µÄÍ¼ÉÏ»­³öÀ¶É«µÄÂÖÀª
+	// åœ¨ç™½è‰²çš„å›¾ä¸Šç”»å‡ºè“è‰²çš„è½®å»“
 	cv::Mat result;
 	img.copyTo(result);
 	cv::drawContours(result,
 		contours,
-		-1,				    // ËùÓĞµÄÂÖÀª¶¼»­³ö
-		cv::Scalar(255, 0, 0), // ÑÕÉ«
-		1);		// Ïß´Ö
+		-1,				    // æ‰€æœ‰çš„è½®å»“éƒ½ç”»å‡º
+		cv::Scalar(255, 0, 0), // é¢œè‰²
+		1);		// çº¿ç²—
 
-	// Ê¹ÓÃÂşË®Ìî³äËã·¨²Ã¼ô³µÅÆ»ñÈ¡¸üÇåÎúµÄÂÖÀª
+	// ä½¿ç”¨æ¼«æ°´å¡«å……ç®—æ³•è£å‰ªè½¦ç‰Œè·å–æ›´æ¸…æ™°çš„è½®å»“
 	for (int i = 0; i< rects.size(); i++)
 	{
 		cv::circle(result, rects[i].center, 3, cv::Scalar(0, 255, 0), -1);
-		// µÃµ½¿í¶ÈºÍ¸ß¶ÈÖĞ½ÏĞ¡µÄÖµ£¬µÃµ½³µÅÆµÄ×îĞ¡³ß´ç
+		// å¾—åˆ°å®½åº¦å’Œé«˜åº¦ä¸­è¾ƒå°çš„å€¼ï¼Œå¾—åˆ°è½¦ç‰Œçš„æœ€å°å°ºå¯¸
 		float minSize = (rects[i].size.width < rects[i].size.height) ? rects[i].size.width : rects[i].size.height;
 		minSize = minSize - minSize * 0.5;
-		// ÔÚ¿éÖĞĞÄ¸½½ü²úÉúÈô¸É¸öËæ»úÖÖ×Ó
+		// åœ¨å—ä¸­å¿ƒé™„è¿‘äº§ç”Ÿè‹¥å¹²ä¸ªéšæœºç§å­
 		srand(time(NULL));
-		// ³õÊ¼»¯ÂşË®Ìî³äËã·¨µÄ²ÎÊı
+		// åˆå§‹åŒ–æ¼«æ°´å¡«å……ç®—æ³•çš„å‚æ•°
 		cv::Mat mask;
 		mask.create(img.rows + 2, img.cols + 2, CV_8UC1);
 		mask = cv::Scalar::all(0);
-		// loDiff±íÊ¾µ±Ç°¹Û²ìÏñËØÖµÓëÆä²¿¼şÁÚÓòÏñËØÖµ»òÕß´ı¼ÓÈë
-		// ¸Ã²¿¼şµÄÖÖ×ÓÏñËØÖ®¼äµÄÁÁ¶È»òÑÕÉ«Ö®¸º²îµÄ×î´óÖµ
+		// loDiffè¡¨ç¤ºå½“å‰è§‚å¯Ÿåƒç´ å€¼ä¸å…¶éƒ¨ä»¶é‚»åŸŸåƒç´ å€¼æˆ–è€…å¾…åŠ å…¥
+		// è¯¥éƒ¨ä»¶çš„ç§å­åƒç´ ä¹‹é—´çš„äº®åº¦æˆ–é¢œè‰²ä¹‹è´Ÿå·®çš„æœ€å¤§å€¼
 		int loDiff = 30;
-		// upDiff±íÊ¾µ±Ç°¹Û²ìÏñËØÖµÓëÆä²¿¼şÁÚÓòÏñËØÖµ»òÕß´ı¼ÓÈë
-		// ¸Ã²¿¼şµÄÖÖ×ÓÏñËØÖ®¼äµÄÁÁ¶È»òÑÕÉ«Ö®Õı²îµÄ×î´óÖµ
+		// upDiffè¡¨ç¤ºå½“å‰è§‚å¯Ÿåƒç´ å€¼ä¸å…¶éƒ¨ä»¶é‚»åŸŸåƒç´ å€¼æˆ–è€…å¾…åŠ å…¥
+		// è¯¥éƒ¨ä»¶çš„ç§å­åƒç´ ä¹‹é—´çš„äº®åº¦æˆ–é¢œè‰²ä¹‹æ­£å·®çš„æœ€å¤§å€¼
 		int upDiff = 30;
-		int connectivity = 4; // ÓÃÓÚ¿ØÖÆËã·¨µÄÁ¬Í¨ĞÔ£¬¿ÉÈ¡4»òÕß8
+		int connectivity = 4; // ç”¨äºæ§åˆ¶ç®—æ³•çš„è¿é€šæ€§ï¼Œå¯å–4æˆ–è€…8
 		int newMaskVal = 255;
 		int NumSeeds = 10;
 		cv::Rect ccomp;
-		// ²Ù×÷±êÖ¾·û·ÖÎª¼¸¸ö²¿·Ö
-		int flags = connectivity + // ÓÃÓÚ¿ØÖÆËã·¨µÄÁ¬Í¨ĞÔ£¬¿ÉÈ¡4»òÕß8
+		// æ“ä½œæ ‡å¿—ç¬¦åˆ†ä¸ºå‡ ä¸ªéƒ¨åˆ†
+		int flags = connectivity + // ç”¨äºæ§åˆ¶ç®—æ³•çš„è¿é€šæ€§ï¼Œå¯å–4æˆ–è€…8
 			(newMaskVal << 8) +
-			CV_FLOODFILL_FIXED_RANGE + // ÉèÖÃ¸Ã±êÊ¶·û£¬»á¿¼ÂÇµ±Ç°ÏñËØÓëÖÖ×ÓÏñËØÖ®¼äµÄ²î
-			CV_FLOODFILL_MASK_ONLY; // º¯Êı²»»áÈ¥Ìî³ä¸Ä±äÔ­Ê¼Í¼Ïñ, ¶øÊÇÈ¥Ìî³äÑÚÄ£Í¼Ïñ
+			CV_FLOODFILL_FIXED_RANGE + // è®¾ç½®è¯¥æ ‡è¯†ç¬¦ï¼Œä¼šè€ƒè™‘å½“å‰åƒç´ ä¸ç§å­åƒç´ ä¹‹é—´çš„å·®
+			CV_FLOODFILL_MASK_ONLY; // å‡½æ•°ä¸ä¼šå»å¡«å……æ”¹å˜åŸå§‹å›¾åƒ, è€Œæ˜¯å»å¡«å……æ©æ¨¡å›¾åƒ
 		for (int j = 0; j < NumSeeds; j++){
 			cv::Point seed;
 			seed.x = rects[i].center.x + rand() % (int)minSize - (minSize / 2);
 			seed.y = rects[i].center.y + rand() % (int)minSize - (minSize / 2);
 			circle(result, seed, 1, cv::Scalar(0, 255, 255), -1);
-			// ÔËÓÃÌî³äËã·¨£¬²ÎÊıÒÑÉèÖÃ
+			// è¿ç”¨å¡«å……ç®—æ³•ï¼Œå‚æ•°å·²è®¾ç½®
 			int area = floodFill(img,
 				mask,
 				seed,
@@ -178,9 +178,9 @@ std::vector<Plate> PlateDetection::segment(cv::Mat img)
 		if (DEBUG)
 			cv::imshow("MASK", mask);
 
-		// µÃµ½²Ã¼ôÑÚÂëºó£¬¼ì²éÆäÓĞĞ§³ß´ç
-		// ¶ÔÓÚÃ¿¸öÑÚÂëµÄ°×É«ÏñËØ£¬ÏÈµÃµ½ÆäÎ»ÖÃ
-		// ÔÙÊ¹ÓÃminAreaRectº¯Êı»ñÈ¡×î½Ó½üµÄ²Ã¼ôÇøÓò
+		// å¾—åˆ°è£å‰ªæ©ç åï¼Œæ£€æŸ¥å…¶æœ‰æ•ˆå°ºå¯¸
+		// å¯¹äºæ¯ä¸ªæ©ç çš„ç™½è‰²åƒç´ ï¼Œå…ˆå¾—åˆ°å…¶ä½ç½®
+		// å†ä½¿ç”¨minAreaRectå‡½æ•°è·å–æœ€æ¥è¿‘çš„è£å‰ªåŒºåŸŸ
 		std::vector<cv::Point> pointsInterest;
 		cv::Mat_<uchar>::iterator itMask = mask.begin<uchar>();
 		cv::Mat_<uchar>::iterator end = mask.end<uchar>();
@@ -191,23 +191,23 @@ std::vector<Plate> PlateDetection::segment(cv::Mat img)
 		cv::RotatedRect minRect = cv::minAreaRect(pointsInterest);
 
 		if (verifySizes(minRect)){
-			// Ğı×ª¾ØĞÎÍ¼
+			// æ—‹è½¬çŸ©å½¢å›¾
 			cv::Point2f rect_points[4]; minRect.points(rect_points);
 			for (int j = 0; j < 4; j++)
 				line(result, rect_points[j], rect_points[(j + 1) % 4], cv::Scalar(0, 0, 255), 1, 8);
 
-			// µÃµ½Ğı×ªÍ¼ÏñÇøÓòµÄ¾ØÕó
+			// å¾—åˆ°æ—‹è½¬å›¾åƒåŒºåŸŸçš„çŸ©é˜µ
 			float r = (float)minRect.size.width / (float)minRect.size.height;
 			float angle = minRect.angle;
 			if (r<1)
 				angle = 90 + angle;
 			cv::Mat rotmat = cv::getRotationMatrix2D(minRect.center, angle, 1);
 
-			// Í¨¹ı·ÂÉä±ä»»Ğı×ªÊäÈëµÄÍ¼Ïñ
+			// é€šè¿‡ä»¿å°„å˜æ¢æ—‹è½¬è¾“å…¥çš„å›¾åƒ
 			cv::Mat img_rotated;
 			cv::warpAffine(img, img_rotated, rotmat, img.size(), CV_INTER_CUBIC);
 
-			// ×îºó²Ã¼ôÍ¼Ïñ
+			// æœ€åè£å‰ªå›¾åƒ
 			cv::Size rect_size = minRect.size;
 			if (r < 1)
 				std::swap(rect_size.width, rect_size.height);
@@ -217,7 +217,7 @@ std::vector<Plate> PlateDetection::segment(cv::Mat img)
 			cv::Mat resultResized;
 			resultResized.create(33, 144, CV_8UC3);
 			resize(img_crop, resultResized, resultResized.size(), 0, 0, cv::INTER_CUBIC);
-			// ÎªÁËÏû³ı¹âÕÕÓ°Ïì£¬¶Ô²Ã¼ôÍ¼ÏñÊ¹ÓÃÖ±·½Í¼¾ùºâ»¯´¦Àí
+			// ä¸ºäº†æ¶ˆé™¤å…‰ç…§å½±å“ï¼Œå¯¹è£å‰ªå›¾åƒä½¿ç”¨ç›´æ–¹å›¾å‡è¡¡åŒ–å¤„ç†
 			cv::Mat grayResult;
 			cv::cvtColor(resultResized, grayResult, CV_BGR2GRAY);
 			cv::blur(grayResult, grayResult, cv::Size(3, 3));
