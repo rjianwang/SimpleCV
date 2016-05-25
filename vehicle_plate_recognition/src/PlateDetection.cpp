@@ -199,7 +199,7 @@ std::vector<Plate> PlateDetection::segment(cv::Mat img)
 			// 得到旋转图像区域的矩阵
 			float r = (float)minRect.size.width / (float)minRect.size.height;
 			float angle = minRect.angle;
-			if (r<1)
+			if (r < 1)
 				angle = 90 + angle;
 			cv::Mat rotmat = cv::getRotationMatrix2D(minRect.center, angle, 1);
 
