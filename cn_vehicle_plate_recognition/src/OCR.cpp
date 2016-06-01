@@ -76,12 +76,17 @@ std::vector<CharSegment> OCR::segment(Plate plate){
 
     cv::Mat input = plate.image;
     std::vector<CharSegment> output;
-    cv::Mat thresholdImage;
-    cv::threshold(input, thresholdImage, 180, 255, CV_THRESH_BINARY);
+    
+    // 图像转为灰度图
+    if (input.channels() == 3)
+        cv::cvtColor(input, input, CV_BGR2GRAY);
+
+    cv::Mat threshold;
+    cv::threshold(input, threshold, 185, 255, CV_THRESH_BINARY);
 	if (DEBUG)
-		cv::imshow("Threshold plate", thresholdImage);
+		cv::imshow("Threshold plate", threshold);
     cv::Mat img_contours;
-	thresholdImage.copyTo(img_contours);
+	threshold.copyTo(img_contours);
 	// 找到可能的车牌的轮廓
     std::vector< std::vector<cv::Point> > contours;
     cv::findContours(img_contours,
@@ -92,7 +97,7 @@ std::vector<CharSegment> OCR::segment(Plate plate){
 	// 在白色的图上画出蓝色的轮廓
 	cv::Mat result;
 
-	thresholdImage.copyTo(result);
+	threshold.copyTo(result);
     cv::cvtColor(result, result, CV_GRAY2RGB);
 	cv::drawContours(result, contours,
 		-1,  // 所有的轮廓都画出
@@ -110,7 +115,7 @@ std::vector<CharSegment> OCR::segment(Plate plate){
         cv::Rect mr = cv::boundingRect(cv::Mat(*itc));
         cv::rectangle(result, mr, cv::Scalar(0, 255, 0));
 		// 裁剪图像
-        cv::Mat auxRoi(thresholdImage, mr);
+        cv::Mat auxRoi(threshold, mr);
 		if (verifySizes(auxRoi)){
 			auxRoi = preprocessChar(auxRoi);
 			output.push_back(CharSegment(auxRoi, mr));
@@ -129,7 +134,7 @@ std::vector<CharSegment> OCR::segment(Plate plate){
 		cv::imshow("Segmented Chars", result);
     
     // 按x坐标排序
-    Util::qsort(output, 0, int(output.size() - 1));
+    Util::qsort(output, 0, output.size() - 1);
 	return output;
 }
 
@@ -290,8 +295,9 @@ void OCR::process_chars(Plate *input, const std::vector<CharSegment> segments)
     ANNClassifier *annClassifier = new ANNClassifier();
 
     annClassifier->load_xml("../OCR.xml");
+    //annClassifier->load_data("../data/chars/");
     annClassifier->DEBUG = this->DEBUG;
-    annClassifier->train(Resources::numCharacters);
+    annClassifier->train(Resources::numSPCharacters);
 
 	for (int i = 1; i < segments.size(); i++){
 		// 对每个字符进行预处理，使得对所有图像均有相同的大小 
@@ -304,8 +310,13 @@ void OCR::process_chars(Plate *input, const std::vector<CharSegment> segments)
 		// 为每个分段提取特征
         cv::Mat f = features(ch, 15);
 		// 对于每个部分进行分类
+        /*ch.convertTo(ch, CV_32FC1);
+        cv::Mat resized;
+        resized.create(12, 24, CV_32FC1);
+        cv::resize(ch, resized, resized.size(), 0, 0, cv::INTER_CUBIC);
+        resized = resized.reshape(1, 1);*/
 		int character = annClassifier->predict(f);
-		input->chars.push_back(std::string(1, Resources::chars[character]));
+		input->chars.push_back(std::string(1, Resources::sp_chars[character]));
 		input->charsPos.push_back(segments[i].pos);
 	}
 
@@ -337,7 +348,6 @@ void OCR::process_cn_chars(Plate *input, const std::vector<CharSegment> segments
     ch = ch.reshape(1, 1);
     int character = annClassifier->predict(ch);
     std::cout << Resources::cn_chars[character] << std::endl;
-    std::cout << labels[0] << std::endl;
     input->chars.push_back(Resources::cn_chars[character]);
     input->charsPos.push_back(segments[0].pos);
 

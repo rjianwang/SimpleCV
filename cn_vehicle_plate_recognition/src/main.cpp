@@ -107,7 +107,7 @@ int main(int argc, char* argv[])
         std::string licensePlate = plate.str();
         std::cout << "License plate number: " << licensePlate << "\n";
         std::cout << "=============================================\n";
-        cv::rectangle(img, plate.position, cv::Scalar(0, 0, 200));
+        cv::rectangle(img, plate.position, cv::Scalar(0, 0, 200), 2);
         cv::putText(img, licensePlate, cv::Point(plate.position.x, plate.position.y), CV_FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 200), 2);
         if (false)
             cv::imshow("Plate Detected seg", plate.image);
