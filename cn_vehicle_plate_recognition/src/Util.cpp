@@ -27,3 +27,29 @@ std::vector<std::string> Util::getFiles(const std::string filepath)
 
     return files;
 }
+
+void Util::qsort(std::vector<CharSegment> &input, int low, int high)
+{
+    int i = low, j = high;
+    CharSegment temp = input[low];
+
+    while (i < j)
+    {
+        while (i < j && temp.pos.x <= input[j].pos.x) j--;
+        if (i < j)
+        {
+            input[i] = input[j];
+            i++;
+        }
+        while (i < j && temp.pos.x > input[i].pos.x) i++;
+        if (i < j)
+        {
+            input[j] = input[i];
+            j--;
+        }
+    }
+    input[i] = temp;
+
+    if (low < i) qsort(input, low, i - 1);
+    if (i < high) qsort(input, j + 1, high);
+}

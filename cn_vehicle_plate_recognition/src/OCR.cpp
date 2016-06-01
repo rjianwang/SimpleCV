@@ -77,7 +77,7 @@ std::vector<CharSegment> OCR::segment(Plate plate){
     cv::Mat input = plate.image;
     std::vector<CharSegment> output;
     cv::Mat thresholdImage;
-    cv::threshold(input, thresholdImage, 200, 255, CV_THRESH_BINARY);
+    cv::threshold(input, thresholdImage, 180, 255, CV_THRESH_BINARY);
 	if (DEBUG)
 		cv::imshow("Threshold plate", thresholdImage);
     cv::Mat img_contours;
@@ -129,7 +129,7 @@ std::vector<CharSegment> OCR::segment(Plate plate){
 		cv::imshow("Segmented Chars", result);
     
     // 按x坐标排序
-    std::qsort(&output, output.size(), sizeof(CharSegment), Util::compare);
+    Util::qsort(output, 0, int(output.size() - 1));
 	return output;
 }
 
@@ -289,7 +289,7 @@ void OCR::process_chars(Plate *input, const std::vector<CharSegment> segments)
     // ANN Classifier
     ANNClassifier *annClassifier = new ANNClassifier();
 
-    annClassifier->load_data("../data/chars/");
+    annClassifier->load_xml("../OCR.xml");
     annClassifier->DEBUG = this->DEBUG;
     annClassifier->train(Resources::numCharacters);
 
@@ -302,14 +302,9 @@ void OCR::process_chars(Plate *input, const std::vector<CharSegment> segments)
             cv::imwrite(ss.str(), ch);
 		}
 		// 为每个分段提取特征
-        //cv::Mat f = features(ch, 15);
+        cv::Mat f = features(ch, 15);
 		// 对于每个部分进行分类
-        ch.convertTo(ch, CV_32FC1);
-        cv::Mat resized;
-        resized.create(12, 24, CV_32FC1);
-        cv::resize(ch, resized, resized.size(), 0, 0, cv::INTER_CUBIC);
-        resized = resized.reshape(1, 1);
-		int character = annClassifier->predict(resized);
+		int character = annClassifier->predict(f);
 		input->chars.push_back(std::string(1, Resources::chars[character]));
 		input->charsPos.push_back(segments[i].pos);
 	}

@@ -206,6 +206,33 @@ PlateDetection.cpp.s:
 	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.s
 .PHONY : PlateDetection.cpp.s
 
+Resources.o: Resources.cpp.o
+
+.PHONY : Resources.o
+
+# target to build an object file
+Resources.cpp.o:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o
+.PHONY : Resources.cpp.o
+
+Resources.i: Resources.cpp.i
+
+.PHONY : Resources.i
+
+# target to preprocess a source file
+Resources.cpp.i:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/Resources.cpp.i
+.PHONY : Resources.cpp.i
+
+Resources.s: Resources.cpp.s
+
+.PHONY : Resources.s
+
+# target to generate assembly for a file
+Resources.cpp.s:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/Resources.cpp.s
+.PHONY : Resources.cpp.s
+
 SVMClassifier.o: SVMClassifier.cpp.o
 
 .PHONY : SVMClassifier.o
@@ -305,6 +332,9 @@ help:
 	@echo "... PlateDetection.o"
 	@echo "... PlateDetection.i"
 	@echo "... PlateDetection.s"
+	@echo "... Resources.o"
+	@echo "... Resources.i"
+	@echo "... Resources.s"
 	@echo "... SVMClassifier.o"
 	@echo "... SVMClassifier.i"
 	@echo "... SVMClassifier.s"

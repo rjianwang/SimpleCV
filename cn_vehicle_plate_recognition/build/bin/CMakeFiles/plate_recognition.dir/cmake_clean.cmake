@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/plate_recognition.dir/Plate.cpp.o"
   "CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o"
   "CMakeFiles/plate_recognition.dir/Util.cpp.o"
+  "CMakeFiles/plate_recognition.dir/Resources.cpp.o"
   "plate_recognition.pdb"
   "plate_recognition"
 )

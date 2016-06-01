@@ -111,6 +111,9 @@ bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o: /usr/local/include/op
 bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o: /usr/local/include/opencv2/video/tracking.hpp
 bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o: /usr/local/include/opencv2/video/video.hpp
 
+bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o: ../src/Resources.cpp
+bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o: ../src/Resources.h
+
 bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o: ../src/OCR.h
 bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o: ../src/Plate.h
 bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o: ../src/SVMClassifier.cpp

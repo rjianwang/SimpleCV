@@ -16,8 +16,5 @@ public:
     static std::vector<std::string> getFiles(const std::string filepath);
 
 public:
-    static int compare(const CharSegment *a, const CharSegment *b)
-    {
-        return (a->pos.x - b->pos.x);
-    }
+    static void qsort(std::vector<CharSegment> &input, int low, int high);
 };

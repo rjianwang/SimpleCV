@@ -74,7 +74,15 @@ vector
 Plate.h
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Plate.h
 
+/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Resources.cpp
+Resources.h
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Resources.h
+
+/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Resources.h
+string
+-
+iostream
+-
 
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/SVMClassifier.cpp
 SVMClassifier.h

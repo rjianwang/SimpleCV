@@ -111,6 +111,9 @@ bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o
  /usr/local/include/opencv2/video/background_segm.hpp
  /usr/local/include/opencv2/video/tracking.hpp
  /usr/local/include/opencv2/video/video.hpp
+bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o
+ /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Resources.cpp
+ /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Resources.h
 bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o
  /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/OCR.h
  /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Plate.h

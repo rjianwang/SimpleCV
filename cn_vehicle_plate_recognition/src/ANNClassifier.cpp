@@ -30,21 +30,19 @@ void ANNClassifier::load_cn_data(const std::string filepath)
         std::cout << "Loading training data(Chinese Characters) for ANN classifier." 
             << std::endl;
 
-    std::vector<std::string> labels;
-    labels = Util::getFiles(filepath);
-    for (int n = 0; n < labels.size(); n++)
+    for (int n = 0; n < Resources::numCNCharacters; n++)
     {
         std::vector<std::string> files;
-        files = Util::getFiles(filepath + labels[n] + "/");
+        files = Util::getFiles(filepath + Resources::cn_chars[n] + "/");
 
         if (files.size() == 0)
             std::cout << "Loading trainning data(Chinese Characters) ERROR. "
-                << "Directory \"" << filepath + labels[n] << "\" is empty." 
+                << "Directory \"" << filepath + Resources::cn_chars[n] << "\" is empty." 
                 << std::endl;
 
         for (int i = 0; i < files.size(); i++)
         {
-            std::string path = filepath + labels[n] + "/" + files[i];
+            std::string path = filepath + Resources::cn_chars[n] + "/" + files[i];
             cv::Mat img = cv::imread(path.c_str(), CV_LOAD_IMAGE_GRAYSCALE);
 
             if (img.cols == 0)
