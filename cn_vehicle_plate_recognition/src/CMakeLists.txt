@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 PROJECT( plate_recognition )
 FIND_PACKAGE( OpenCV REQUIRED )
-ADD_EXECUTABLE( plate_recognition main.cpp PlateDetection.cpp SVMClassifier.cpp Plate.cpp ANNClassifier.cpp Util.cpp Resources.cpp)
+ADD_EXECUTABLE( plate_recognition main.cpp ./core/plate_detect.cpp ./core/ocr.cpp ./ml/svm.cpp ./core/plate.cpp ./ml/ann.cpp ./tool/tool.cpp ./core/resource.cpp)
 TARGET_LINK_LIBRARIES( plate_recognition ${OpenCV_LIBS} )

@@ -81,170 +81,196 @@ bin/CMakeFiles/plate_recognition.dir/main.cpp.o.provides: bin/CMakeFiles/plate_r
 bin/CMakeFiles/plate_recognition.dir/main.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/main.cpp.o
 
 
-bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
-bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o: ../src/PlateDetection.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o -c /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/PlateDetection.cpp
+bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
+bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o: ../src/core/plate_detect.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o -c /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/plate_detect.cpp
 
-bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/PlateDetection.cpp.i"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/PlateDetection.cpp > CMakeFiles/plate_recognition.dir/PlateDetection.cpp.i
+bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.i"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/plate_detect.cpp > CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.i
 
-bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/PlateDetection.cpp.s"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/PlateDetection.cpp -o CMakeFiles/plate_recognition.dir/PlateDetection.cpp.s
+bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.s"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/plate_detect.cpp -o CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.s
 
-bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.requires:
+bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o.requires:
 
-.PHONY : bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.requires
+.PHONY : bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o.requires
 
-bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.requires
-	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.provides.build
-.PHONY : bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.provides
+bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o.requires
+	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o.provides.build
+.PHONY : bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o.provides
 
-bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o
-
-
-bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
-bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o: ../src/SVMClassifier.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o -c /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/SVMClassifier.cpp
-
-bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.i"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/SVMClassifier.cpp > CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.i
-
-bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.s"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/SVMClassifier.cpp -o CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.s
-
-bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o.requires:
-
-.PHONY : bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o.requires
-
-bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o.requires
-	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o.provides.build
-.PHONY : bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o.provides
-
-bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o
+bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o
 
 
-bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
-bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o: ../src/Plate.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/Plate.cpp.o -c /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Plate.cpp
+bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
+bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o: ../src/core/ocr.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/core/ocr.cpp.o -c /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/ocr.cpp
 
-bin/CMakeFiles/plate_recognition.dir/Plate.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/Plate.cpp.i"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Plate.cpp > CMakeFiles/plate_recognition.dir/Plate.cpp.i
+bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/core/ocr.cpp.i"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/ocr.cpp > CMakeFiles/plate_recognition.dir/core/ocr.cpp.i
 
-bin/CMakeFiles/plate_recognition.dir/Plate.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/Plate.cpp.s"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Plate.cpp -o CMakeFiles/plate_recognition.dir/Plate.cpp.s
+bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/core/ocr.cpp.s"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/ocr.cpp -o CMakeFiles/plate_recognition.dir/core/ocr.cpp.s
 
-bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o.requires:
+bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o.requires:
 
-.PHONY : bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o.requires
+.PHONY : bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o.requires
 
-bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o.requires
-	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o.provides.build
-.PHONY : bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o.provides
+bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o.requires
+	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o.provides.build
+.PHONY : bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o.provides
 
-bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o
-
-
-bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
-bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o: ../src/ANNClassifier.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o -c /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/ANNClassifier.cpp
-
-bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.i"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/ANNClassifier.cpp > CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.i
-
-bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.s"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/ANNClassifier.cpp -o CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.s
-
-bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o.requires:
-
-.PHONY : bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o.requires
-
-bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o.requires
-	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o.provides.build
-.PHONY : bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o.provides
-
-bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o
+bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o
 
 
-bin/CMakeFiles/plate_recognition.dir/Util.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
-bin/CMakeFiles/plate_recognition.dir/Util.cpp.o: ../src/Util.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object bin/CMakeFiles/plate_recognition.dir/Util.cpp.o"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/Util.cpp.o -c /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Util.cpp
+bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
+bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o: ../src/ml/svm.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/ml/svm.cpp.o -c /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/ml/svm.cpp
 
-bin/CMakeFiles/plate_recognition.dir/Util.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/Util.cpp.i"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Util.cpp > CMakeFiles/plate_recognition.dir/Util.cpp.i
+bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/ml/svm.cpp.i"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/ml/svm.cpp > CMakeFiles/plate_recognition.dir/ml/svm.cpp.i
 
-bin/CMakeFiles/plate_recognition.dir/Util.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/Util.cpp.s"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Util.cpp -o CMakeFiles/plate_recognition.dir/Util.cpp.s
+bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/ml/svm.cpp.s"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/ml/svm.cpp -o CMakeFiles/plate_recognition.dir/ml/svm.cpp.s
 
-bin/CMakeFiles/plate_recognition.dir/Util.cpp.o.requires:
+bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o.requires:
 
-.PHONY : bin/CMakeFiles/plate_recognition.dir/Util.cpp.o.requires
+.PHONY : bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o.requires
 
-bin/CMakeFiles/plate_recognition.dir/Util.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/Util.cpp.o.requires
-	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/Util.cpp.o.provides.build
-.PHONY : bin/CMakeFiles/plate_recognition.dir/Util.cpp.o.provides
+bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o.requires
+	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o.provides.build
+.PHONY : bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o.provides
 
-bin/CMakeFiles/plate_recognition.dir/Util.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/Util.cpp.o
+bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o
 
 
-bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
-bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o: ../src/Resources.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/Resources.cpp.o -c /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Resources.cpp
+bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
+bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o: ../src/core/plate.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/core/plate.cpp.o -c /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/plate.cpp
 
-bin/CMakeFiles/plate_recognition.dir/Resources.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/Resources.cpp.i"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Resources.cpp > CMakeFiles/plate_recognition.dir/Resources.cpp.i
+bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/core/plate.cpp.i"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/plate.cpp > CMakeFiles/plate_recognition.dir/core/plate.cpp.i
 
-bin/CMakeFiles/plate_recognition.dir/Resources.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/Resources.cpp.s"
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/Resources.cpp -o CMakeFiles/plate_recognition.dir/Resources.cpp.s
+bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/core/plate.cpp.s"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/plate.cpp -o CMakeFiles/plate_recognition.dir/core/plate.cpp.s
 
-bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o.requires:
+bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o.requires:
 
-.PHONY : bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o.requires
+.PHONY : bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o.requires
 
-bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o.requires
-	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o.provides.build
-.PHONY : bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o.provides
+bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o.requires
+	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o.provides.build
+.PHONY : bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o.provides
 
-bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o
+bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o
+
+
+bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
+bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o: ../src/ml/ann.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/ml/ann.cpp.o -c /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/ml/ann.cpp
+
+bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/ml/ann.cpp.i"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/ml/ann.cpp > CMakeFiles/plate_recognition.dir/ml/ann.cpp.i
+
+bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/ml/ann.cpp.s"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/ml/ann.cpp -o CMakeFiles/plate_recognition.dir/ml/ann.cpp.s
+
+bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o.requires:
+
+.PHONY : bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o.requires
+
+bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o.requires
+	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o.provides.build
+.PHONY : bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o.provides
+
+bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o
+
+
+bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
+bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o: ../src/tool/tool.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/tool/tool.cpp.o -c /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/tool/tool.cpp
+
+bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/tool/tool.cpp.i"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/tool/tool.cpp > CMakeFiles/plate_recognition.dir/tool/tool.cpp.i
+
+bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/tool/tool.cpp.s"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/tool/tool.cpp -o CMakeFiles/plate_recognition.dir/tool/tool.cpp.s
+
+bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o.requires:
+
+.PHONY : bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o.requires
+
+bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o.requires
+	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o.provides.build
+.PHONY : bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o.provides
+
+bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o
+
+
+bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o: bin/CMakeFiles/plate_recognition.dir/flags.make
+bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o: ../src/core/resource.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/plate_recognition.dir/core/resource.cpp.o -c /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/resource.cpp
+
+bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/plate_recognition.dir/core/resource.cpp.i"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/resource.cpp > CMakeFiles/plate_recognition.dir/core/resource.cpp.i
+
+bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/plate_recognition.dir/core/resource.cpp.s"
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/resource.cpp -o CMakeFiles/plate_recognition.dir/core/resource.cpp.s
+
+bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o.requires:
+
+.PHONY : bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o.requires
+
+bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o.provides: bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o.requires
+	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o.provides.build
+.PHONY : bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o.provides
+
+bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o.provides.build: bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o
 
 
 # Object files for target plate_recognition
 plate_recognition_OBJECTS = \
 "CMakeFiles/plate_recognition.dir/main.cpp.o" \
-"CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o" \
-"CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o" \
-"CMakeFiles/plate_recognition.dir/Plate.cpp.o" \
-"CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o" \
-"CMakeFiles/plate_recognition.dir/Util.cpp.o" \
-"CMakeFiles/plate_recognition.dir/Resources.cpp.o"
+"CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o" \
+"CMakeFiles/plate_recognition.dir/core/ocr.cpp.o" \
+"CMakeFiles/plate_recognition.dir/ml/svm.cpp.o" \
+"CMakeFiles/plate_recognition.dir/core/plate.cpp.o" \
+"CMakeFiles/plate_recognition.dir/ml/ann.cpp.o" \
+"CMakeFiles/plate_recognition.dir/tool/tool.cpp.o" \
+"CMakeFiles/plate_recognition.dir/core/resource.cpp.o"
 
 # External object files for target plate_recognition
 plate_recognition_EXTERNAL_OBJECTS =
 
 bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/main.cpp.o
-bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o
-bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o
-bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o
-bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o
-bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/Util.cpp.o
-bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o
+bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o
+bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o
+bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o
+bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o
+bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o
+bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o
+bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o
 bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/build.make
 bin/plate_recognition: /usr/local/lib/libopencv_videostab.so.2.4.9
 bin/plate_recognition: /usr/local/lib/libopencv_ts.a
@@ -268,7 +294,7 @@ bin/plate_recognition: /usr/local/lib/libopencv_imgproc.so.2.4.9
 bin/plate_recognition: /usr/local/lib/libopencv_flann.so.2.4.9
 bin/plate_recognition: /usr/local/lib/libopencv_core.so.2.4.9
 bin/plate_recognition: bin/CMakeFiles/plate_recognition.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable plate_recognition"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable plate_recognition"
 	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/plate_recognition.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -277,12 +303,13 @@ bin/CMakeFiles/plate_recognition.dir/build: bin/plate_recognition
 .PHONY : bin/CMakeFiles/plate_recognition.dir/build
 
 bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/main.cpp.o.requires
-bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o.requires
-bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o.requires
-bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/Plate.cpp.o.requires
-bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o.requires
-bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/Util.cpp.o.requires
-bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/Resources.cpp.o.requires
+bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o.requires
+bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o.requires
+bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o.requires
+bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o.requires
+bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o.requires
+bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o.requires
+bin/CMakeFiles/plate_recognition.dir/requires: bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o.requires
 
 .PHONY : bin/CMakeFiles/plate_recognition.dir/requires
 

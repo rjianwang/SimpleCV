@@ -1,11 +1,12 @@
 file(REMOVE_RECURSE
   "CMakeFiles/plate_recognition.dir/main.cpp.o"
-  "CMakeFiles/plate_recognition.dir/PlateDetection.cpp.o"
-  "CMakeFiles/plate_recognition.dir/SVMClassifier.cpp.o"
-  "CMakeFiles/plate_recognition.dir/Plate.cpp.o"
-  "CMakeFiles/plate_recognition.dir/ANNClassifier.cpp.o"
-  "CMakeFiles/plate_recognition.dir/Util.cpp.o"
-  "CMakeFiles/plate_recognition.dir/Resources.cpp.o"
+  "CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o"
+  "CMakeFiles/plate_recognition.dir/core/ocr.cpp.o"
+  "CMakeFiles/plate_recognition.dir/ml/svm.cpp.o"
+  "CMakeFiles/plate_recognition.dir/core/plate.cpp.o"
+  "CMakeFiles/plate_recognition.dir/ml/ann.cpp.o"
+  "CMakeFiles/plate_recognition.dir/tool/tool.cpp.o"
+  "CMakeFiles/plate_recognition.dir/core/resource.cpp.o"
   "plate_recognition.pdb"
   "plate_recognition"
 )

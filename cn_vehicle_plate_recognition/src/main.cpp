@@ -1,10 +1,10 @@
-#include "StdAfx.h"
 #include <vector>
 
-#include "PlateDetection.h"
-#include "Plate.h"
-#include "SVMClassifier.h"
-#include "OCR.cpp"
+#include "../include/stdafx.h"
+#include "../include/core/plate_detect.h"
+#include "../include/core/plate.h"
+#include "../include/core/ocr.h"
+#include "../include/ml/svm.h"
 
 void helper(int argc, char* argv[])
 {
@@ -17,7 +17,8 @@ void helper(int argc, char* argv[])
     std::cout << "Usage: " << argv[0] << " [options] <image> " << std::endl; 
     std::cout << std::endl;
     std::cout << "Options:" << std::endl;
-    std::cout << "\t-d:\tDebug option. Provide this parameter for DEBUG mode." << std::endl;
+    std::cout << "-debug:   Debug option. Provide this parameter for DEBUG mode." << std::endl;
+    std::cout << "-detect:  Detect option. Provide this parameter for DETECT only mode." << std::endl;
     std::cout << "========================================================================" << std::endl;
     std::cout << std::endl;
 }
@@ -54,12 +55,14 @@ int main(int argc, char* argv[])
             params.push_back(argv[i]);
     }
 
-    // DEBUG mode
-    bool debug = false;
+    bool debug = false;         // DEBUG mode
+    bool detectOnly = false;    // Plate Detect mode
     if (!params.empty())
     {
-        if (std::find(params.begin(), params.end(), "-d") != params.end())
+        if (std::find(params.begin(), params.end(), "-debug") != params.end())
             debug = true;
+        if (std::find(params.begin(), params.end(), "-detect") != params.end())
+            detectOnly = true;
     }
 
     ////////////////////////////////////////////////////////////////////////
@@ -85,7 +88,7 @@ int main(int argc, char* argv[])
     for (int i = 0; i < plates_temp.size(); i++)
     {
         cv::Mat img = plates_temp[i].image;
-        resize(img, img, cv::Size(33, 144), 0, 0, cv::INTER_CUBIC);
+        resize(img, img, cv::Size(36, 136), 0, 0, cv::INTER_CUBIC);
         img.convertTo(img, CV_32FC1);
         img = img.reshape(1, 1);
         int response = (int)svmClassifier.predict(img);
@@ -96,26 +99,29 @@ int main(int argc, char* argv[])
     std::cout << "Num plates detected: " << plates.size() << "\n";
     
     // OCR
-    OCR ocr;
-    ocr.saveSegments = true;
-    ocr.DEBUG = debug;
-    for (int i = 0; i < plates.size(); i++)
+    if (!detectOnly)
     {
-        Plate plate = plates[i];
+        OCR ocr;
+        ocr.saveSegments = true;
+        ocr.DEBUG = debug;
+        for (int i = 0; i < plates.size(); i++)
+        {
+            Plate plate = plates[i];
 
-        std::string plateNumber = ocr.ocr(&plate);
-        std::string licensePlate = plate.str();
-        std::cout << "License plate number: " << licensePlate << "\n";
-        std::cout << "=============================================\n";
-        cv::rectangle(img, plate.position, cv::Scalar(0, 0, 200), 2);
-        cv::putText(img, licensePlate, cv::Point(plate.position.x, plate.position.y), CV_FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 200), 2);
-        if (false)
-            cv::imshow("Plate Detected seg", plate.image);
+            std::string plateNumber = ocr.ocr(&plate);
+            std::string licensePlate = plate.str();
+            std::cout << "License plate number: " << licensePlate << "\n";
+            std::cout << "=============================================\n";
+            cv::rectangle(img, plate.position, cv::Scalar(0, 0, 255), 2);
+            cv::putText(img, licensePlate, cv::Point(plate.position.x, plate.position.y), CV_FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 200), 2);
+            if (false)
+                cv::imshow("Plate Detected seg", plate.image);
+        }
     }
 
-/*    for (int i = 0; i < plates.size(); i++)
+    for (int i = 0; i < plates.size(); i++)
         cv::rectangle(img, plates[i].position, cv::Scalar(0, 0, 255), 2);
-*/
+
     cv::imshow("Numbers of the Plate", img);
 
     while (cv::waitKey(0))
