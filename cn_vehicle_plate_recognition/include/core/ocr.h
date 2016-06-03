@@ -1,50 +1,46 @@
+/* \file ocr.h
+*  Implementation of Plate Recognition
+*/
+
 #pragma once
 
-#include "../stdafx.h"
 #include <string.h>
 #include <vector>
 
 #include <opencv2/ml/ml.hpp>
 
+#include "../stdafx.h"
+
+/* \namespace pr
+*  Namespace where all the C++ Plate Recognition functionality resides
+*/
+namespace pr
+{
+
 class ANNClassifier;
 class Plate;
-
-class CharSegment{
-public:
-	CharSegment();
-	CharSegment(cv::Mat i, cv::Rect p);
-    cv::Mat img;
-    cv::Rect pos;
-};
-
+class Char;
+    
+/* \class OCR
+*  Implementation of Plate Recognition
+*/
 class OCR{
+
 public:
     OCR();
     ~OCR();
 
 public:
-	bool DEBUG;
-	bool saveSegments;
-    std::string filename;
-	static const int numCharacters;
-	static const char strCharacters[];
+    bool ocr(Plate &input);
 
-    std::string ocr(Plate *input);
-	int charSize;
-    cv::Mat preprocessChar(cv::Mat in);
+public:
+    void preprocessPlate(Plate &plate);
 
-private:
-	bool trained;
-    std::vector<CharSegment> segment(Plate input);
-    int getSpecificChar(const Plate &plate, const std::vector<CharSegment> &input);
-    CharSegment getChineseChar(const cv::Mat &img, const CharSegment &speck);
-    cv::Mat Preprocess(cv::Mat in, int newSize);
-    
-	bool verifySizes(cv::Mat r);
+private:    	
     cv::Mat removeMD(cv::Mat img);
 
-    void process_chars(Plate *input, 
-            const std::vector<CharSegment> segments);
-    void process_cn_chars(Plate *input, 
-            const std::vector<CharSegment> segments);
+    void process_chars(Plate &input, const std::vector<Char> &segments);
+    void process_cn_char(Plate &input, const Char &cn_char);
 };
+
+} /* end for namespace pr */

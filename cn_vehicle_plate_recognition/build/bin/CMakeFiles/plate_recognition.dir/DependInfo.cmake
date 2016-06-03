@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/char.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/core/char.cpp.o"
   "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/ocr.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o"
   "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/plate.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o"
   "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/plate_detect.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o"
@@ -11,6 +12,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/main.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/main.cpp.o"
   "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/ml/ann.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o"
   "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/ml/svm.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o"
+  "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/stdafx.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/stdafx.cpp.o"
   "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/tool/tool.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

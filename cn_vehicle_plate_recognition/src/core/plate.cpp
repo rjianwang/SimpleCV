@@ -1,5 +1,18 @@
+/* \file Plate.cpp
+ * Implementation of Class Plate
+ */
+
 #include "../../include/core/plate.h"
 
+/* \namespace pr
+ * Namespace where all C++ Plate Recognition functionality resides
+ */
+namespace pr
+{
+
+/* \class Plate
+ * 
+ */
 Plate::Plate(){
 }
 
@@ -48,3 +61,5 @@ std::string Plate::str()
 	}
 	return result;
 }
+
+} /* end for namespace pr */

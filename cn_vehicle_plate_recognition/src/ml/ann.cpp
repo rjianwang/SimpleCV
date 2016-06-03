@@ -1,7 +1,19 @@
+/* \file ann.cpp
+ * Ann implementation of ANN classifier
+ */
 #include "../../include/core/resource.h"
 #include "../../include/ml/ann.h"
 #include "../../include/tool/tool.h"
 
+/* \namespace pr
+ * Namespace where all C++ Plate Recognition functionality resides
+ */
+namespace pr
+{
+
+/* \class ANNClassifier
+ * A customized ANN classifier
+ */
 ANNClassifier::ANNClassifier(int num_neurons, int num_output)
 {
     this->num_neurons = num_neurons;
@@ -10,8 +22,6 @@ ANNClassifier::ANNClassifier(int num_neurons, int num_output)
     params.train_method = CvANN_MLP_TrainParams::BACKPROP;
     params.bp_dw_scale = 0.1;
     params.bp_moment_scale = 0.1;
-
-    DEBUG = false;
 }
 
 ANNClassifier::~ANNClassifier()
@@ -21,7 +31,7 @@ ANNClassifier::~ANNClassifier()
 
 void ANNClassifier::load_xml(const std::string filename)
 {
-    if (DEBUG)
+    if (DEBUG_MODE)
         std::cout << "Loading model for ANN classifier." << std::endl;
 
     cv::FileStorage fs("OCR.xml", cv::FileStorage::READ);
@@ -33,7 +43,7 @@ void ANNClassifier::load_xml(const std::string filename)
 
 void ANNClassifier::load_cn_data(const std::string filepath)
 {
-    if (DEBUG)
+    if (DEBUG_MODE)
     {
         std::cout << "Loading training data(Chinese Characters) for ANN classifier." 
             << std::endl;
@@ -42,7 +52,7 @@ void ANNClassifier::load_cn_data(const std::string filepath)
     for (int n = 0; n < Resources::numCNCharacters; n++)
     {
         std::vector<std::string> files;
-        files = Util::getFiles(filepath + Resources::cn_chars[n] + "/");
+        files = getFiles(filepath + Resources::cn_chars[n] + "/");
 
         if (files.size() == 0)
             std::cout << "Loading trainning data(Chinese Characters) ERROR. "
@@ -72,7 +82,7 @@ void ANNClassifier::load_cn_data(const std::string filepath)
 
 void ANNClassifier::load_data(const std::string filepath)
 {
-    if (DEBUG)
+    if (DEBUG_MODE)
     {
         std::cout << "Loading training data(digits & letters) for ANN classifier." 
             << std::endl;
@@ -81,7 +91,7 @@ void ANNClassifier::load_data(const std::string filepath)
     for (int n = 0; n < Resources::numCharacters; n++)
     {
         std::vector<std::string> files;
-        files = Util::getFiles(filepath + Resources::chars[n] + "/");
+        files = getFiles(filepath + Resources::chars[n] + "/");
 
         if (files.size() == 0)
             std::cout << "Loading trainning data ERROR. " 
@@ -230,7 +240,7 @@ cv::Mat ANNClassifier::features(cv::Mat in, int sizeData){
     cv::Mat lowData;
     cv::resize(in, lowData, cv::Size(sizeData, sizeData));
 
-	/*if (DEBUG)
+	/*if (DEBUG_MODE)
 		drawVisualFeatures(in, hhist, vhist, lowData);*/
 
 	int numCols = vhist.cols + hhist.cols + lowData.cols * lowData.cols;
@@ -260,7 +270,7 @@ cv::Mat ANNClassifier::features(cv::Mat in, int sizeData){
 
 void ANNClassifier::train()
 {
-    if (DEBUG)
+    if (DEBUG_MODE)
     {
         std::cout << "Training..." << std::endl;
         std::cout << "\ttrainData size: " << trainData.size() << std::endl;
@@ -293,7 +303,7 @@ void ANNClassifier::train()
 
 int ANNClassifier::predict(const cv::Mat &sample)
 {
-    if (DEBUG)
+    if (DEBUG_MODE)
     {
         std::cout << "Predicting..." << std::endl;
         std::cout << "\tSample size: " << sample.size() << std::endl;
@@ -309,3 +319,5 @@ int ANNClassifier::predict(const cv::Mat &sample)
 
     return maxLoc.x;
 }
+
+} /* end for namespace pr */

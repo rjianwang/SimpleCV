@@ -1,7 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/plate_recognition.dir/main.cpp.o"
+  "CMakeFiles/plate_recognition.dir/stdafx.cpp.o"
   "CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o"
   "CMakeFiles/plate_recognition.dir/core/ocr.cpp.o"
+  "CMakeFiles/plate_recognition.dir/core/char.cpp.o"
   "CMakeFiles/plate_recognition.dir/ml/svm.cpp.o"
   "CMakeFiles/plate_recognition.dir/core/plate.cpp.o"
   "CMakeFiles/plate_recognition.dir/ml/ann.cpp.o"

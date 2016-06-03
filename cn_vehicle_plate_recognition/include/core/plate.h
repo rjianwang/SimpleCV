@@ -1,3 +1,7 @@
+/* \file plate.h
+ * The definition of Class Plate
+ */
+
 #pragma once
 
 #include "../stdafx.h"
@@ -5,6 +9,15 @@
 #include <string.h>
 #include <vector>
 
+/* \namespace pr
+ * Namespace where all C++ Plate  Recognition functionality redises
+ * */
+namespace pr
+{
+
+/* \class Plate
+ * Definition of Class Plate
+ * */
 class Plate
 {
 public:
@@ -20,3 +33,5 @@ public:
     std::vector<std::string> chars;
     std::vector<cv::Rect> charsPos;
 };
+
+} /* end for namespace pr */

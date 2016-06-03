@@ -1,7 +1,19 @@
+/* \file tool.h
+ * Define some utilities
+ */
+
 #include "../../include/core/ocr.h"
+#include "../../include/core/char.h"
 #include "../../include/tool/tool.h"
 
-std::vector<std::string> Util::getFiles(const std::string filepath)
+/* \namespace pr
+ * Namespace where all C++ Plate Recognition functionality residies
+ */
+namespace pr
+{
+
+// Get items in the directory "filepath"
+std::vector<std::string> getFiles(const std::string filepath)
 {
     std::vector<std::string> files;
     DIR *dir;
@@ -29,20 +41,21 @@ std::vector<std::string> Util::getFiles(const std::string filepath)
     return files;
 }
 
-void Util::qsort(std::vector<CharSegment> &input, int low, int high)
+// An implementation of qsort
+void qsort(std::vector<Char> &input, int low, int high)
 {
     int i = low, j = high;
-    CharSegment temp = input[low];
+    Char temp = input[low];
 
     while (i < j)
     {
-        while (i < j && temp.pos.x <= input[j].pos.x) j--;
+        while (i < j && temp.position.x <= input[j].position.x) j--;
         if (i < j)
         {
             input[i] = input[j];
             i++;
         }
-        while (i < j && temp.pos.x > input[i].pos.x) i++;
+        while (i < j && temp.position.x > input[i].position.x) i++;
         if (i < j)
         {
             input[j] = input[i];
@@ -54,3 +67,5 @@ void Util::qsort(std::vector<CharSegment> &input, int low, int high)
     if (low < i) qsort(input, low, i - 1);
     if (i < high) qsort(input, i + 1, high);
 }
+
+} /* end for namespace pr */

@@ -1,13 +1,21 @@
+/* \file plate_detect.cpp
+ * Implementation of class PlateDetection
+ */
+
 #include <time.h>
 
 #include "../../include/core/plate_detect.h"
 #include "../../include/core/plate.h"
 
+namespace pr
+{
+
+/* \class PlateDetection
+ * Implementation of plate detect methods
+ */
 PlateDetection::PlateDetection()
 {
     saveRecognition = false;
-
-    DEBUG = false;
 }
 
 
@@ -109,14 +117,14 @@ std::vector<Plate> PlateDetection::segment(cv::Mat img)
             0,				// 表示在结果存入目标图之前可选的delta值，默认值为0
             cv::BORDER_DEFAULT); // 边界模式，默认值为BORDER_DEFAULT
 
-    if (DEBUG)
+    if (DEBUG_MODE)
         cv::imshow("Sobel", sobel);
 
     // 阈值分割得到二值图像，所采用的阈值由Otsu算法得到
     cv::Mat threshold;
     cv::threshold(sobel, threshold, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
 
-    if (DEBUG)
+    if (DEBUG_MODE)
         cv::imshow("Threshold Image", threshold);
 
     // 使用morphologyEx函数得到包含车牌的区域（但不包含车牌号）
@@ -124,7 +132,7 @@ std::vector<Plate> PlateDetection::segment(cv::Mat img)
     cv::Mat structuringElement = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(17, 3));
     cv::morphologyEx(threshold, threshold, CV_MOP_CLOSE, structuringElement);
 
-    if (DEBUG)
+    if (DEBUG_MODE)
         cv::imshow("Close", threshold);
 
 /*    cv::Mat structuringElement2 = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(17, 3));
@@ -135,7 +143,7 @@ std::vector<Plate> PlateDetection::segment(cv::Mat img)
         cv::threshold(threshold, threshold, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
     }*/
 
-    if (DEBUG)
+    if (DEBUG_MODE)
         cv::imshow("Open", threshold);
 
     // 找到可能的车牌的轮廓
@@ -259,7 +267,7 @@ std::vector<Plate> PlateDetection::segment(cv::Mat img)
                     flags);
         }
 
-        if (DEBUG)
+        if (DEBUG_MODE)
             cv::imshow("MASK", mask);
 
         // 得到裁剪掩码后，检查其有效尺寸
@@ -315,8 +323,10 @@ std::vector<Plate> PlateDetection::segment(cv::Mat img)
             plates.push_back(Plate(grayResult, minRect.boundingRect()));
         }
     }*/
-    if (DEBUG)
+    if (DEBUG_MODE)
         cv::imshow("Contours", result);
 
     return plates;
 }
+
+} /* end for namespace pr */

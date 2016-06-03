@@ -125,6 +125,33 @@ plate_recognition/fast:
 	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/build
 .PHONY : plate_recognition/fast
 
+core/char.o: core/char.cpp.o
+
+.PHONY : core/char.o
+
+# target to build an object file
+core/char.cpp.o:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/char.cpp.o
+.PHONY : core/char.cpp.o
+
+core/char.i: core/char.cpp.i
+
+.PHONY : core/char.i
+
+# target to preprocess a source file
+core/char.cpp.i:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/char.cpp.i
+.PHONY : core/char.cpp.i
+
+core/char.s: core/char.cpp.s
+
+.PHONY : core/char.s
+
+# target to generate assembly for a file
+core/char.cpp.s:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/char.cpp.s
+.PHONY : core/char.cpp.s
+
 core/ocr.o: core/ocr.cpp.o
 
 .PHONY : core/ocr.o
@@ -314,6 +341,33 @@ ml/svm.cpp.s:
 	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.s
 .PHONY : ml/svm.cpp.s
 
+stdafx.o: stdafx.cpp.o
+
+.PHONY : stdafx.o
+
+# target to build an object file
+stdafx.cpp.o:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/stdafx.cpp.o
+.PHONY : stdafx.cpp.o
+
+stdafx.i: stdafx.cpp.i
+
+.PHONY : stdafx.i
+
+# target to preprocess a source file
+stdafx.cpp.i:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/stdafx.cpp.i
+.PHONY : stdafx.cpp.i
+
+stdafx.s: stdafx.cpp.s
+
+.PHONY : stdafx.s
+
+# target to generate assembly for a file
+stdafx.cpp.s:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/stdafx.cpp.s
+.PHONY : stdafx.cpp.s
+
 tool/tool.o: tool/tool.cpp.o
 
 .PHONY : tool/tool.o
@@ -350,6 +404,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... plate_recognition"
+	@echo "... core/char.o"
+	@echo "... core/char.i"
+	@echo "... core/char.s"
 	@echo "... core/ocr.o"
 	@echo "... core/ocr.i"
 	@echo "... core/ocr.s"
@@ -371,6 +428,9 @@ help:
 	@echo "... ml/svm.o"
 	@echo "... ml/svm.i"
 	@echo "... ml/svm.s"
+	@echo "... stdafx.o"
+	@echo "... stdafx.i"
+	@echo "... stdafx.s"
 	@echo "... tool/tool.o"
 	@echo "... tool/tool.i"
 	@echo "... tool/tool.s"

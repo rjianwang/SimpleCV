@@ -6,6 +6,8 @@
 #include "../include/core/ocr.h"
 #include "../include/ml/svm.h"
 
+using namespace pr;
+
 void helper(int argc, char* argv[])
 {
     std::cout << "========================================================================" << std::endl;;
@@ -18,7 +20,7 @@ void helper(int argc, char* argv[])
     std::cout << std::endl;
     std::cout << "Options:" << std::endl;
     std::cout << "-debug:   Debug option. Provide this parameter for DEBUG mode." << std::endl;
-    std::cout << "-detect:  Detect option. Provide this parameter for DETECT only mode." << std::endl;
+    std::cout << "-detect:  Detect option. Provide this parameter for DETECT mode." << std::endl;
     std::cout << "========================================================================" << std::endl;
     std::cout << std::endl;
 }
@@ -28,7 +30,6 @@ int main(int argc, char* argv[])
     ///////////////////////////////////////////////////////////////////////
     // 参数处理
     ///////////////////////////////////////////////////////////////////////
-
     helper(argc, argv);
 
     cv::Mat img;
@@ -55,14 +56,12 @@ int main(int argc, char* argv[])
             params.push_back(argv[i]);
     }
 
-    bool debug = false;         // DEBUG mode
-    bool detectOnly = false;    // Plate Detect mode
     if (!params.empty())
     {
         if (std::find(params.begin(), params.end(), "-debug") != params.end())
-            debug = true;
+            DEBUG_MODE = true;
         if (std::find(params.begin(), params.end(), "-detect") != params.end())
-            detectOnly = true;
+            DETECT_MODE = true;
     }
 
     ////////////////////////////////////////////////////////////////////////
@@ -72,13 +71,11 @@ int main(int argc, char* argv[])
     // Detect and segment plates
     PlateDetection detector;
     detector.saveRecognition = false;
-    detector.DEBUG = debug;
     std::vector<Plate> plates_temp = detector.segment(img);
 
     // SVM classifier
     SVMClassifier svmClassifier;
     //svmClassifier.load_model("SVM.xml");
-    svmClassifier.DEBUG = debug;
     svmClassifier.load_data("../data/");
     svmClassifier.train();
     svmClassifier.save("SVM_cn.xml");
@@ -99,16 +96,14 @@ int main(int argc, char* argv[])
     std::cout << "Num plates detected: " << plates.size() << "\n";
     
     // OCR
-    if (!detectOnly)
+    if (!DETECT_MODE)
     {
         OCR ocr;
-        ocr.saveSegments = true;
-        ocr.DEBUG = debug;
         for (int i = 0; i < plates.size(); i++)
         {
             Plate plate = plates[i];
 
-            std::string plateNumber = ocr.ocr(&plate);
+            ocr.ocr(plate);
             std::string licensePlate = plate.str();
             std::cout << "License plate number: " << licensePlate << "\n";
             std::cout << "=============================================\n";

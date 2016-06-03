@@ -1,3 +1,6 @@
+/* \file tool.h
+ * Define some utilites
+ */
 
 #include <stdlib.h>
 #include <vector>
@@ -9,13 +12,17 @@
 
 #include "../stdafx.h"
 
-class CharSegment;
-
-class Util
+/* \namespace pr
+ * Namespace where all C++ Plate Recognition functionality resides
+ */
+namespace pr
 {
-public:
-    static std::vector<std::string> getFiles(const std::string filepath);
 
-public:
-    static void qsort(std::vector<CharSegment> &input, int low, int high);
-};
+class Char;
+
+// get items in the directory "filepath"
+std::vector<std::string> getFiles(const std::string filepath);
+// An implementation of qsort
+void qsort(std::vector<Char> &input, int low, int high);
+
+} /* end for namespace pr */

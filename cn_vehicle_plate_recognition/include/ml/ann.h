@@ -1,3 +1,7 @@
+/* \file ann.h
+ * An implementation of ANN Classifier
+ */
+
 #pragma once
 
 #include "../stdafx.h"
@@ -7,6 +11,15 @@
 #define HORIZONTAL  1
 #define VERTICAL    0
 
+/* \namespace pr
+ * Namespace where all C++ Plate Recognition functionality resides
+ */
+namespace pr
+{
+
+/* \class ANNClassifier
+ * An customized ANN classifier
+ */
 class ANNClassifier
 {
 public:
@@ -38,6 +51,6 @@ private:
     int num_neurons;
     int num_output;
 
-public:
-    bool DEBUG;
-};
+}; /* ends for class ANNClassifier */ 
+
+} /* ends for namespace pr */
