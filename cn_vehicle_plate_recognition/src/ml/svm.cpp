@@ -14,16 +14,16 @@ namespace pr
 SVMClassifier::SVMClassifier()
 {
     SVM_params.svm_type = CvSVM::C_SVC;
-    SVM_params.kernel_type = CvSVM::LINEAR; // CvSVM::LINEAR
-    SVM_params.degree = 0; // 0
-    SVM_params.gamma = 1;  // 1
-    SVM_params.coef0 = 0;  // 0
+    SVM_params.kernel_type = CvSVM::RBF; // CvSVM::LINEAR
+    SVM_params.degree = 0.1; // 0
+    SVM_params.gamma = 0.1;  // 1
+    SVM_params.coef0 = 0.1;  // 0
     SVM_params.C = 1;
-    SVM_params.nu = 0;     // 0
-    SVM_params.p = 0;      // 0
-    SVM_params.term_crit = cvTermCriteria(CV_TERMCRIT_ITER, 10000, 0.0001);
+    SVM_params.nu = 0.1;     // 0
+    SVM_params.p = 0.1;      // 0
+    SVM_params.term_crit = cvTermCriteria(CV_TERMCRIT_ITER, 100000, 0.00001);
 
-    svmClassifier = NULL;
+    svmClassifier = new CvSVM;
 }
 
 SVMClassifier::~SVMClassifier()
@@ -77,12 +77,8 @@ void SVMClassifier::load_model(std::string filename)
 {
     if (DEBUG_MODE)
         std::cout << "Loading model for SVM classifier." << std::endl;
-
-    cv::FileStorage fs(filename, cv::FileStorage::READ);
-    fs["TrainingData"] >> trainData;
-    fs["classes"] >> labelData;
-
-    fs.release();
+    
+    svmClassifier->load(filename.c_str());
 }
 
 // train
@@ -97,6 +93,20 @@ bool SVMClassifier::train()
     
     trainData.convertTo(trainData, CV_32FC1);
     svmClassifier = new CvSVM(trainData, labelData, cv::Mat(), cv::Mat(), SVM_params);
+
+    /*svmClassifier->train_auto(trainData, labelData, cv::Mat(), cv::Mat(), 
+            SVM_params,
+            10,
+            CvSVM::get_default_grid(CvSVM::C),
+            CvSVM::get_default_grid(CvSVM::GAMMA),
+            CvSVM::get_default_grid(CvSVM::P),
+            CvSVM::get_default_grid(CvSVM::NU),
+            CvSVM::get_default_grid(CvSVM::COEF),
+            CvSVM::get_default_grid(CvSVM::DEGREE),
+            bool
+            );
+    */
+
 }
 
 void SVMClassifier::save(std::string filepath)

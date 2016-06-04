@@ -28,7 +28,8 @@ public:
 
 public:
     cv::Rect position;
-    std::vector<cv::Point> points; // 车牌的左上点和右下点
+    int width;   // 车牌缩放后的大小，默认为136
+    int height;  // 车牌缩放后的高度，默认为36
     cv::Mat image;
 
     std::vector<std::string> chars;

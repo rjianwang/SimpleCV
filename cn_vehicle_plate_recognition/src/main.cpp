@@ -75,10 +75,10 @@ int main(int argc, char* argv[])
 
     // SVM classifier
     SVMClassifier svmClassifier;
-    //svmClassifier.load_model("SVM.xml");
-    svmClassifier.load_data("../data/");
-    svmClassifier.train();
-    svmClassifier.save("SVM_cn.xml");
+    svmClassifier.load_model("SVM_cn.xml");
+    //svmClassifier.load_data("../data/");
+    //svmClassifier.train();
+    //svmClassifier.save("SVM_cn.xml");
 
     // classify plates using SVM 
     std::vector<Plate> plates;
@@ -88,23 +88,24 @@ int main(int argc, char* argv[])
         resize(img, img, cv::Size(36, 136), 0, 0, cv::INTER_CUBIC);
         img.convertTo(img, CV_32FC1);
         img = img.reshape(1, 1);
- //       int response = (int)svmClassifier.predict(img);
+        int response = (int)svmClassifier.predict(img);
 
         time_t t;
         std::stringstream ss;
- //       ss << "./tmpPlate/" << response << "/" << time(&t) << i << ".jpg";
-  //      cv::imwrite(ss.str(), plates_temp[i].image);
+        ss << "./tmpPlate/" << response << "/" << time(&t) << i << ".jpg";
+        cv::imwrite(ss.str(), plates_temp[i].image);
 
-   //     if (response != 1)
-   //         continue;
+        if (response != 1)
+           // continue;
 
         plates.push_back(plates_temp[i]);
-    }
 
+        std::string filename = "Plate";
+        cv::imshow(filename + char(i), plates_temp[i].image);
+    }
     std::cout << "Num plates detected: " << plates.size() << "\n";
-    std::string filename = "Plate";
-    for (int i = 0; i < plates.size(); i++)
-        cv::imshow(filename + (char)i + ".jpg", plates[i].image);
+    if (cv::waitKey(0))
+        cv::destroyAllWindows();
     
     // OCR
     if (!DETECT_MODE)
@@ -120,16 +121,11 @@ int main(int argc, char* argv[])
             std::cout << "=============================================\n";
             cv::rectangle(img, plate.position, cv::Scalar(0, 0, 255), 2);
             cv::putText(img, licensePlate, cv::Point(plate.position.x, plate.position.y), CV_FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 200), 2);
-            if (false)
-                cv::imshow("Plate Detected seg", plate.image);
+            cv::imshow("Plate Detected seg", plate.image);
         }
     }
 
-/*    for (int i = 0; i < plates.size(); i++)
-        cv::rectangle(img, plates[i].position, cv::Scalar(0, 0, 255), 2);
-
-    cv::imshow("Numbers of the Plate", img);*/
-
+    cv::imshow("Image", img);
     while (cv::waitKey(0))
         break;
     cv::destroyAllWindows();

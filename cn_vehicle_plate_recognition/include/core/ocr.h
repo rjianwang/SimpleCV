@@ -37,7 +37,7 @@ public:
     void preprocessPlate(Plate &plate);
 
 private:    	
-    cv::Mat removeMD(cv::Mat img);
+    cv::Mat removeFringe(cv::Mat img);
 
     void process_chars(Plate &input, const std::vector<Char> &segments);
     void process_cn_char(Plate &input, const Char &cn_char);

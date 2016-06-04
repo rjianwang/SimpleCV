@@ -36,6 +36,8 @@ void OCR::preprocessPlate(Plate &plate)
 
     cv::Mat threshold;
     cv::threshold(plate.image, threshold, 190, 255, CV_THRESH_BINARY);
+    // 去除水平方向边缘或铆钉
+    removeFringe(threshold);
 
     if (DEBUG_MODE)
         cv::imshow("Threshold plate", threshold);
@@ -43,7 +45,9 @@ void OCR::preprocessPlate(Plate &plate)
     plate.image = threshold;
 }
 
-cv::Mat OCR::removeMD(cv::Mat img)
+// 输入为二值化的车牌图像
+// 去除水平方向的白色边框或铆钉
+cv::Mat OCR::removeFringe(cv::Mat img)
 {
     if (DEBUG_MODE)
     {
@@ -51,34 +55,26 @@ cv::Mat OCR::removeMD(cv::Mat img)
     }
 
     int line = 4;
-    int threshold = 15;
-
     for (int i = 0; i < line; i++)
     {
-        int whiteCount = 0;
-        for (int j = 0; j < img.cols; j++)
-        {
-            if (img.at<char>(i, j) == 255)
-                whiteCount++;
-        }
-        for (int j = 0; whiteCount < threshold && j < img.cols; j++)
-        {
-            img.at<char>(i, j) = 0;
-        }
+        int color_jump = 0;
+        for (int j = 0; j < img.cols - 1; j++)
+            if (img.at<char>(i, j) != img.at<char>(i, j))
+                color_jump++;
+
+        if (color_jump < 7)
+            img.row(i).setTo(cv::Scalar(0));
     }
 
     for (int i = img.rows - line; i < img.rows; i++)
     {
-        int whiteCount = 0;
+        int color_jump = 0;
         for (int j = 0; j < img.cols; j++)
-        {
-            if (img.at<char>(i, j) == 255)
-                whiteCount++;
-        }
-        for (int j = 0; whiteCount < threshold && j < img.cols; j++)
-        {
-            img.at<char>(i, j) = 0;
-        }
+            if (img.at<char>(i, j) != img.at<char>(i, j))
+                color_jump++;
+
+        if (color_jump < 7)
+            img.row(i).setTo(cv::Scalar(0));
     }
     return img;
 }

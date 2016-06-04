@@ -29,39 +29,39 @@ namespace pr
     /* 根据字符大小比例等进行预判断 */
     bool verifySizes(cv::Mat r)
     {
-        // ÕýÈ·µÄ³µÅÆ×Ö·û¿ížß±ÈÎª45/77
+        bool result = false; //判断结果
+
+        // 字符宽高比为45/77
         float aspect = 45.0f / 77.0f;
         float charAspect = (float)r.cols / (float)r.rows;
-        float error = 0.35;  // ÔÊÐíÎó²îŽïµœ35%
         float minHeight = 15;
         float maxHeight = 35;
-        // ×îÐ¡±ÈÀý
+        // 最大宽高比及最小宽高比
         float minAspect = 0.1;
-        float maxAspect = aspect + aspect * error;
-        // ÇøÓòÏñËØ
+        float maxAspect = 1;
+        // 非零值个数
         float area = countNonZero(r);
-        // bbÇøÓò
+        // 字符区域的大小
         float bbArea = r.cols * r.rows;
-        // ÏñËØÕŒÇøÓòµÄ°Ù·Ö±È
+        // 非零值所占的比例
         float percPixels = area / bbArea;
 
-        // ÈôÒ»¿éÇøÓòµÄ±ÈÂÊ³¬¹ý±ê×Œ±ÈÂÊµÄ80%£¬ÔòÈÏÎªžÃÇøÓòÎªºÚÉ«¿ì£¬¶ø²»ÊÇÒ»žö×Ö·û
-        if (DEBUG_MODE)
-            std::cout << "\tAspect: " << aspect 
-                << " [" << minAspect << ", " << maxAspect << "] " 
-                << "Area " << percPixels 
-                << " Char aspect " << charAspect 
-                << " Height char " << r.rows 
-                << std::endl;
-
-        if (percPixels < 0.8 && 
+        if (percPixels < 0.9 && 
                 charAspect > minAspect && 
                 charAspect < maxAspect && 
                 r.rows >= minHeight && 
                 r.rows < maxHeight)
-            return true;
+            result = true;
         
-        return false;
+        if (DEBUG_MODE)
+            std::cout << "\tverify Size(" << result << "): "
+                << " Char aspect " << charAspect 
+                << " [" << minAspect << ", " << maxAspect << ", " << aspect << "] " 
+                << " None zero ratio " << percPixels 
+                << " Char height " << r.rows 
+                << std::endl;
+
+        return result;
     }
 
     // 字符预处理
@@ -109,25 +109,28 @@ namespace pr
                 CV_CHAIN_APPROX_NONE); //轮廓的近似办法，这里存储所有的轮廓点
 
         // 在白色的图上画出轮廓
-        cv::Mat result;
-        input.image.copyTo(result);
-        cv::cvtColor(result, result, CV_GRAY2RGB);
-        cv::drawContours(result, contours,
+        cv::Mat result1;
+        input.image.copyTo(result1);
+        cv::cvtColor(result1, result1, CV_GRAY2RGB);
+        cv::drawContours(result1, contours,
                 -1,  // 所有的轮廓都画出
                 cv::Scalar(255, 0, 0), // 颜色
                 1); // 线粗
 
+        cv::Mat result2;
+        result1.copyTo(result2);
+
         // 对每个轮廓检测和提取最小区域的有界矩形区域
         std::vector<std::vector<cv::Point> >::iterator itc = contours.begin();
-
-        // 若没有达到设定的宽高比，则移去该区域
         std::vector<Char> output;
         int i = 0;
         while (itc != contours.end()) 
         {
             cv::Rect mr = cv::boundingRect(cv::Mat(*itc));
+            cv::rectangle(result1, mr, cv::Scalar(0, 125, 255));
             // 裁剪图像
             cv::Mat auxRoi(input.image, mr);
+            // 若没有达到设定的宽高比，则移去该区域
             if (verifySizes(auxRoi)){
                 auxRoi = preprocessChar(auxRoi);
                 output.push_back(Char(auxRoi, mr));
@@ -140,15 +143,15 @@ namespace pr
         
         // 获得特殊字符
         int specIndex = getSpecificChar(input, output);
-        if (specIndex == -1)
+        if (specIndex != 1)
             return output;    // 如果为-1，则返回不继续，需对该返回值进行判断
 
         // 根据特殊字符分割除中文字符（车牌中的第一个字符）外的所有字符
         for (int i = specIndex, j = 1; i < output.size() && j <= 6; i++, j++)
             segments[j] = output[i];
 
-        // 根据特殊字符分割中文字符
-        segments[0] = getChineseChar(input.image, segments[specIndex]);
+        // 根据特殊字符分割中文字
+        segments[0] = getChineseChar(input.image, output[specIndex]);
 
         char res[20];
         for (int i = 0; i < segments.size(); i++)
@@ -157,15 +160,18 @@ namespace pr
             sprintf(res, "PlateNumber%d.jpg", i);
             cv::imwrite(res, segments[i].image);
             // 画出字符分割的轮廓
-            cv::rectangle(result, segments[i].position, cv::Scalar(0, 125, 255));
+            cv::rectangle(result2, segments[i].position, cv::Scalar(0, 125, 255));
         }
-
         if (DEBUG_MODE)
         {
             std::cout << "Spec index: " << specIndex << std::endl;
             std::cout << "Num chars: " << segments.size() << std::endl;
-            cv::imshow("Segmented Chars", result);
+            cv::imshow("Segmented Chars by contour", result1);
+            cv::imshow("Segmented Chars by spec char", result2);
         }
+
+        if (cv::waitKey(0))
+            cv::destroyAllWindows();
 
         return segments;
     }
@@ -192,8 +198,8 @@ namespace pr
             cv::Rect mr = input[i].position;
             int midx = mr.x + mr.width / 2;
             
-            int high = int(plate.position.width / 7) * 2;
-            int low = int(plate.position.width/ 7);
+            int high = int(plate.width / 7) * 2;
+            int low = int(plate.width / 7);
 
             if (DEBUG_MODE)
                 std::cout << "\tmidx: " << midx

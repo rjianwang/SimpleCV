@@ -19,6 +19,9 @@ Plate::Plate(){
 Plate::Plate(cv::Mat img, cv::Rect pos){
 	image = img;
 	position = pos;
+
+    width = 136;
+    height = 36;
 }
 
 std::string Plate::str()

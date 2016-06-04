@@ -492,9 +492,9 @@ namespace pr
         if (DEBUG_MODE)
             cv::imshow(ss.str() + "-CLOSE", threshold);
 
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 10; i++)
         {
-            if (i > 0)
+            if (i > 0 && i <= 5)
             {
                 if (!verifyNonZero(threshold, 0.09))
                     break;
@@ -503,6 +503,15 @@ namespace pr
                 if (DEBUG_MODE)
                     cv::imshow(ss.str() + "-OPEN", threshold);
             }
+            else if (i >= 6)
+            {
+                if (!verifyNonZero(threshold, 0.09))
+                    break;
+                cv::morphologyEx(threshold, threshold, CV_MOP_CLOSE, structuringElement);
+                if (DEBUG_MODE)
+                    cv::imshow(ss.str() + "CLOSE", threshold);
+            }
+
             
             // 找到可能的车牌的轮廓
             std::vector<std::vector<cv::Point> > contours;
