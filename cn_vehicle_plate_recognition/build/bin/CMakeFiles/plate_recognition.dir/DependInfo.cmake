@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/plate.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o"
   "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/plate_detect.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o"
   "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/resource.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o"
+  "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/imgproc/imgproc.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/imgproc/imgproc.cpp.o"
   "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/main.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/main.cpp.o"
   "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/ml/ann.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o"
   "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/ml/svm.cpp" "/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o"

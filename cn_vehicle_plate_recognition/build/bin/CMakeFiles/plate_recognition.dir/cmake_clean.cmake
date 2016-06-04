@@ -9,6 +9,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/plate_recognition.dir/ml/ann.cpp.o"
   "CMakeFiles/plate_recognition.dir/tool/tool.cpp.o"
   "CMakeFiles/plate_recognition.dir/core/resource.cpp.o"
+  "CMakeFiles/plate_recognition.dir/imgproc/imgproc.cpp.o"
   "plate_recognition.pdb"
   "plate_recognition"
 )

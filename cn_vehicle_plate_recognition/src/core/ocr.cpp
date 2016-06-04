@@ -135,7 +135,7 @@ bool OCR::ocr(Plate &input)
     preprocessPlate(input);
     // ×Ö·û·Ö¸î
     std::vector<Char> segments = segment1(input);
-    if (segments.empty())
+    if (segments.size() != 7)
     {
         return false;
     }

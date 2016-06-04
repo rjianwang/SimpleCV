@@ -2,4 +2,4 @@
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/CMakeFiles/rebuild_cache.dir
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/edit_cache.dir
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/rebuild_cache.dir
-/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate_recognition.dir
+/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin/CMakeFiles/plate.dir

@@ -42,7 +42,7 @@ void SVMClassifier::load_data(std::string filepath)
     if (DEBUG_MODE)
         std::cout << "Loading training data for SVM classifier." << std::endl;
 
-    std::string paths[2] = {filepath + "/plates_0/", filepath + "plates_1/"};
+    std::string paths[2] = {filepath + "/plates0/", filepath + "plates1/"};
     for (int n = 0; n < 2; n++)
     {
         std::vector<std::string> files;

@@ -111,19 +111,19 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-bin/CMakeFiles/plate_recognition.dir/rule:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f CMakeFiles/Makefile2 bin/CMakeFiles/plate_recognition.dir/rule
-.PHONY : bin/CMakeFiles/plate_recognition.dir/rule
+bin/CMakeFiles/plate.dir/rule:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f CMakeFiles/Makefile2 bin/CMakeFiles/plate.dir/rule
+.PHONY : bin/CMakeFiles/plate.dir/rule
 
 # Convenience name for target.
-plate_recognition: bin/CMakeFiles/plate_recognition.dir/rule
+plate: bin/CMakeFiles/plate.dir/rule
 
-.PHONY : plate_recognition
+.PHONY : plate
 
 # fast build rule for target.
-plate_recognition/fast:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/build
-.PHONY : plate_recognition/fast
+plate/fast:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/build
+.PHONY : plate/fast
 
 core/char.o: core/char.cpp.o
 
@@ -131,7 +131,7 @@ core/char.o: core/char.cpp.o
 
 # target to build an object file
 core/char.cpp.o:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/char.cpp.o
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/char.cpp.o
 .PHONY : core/char.cpp.o
 
 core/char.i: core/char.cpp.i
@@ -140,7 +140,7 @@ core/char.i: core/char.cpp.i
 
 # target to preprocess a source file
 core/char.cpp.i:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/char.cpp.i
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/char.cpp.i
 .PHONY : core/char.cpp.i
 
 core/char.s: core/char.cpp.s
@@ -149,7 +149,7 @@ core/char.s: core/char.cpp.s
 
 # target to generate assembly for a file
 core/char.cpp.s:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/char.cpp.s
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/char.cpp.s
 .PHONY : core/char.cpp.s
 
 core/ocr.o: core/ocr.cpp.o
@@ -158,7 +158,7 @@ core/ocr.o: core/ocr.cpp.o
 
 # target to build an object file
 core/ocr.cpp.o:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/ocr.cpp.o
 .PHONY : core/ocr.cpp.o
 
 core/ocr.i: core/ocr.cpp.i
@@ -167,7 +167,7 @@ core/ocr.i: core/ocr.cpp.i
 
 # target to preprocess a source file
 core/ocr.cpp.i:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.i
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/ocr.cpp.i
 .PHONY : core/ocr.cpp.i
 
 core/ocr.s: core/ocr.cpp.s
@@ -176,7 +176,7 @@ core/ocr.s: core/ocr.cpp.s
 
 # target to generate assembly for a file
 core/ocr.cpp.s:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.s
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/ocr.cpp.s
 .PHONY : core/ocr.cpp.s
 
 core/plate.o: core/plate.cpp.o
@@ -185,7 +185,7 @@ core/plate.o: core/plate.cpp.o
 
 # target to build an object file
 core/plate.cpp.o:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.o
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/plate.cpp.o
 .PHONY : core/plate.cpp.o
 
 core/plate.i: core/plate.cpp.i
@@ -194,7 +194,7 @@ core/plate.i: core/plate.cpp.i
 
 # target to preprocess a source file
 core/plate.cpp.i:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.i
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/plate.cpp.i
 .PHONY : core/plate.cpp.i
 
 core/plate.s: core/plate.cpp.s
@@ -203,7 +203,7 @@ core/plate.s: core/plate.cpp.s
 
 # target to generate assembly for a file
 core/plate.cpp.s:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/plate.cpp.s
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/plate.cpp.s
 .PHONY : core/plate.cpp.s
 
 core/plate_detect.o: core/plate_detect.cpp.o
@@ -212,7 +212,7 @@ core/plate_detect.o: core/plate_detect.cpp.o
 
 # target to build an object file
 core/plate_detect.cpp.o:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.o
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/plate_detect.cpp.o
 .PHONY : core/plate_detect.cpp.o
 
 core/plate_detect.i: core/plate_detect.cpp.i
@@ -221,7 +221,7 @@ core/plate_detect.i: core/plate_detect.cpp.i
 
 # target to preprocess a source file
 core/plate_detect.cpp.i:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.i
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/plate_detect.cpp.i
 .PHONY : core/plate_detect.cpp.i
 
 core/plate_detect.s: core/plate_detect.cpp.s
@@ -230,7 +230,7 @@ core/plate_detect.s: core/plate_detect.cpp.s
 
 # target to generate assembly for a file
 core/plate_detect.cpp.s:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/plate_detect.cpp.s
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/plate_detect.cpp.s
 .PHONY : core/plate_detect.cpp.s
 
 core/resource.o: core/resource.cpp.o
@@ -239,7 +239,7 @@ core/resource.o: core/resource.cpp.o
 
 # target to build an object file
 core/resource.cpp.o:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.o
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/resource.cpp.o
 .PHONY : core/resource.cpp.o
 
 core/resource.i: core/resource.cpp.i
@@ -248,7 +248,7 @@ core/resource.i: core/resource.cpp.i
 
 # target to preprocess a source file
 core/resource.cpp.i:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.i
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/resource.cpp.i
 .PHONY : core/resource.cpp.i
 
 core/resource.s: core/resource.cpp.s
@@ -257,8 +257,35 @@ core/resource.s: core/resource.cpp.s
 
 # target to generate assembly for a file
 core/resource.cpp.s:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/core/resource.cpp.s
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/resource.cpp.s
 .PHONY : core/resource.cpp.s
+
+imgproc/imgproc.o: imgproc/imgproc.cpp.o
+
+.PHONY : imgproc/imgproc.o
+
+# target to build an object file
+imgproc/imgproc.cpp.o:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/imgproc/imgproc.cpp.o
+.PHONY : imgproc/imgproc.cpp.o
+
+imgproc/imgproc.i: imgproc/imgproc.cpp.i
+
+.PHONY : imgproc/imgproc.i
+
+# target to preprocess a source file
+imgproc/imgproc.cpp.i:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/imgproc/imgproc.cpp.i
+.PHONY : imgproc/imgproc.cpp.i
+
+imgproc/imgproc.s: imgproc/imgproc.cpp.s
+
+.PHONY : imgproc/imgproc.s
+
+# target to generate assembly for a file
+imgproc/imgproc.cpp.s:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/imgproc/imgproc.cpp.s
+.PHONY : imgproc/imgproc.cpp.s
 
 main.o: main.cpp.o
 
@@ -266,7 +293,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/main.cpp.o
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -275,7 +302,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/main.cpp.i
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -284,7 +311,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/main.cpp.s
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 ml/ann.o: ml/ann.cpp.o
@@ -293,7 +320,7 @@ ml/ann.o: ml/ann.cpp.o
 
 # target to build an object file
 ml/ann.cpp.o:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.o
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/ml/ann.cpp.o
 .PHONY : ml/ann.cpp.o
 
 ml/ann.i: ml/ann.cpp.i
@@ -302,7 +329,7 @@ ml/ann.i: ml/ann.cpp.i
 
 # target to preprocess a source file
 ml/ann.cpp.i:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.i
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/ml/ann.cpp.i
 .PHONY : ml/ann.cpp.i
 
 ml/ann.s: ml/ann.cpp.s
@@ -311,7 +338,7 @@ ml/ann.s: ml/ann.cpp.s
 
 # target to generate assembly for a file
 ml/ann.cpp.s:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ml/ann.cpp.s
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/ml/ann.cpp.s
 .PHONY : ml/ann.cpp.s
 
 ml/svm.o: ml/svm.cpp.o
@@ -320,7 +347,7 @@ ml/svm.o: ml/svm.cpp.o
 
 # target to build an object file
 ml/svm.cpp.o:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.o
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/ml/svm.cpp.o
 .PHONY : ml/svm.cpp.o
 
 ml/svm.i: ml/svm.cpp.i
@@ -329,7 +356,7 @@ ml/svm.i: ml/svm.cpp.i
 
 # target to preprocess a source file
 ml/svm.cpp.i:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.i
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/ml/svm.cpp.i
 .PHONY : ml/svm.cpp.i
 
 ml/svm.s: ml/svm.cpp.s
@@ -338,7 +365,7 @@ ml/svm.s: ml/svm.cpp.s
 
 # target to generate assembly for a file
 ml/svm.cpp.s:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/ml/svm.cpp.s
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/ml/svm.cpp.s
 .PHONY : ml/svm.cpp.s
 
 stdafx.o: stdafx.cpp.o
@@ -347,7 +374,7 @@ stdafx.o: stdafx.cpp.o
 
 # target to build an object file
 stdafx.cpp.o:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/stdafx.cpp.o
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/stdafx.cpp.o
 .PHONY : stdafx.cpp.o
 
 stdafx.i: stdafx.cpp.i
@@ -356,7 +383,7 @@ stdafx.i: stdafx.cpp.i
 
 # target to preprocess a source file
 stdafx.cpp.i:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/stdafx.cpp.i
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/stdafx.cpp.i
 .PHONY : stdafx.cpp.i
 
 stdafx.s: stdafx.cpp.s
@@ -365,7 +392,7 @@ stdafx.s: stdafx.cpp.s
 
 # target to generate assembly for a file
 stdafx.cpp.s:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/stdafx.cpp.s
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/stdafx.cpp.s
 .PHONY : stdafx.cpp.s
 
 tool/tool.o: tool/tool.cpp.o
@@ -374,7 +401,7 @@ tool/tool.o: tool/tool.cpp.o
 
 # target to build an object file
 tool/tool.cpp.o:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.o
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/tool/tool.cpp.o
 .PHONY : tool/tool.cpp.o
 
 tool/tool.i: tool/tool.cpp.i
@@ -383,7 +410,7 @@ tool/tool.i: tool/tool.cpp.i
 
 # target to preprocess a source file
 tool/tool.cpp.i:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.i
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/tool/tool.cpp.i
 .PHONY : tool/tool.cpp.i
 
 tool/tool.s: tool/tool.cpp.s
@@ -392,7 +419,7 @@ tool/tool.s: tool/tool.cpp.s
 
 # target to generate assembly for a file
 tool/tool.cpp.s:
-	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/tool/tool.cpp.s
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/tool/tool.cpp.s
 .PHONY : tool/tool.cpp.s
 
 # Help Target
@@ -403,7 +430,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... plate_recognition"
+	@echo "... plate"
 	@echo "... core/char.o"
 	@echo "... core/char.i"
 	@echo "... core/char.s"
@@ -419,6 +446,9 @@ help:
 	@echo "... core/resource.o"
 	@echo "... core/resource.i"
 	@echo "... core/resource.s"
+	@echo "... imgproc/imgproc.o"
+	@echo "... imgproc/imgproc.i"
+	@echo "... imgproc/imgproc.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

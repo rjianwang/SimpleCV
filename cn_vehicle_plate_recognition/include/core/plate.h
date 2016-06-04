@@ -28,6 +28,7 @@ public:
 
 public:
     cv::Rect position;
+    std::vector<cv::Point> points; // 车牌的左上点和右下点
     cv::Mat image;
 
     std::vector<std::string> chars;

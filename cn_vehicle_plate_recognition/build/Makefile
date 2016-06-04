@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named plate_recognition
+# Target rules for targets named plate
 
 # Build rule for target.
-plate_recognition: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 plate_recognition
-.PHONY : plate_recognition
+plate: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 plate
+.PHONY : plate
 
 # fast build rule for target.
-plate_recognition/fast:
-	$(MAKE) -f bin/CMakeFiles/plate_recognition.dir/build.make bin/CMakeFiles/plate_recognition.dir/build
-.PHONY : plate_recognition/fast
+plate/fast:
+	$(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/build
+.PHONY : plate/fast
 
 # Help Target
 help:
@@ -131,7 +131,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... plate_recognition"
+	@echo "... plate"
 .PHONY : help
 
 

@@ -1,29 +1,36 @@
+/* \file imgproc.cpp
+ * Image Processing Library
+ */
 #include "../../include/imgproc/imgproc.h"
 
+/* \namespace pr
+ * Namesapce where all C++ Plate Recognition functionality reside
+ */
 namespace pr
 {
 
-void gray(cv::Mat& mat1, cv::Mat& mat2){
-	IplImage pI = mat1;
-	uchar* ptr;
-	CvScalar s;
+// convert BGR to gray
+void bgr2gray(cv::Mat& mat1, cv::Mat& mat2)
+{
+	mat2 = cv::Mat(mat1.size(), CV_8UC1, 1);
 
-	int width = mat1.rows;
-	int height = mat1.cols;
+    std::vector<cv::Mat> bgrSplit;
+    cv::split(mat1, bgrSplit);
 
-	mat2 = cv::Mat(width, height, CV_8UC1, 1);
-	ptr = mat2.ptr(0);
-	for(int i = 0; i < width; i++)
+	for(int i = 0; i < mat1.rows; i++)
 	{
-		for(int j = 0; j < height; j++)
+		for(int j = 0; j < mat1.cols; j++)
 		{  
-			s = cvGet2D(&pI, i, j);
-			int grayScale = (int)(s.val[0]*0.299 + s.val[1]*0.587 + s.val[2]*0.114);
-			ptr[i * height + j] = grayScale;
+			int red = bgrSplit[0].at<char>(i, j);
+            int green = bgrSplit[1].at<char>(i, j);
+            int blue = bgrSplit[2].at<char>(i, j);
+
+			int grayscale = (int)(red * 0.299 + green * 0.587 + blue * 0.114);
+			mat2.at<uchar>(i, j) = grayscale;
 		}
 	}
 }
-
+/*
 void threshold(cv::Mat& mat1, int thresh){
 	uchar* ptr = mat1.ptr(0);
 	int width = mat1.rows;
@@ -303,6 +310,6 @@ int box_selection(cv::Mat& mat1)
 		}  
 	}
 	return sum;
-}
+}*/
 
 } // end namespace pr

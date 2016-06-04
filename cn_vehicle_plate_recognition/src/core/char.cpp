@@ -6,6 +6,9 @@
 #include "../../include/core/char.h"
 #include "../../include/tool/tool.h"
 
+/* \namespace pr
+ * Namespace where all C++ Plate Recognition functionality reside
+ */
 namespace pr
 {
 
@@ -44,7 +47,7 @@ namespace pr
 
         // ÈôÒ»¿éÇøÓòµÄ±ÈÂÊ³¬¹ý±ê×Œ±ÈÂÊµÄ80%£¬ÔòÈÏÎªžÃÇøÓòÎªºÚÉ«¿ì£¬¶ø²»ÊÇÒ»žö×Ö·û
         if (DEBUG_MODE)
-            std::cout << "Aspect: " << aspect 
+            std::cout << "\tAspect: " << aspect 
                 << " [" << minAspect << ", " << maxAspect << "] " 
                 << "Area " << percPixels 
                 << " Char aspect " << charAspect 
@@ -57,8 +60,8 @@ namespace pr
                 r.rows >= minHeight && 
                 r.rows < maxHeight)
             return true;
-        else
-            return false;
+        
+        return false;
     }
 
     // 字符预处理
@@ -132,13 +135,13 @@ namespace pr
             ++itc;
         }
 
-
         // 按x坐标排序
         qsort(output, 0, output.size() - 1);
         
         // 获得特殊字符
         int specIndex = getSpecificChar(input, output);
-        assert(specIndex != -1);
+        if (specIndex == -1)
+            return output;    // 如果为-1，则返回不继续，需对该返回值进行判断
 
         // 根据特殊字符分割除中文字符（车牌中的第一个字符）外的所有字符
         for (int i = specIndex, j = 1; i < output.size() && j <= 6; i++, j++)
@@ -159,7 +162,8 @@ namespace pr
 
         if (DEBUG_MODE)
         {
-            std::cout << "Num chars: " << segments.size() << "\n";
+            std::cout << "Spec index: " << specIndex << std::endl;
+            std::cout << "Num chars: " << segments.size() << std::endl;
             cv::imshow("Segmented Chars", result);
         }
 
@@ -203,13 +207,9 @@ namespace pr
 
             if ((mr.width >= maxWidth * 0.8 || mr.height >= maxHeight * 0.8)
                     && (midx <= high)
-                    && (midx >= low))             // 缩小范围，结果更鲁棒
+                    && (midx >= low))             
                 return i;   // specific char
-            
         }
-
-        if (DEBUG_MODE)
-            std::cout << "Spec index: " << ((i != 7) ? i : -1) << std::endl;
 
         return -1;
     }

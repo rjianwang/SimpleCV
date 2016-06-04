@@ -88,12 +88,23 @@ int main(int argc, char* argv[])
         resize(img, img, cv::Size(36, 136), 0, 0, cv::INTER_CUBIC);
         img.convertTo(img, CV_32FC1);
         img = img.reshape(1, 1);
-        int response = (int)svmClassifier.predict(img);
-        if (response == 1)
-            plates.push_back(plates_temp[i]);
+ //       int response = (int)svmClassifier.predict(img);
+
+        time_t t;
+        std::stringstream ss;
+ //       ss << "./tmpPlate/" << response << "/" << time(&t) << i << ".jpg";
+  //      cv::imwrite(ss.str(), plates_temp[i].image);
+
+   //     if (response != 1)
+   //         continue;
+
+        plates.push_back(plates_temp[i]);
     }
 
     std::cout << "Num plates detected: " << plates.size() << "\n";
+    std::string filename = "Plate";
+    for (int i = 0; i < plates.size(); i++)
+        cv::imshow(filename + (char)i + ".jpg", plates[i].image);
     
     // OCR
     if (!DETECT_MODE)
@@ -114,10 +125,10 @@ int main(int argc, char* argv[])
         }
     }
 
-    for (int i = 0; i < plates.size(); i++)
+/*    for (int i = 0; i < plates.size(); i++)
         cv::rectangle(img, plates[i].position, cv::Scalar(0, 0, 255), 2);
 
-    cv::imshow("Numbers of the Plate", img);
+    cv::imshow("Numbers of the Plate", img);*/
 
     while (cv::waitKey(0))
         break;
