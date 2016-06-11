@@ -71,11 +71,11 @@ int main(int argc, char* argv[])
     // Detect and segment plates
     PlateDetection detector;
     detector.saveRecognition = false;
-    std::vector<Plate> plates_temp = detector.segment(img);
+    std::vector<Plate> plates_temp = detector.detect(img);
 
     // SVM classifier
-    SVMClassifier svmClassifier;
-    svmClassifier.load_model("SVM_cn.xml");
+   // SVMClassifier svmClassifier;
+   // svmClassifier.load_model("SVM_cn.xml");
     //svmClassifier.load_data("../data/");
     //svmClassifier.train();
     //svmClassifier.save("SVM_cn.xml");
@@ -88,7 +88,7 @@ int main(int argc, char* argv[])
         resize(img, img, cv::Size(36, 136), 0, 0, cv::INTER_CUBIC);
         img.convertTo(img, CV_32FC1);
         img = img.reshape(1, 1);
-        int response = (int)svmClassifier.predict(img);
+        int response = 0;//(int)svmClassifier.predict(img);
 
         time_t t;
         std::stringstream ss;
@@ -115,7 +115,8 @@ int main(int argc, char* argv[])
         {
             Plate plate = plates[i];
 
-            ocr.ocr(plate);
+            if (ocr.ocr(plate) == false)
+                continue;
             std::string licensePlate = plate.str();
             std::cout << "License plate number: " << licensePlate << "\n";
             std::cout << "=============================================\n";

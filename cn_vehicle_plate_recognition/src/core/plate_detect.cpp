@@ -50,7 +50,7 @@ namespace pr
         return imt;
     }
 
-    bool PlateDetection::verifySizes(cv::RotatedRect ROI)
+    bool PlateDetection::verifySizes(const cv::RotatedRect &ROI)
     {
         // 中文车牌宽高比: 440 / 140 = 3.1429
         float aspect = 3.1429;
@@ -70,7 +70,7 @@ namespace pr
         bool result = true;
         if ((area < min || area > max) || (r < rmin || r > rmax))
             result = false;
-            
+
         if (DEBUG_MODE)
             std::cout << "\tveryfi Size(" << result << "):"
                 << "\tratio " << r
@@ -85,7 +85,7 @@ namespace pr
     }
 
     // 输入二值图像，检测图像中1的个数是否达到指定值
-    bool PlateDetection::verifyNonZero(cv::Mat &img, float thresh /* = 0.1 */)
+    bool PlateDetection::verifyNonZero(const cv::Mat &img, float thresh /* = 0.1 */)
     {
         int oneCount = cv::countNonZero(img);
 
@@ -102,7 +102,7 @@ namespace pr
     }
 
     // 输入灰度化车牌图像
-    bool PlateDetection::verifyColorJump(cv::Mat &img, int thresh /* = 7 */)
+    bool PlateDetection::verifyColorJump(const cv::Mat &img, int thresh /* = 7 */)
     {
         bool result = false;
 
@@ -125,7 +125,7 @@ namespace pr
 
         if (lineCount > 15)
             result = true;
-        
+
         if (DEBUG_MODE)
         {
             std::cout << "\tverify Color Jump(" << result 
@@ -279,18 +279,26 @@ namespace pr
 
         static int k = 0;
         std::stringstream ss;
-        ss << "Segments-" << k++ << "-Color";
         if (DEBUG_MODE)
         {
-            cv::imshow(ss.str(), img);
+            cv::imshow("Sub-Image", img);
         }
+
+        cv::Mat threshold;
+        threshold = colorMatch(img, 'b');
+        if (DEBUG_MODE)
+            cv::imshow("THRESHOLD", threshold);
+
+        plates = detectCore(img, threshold);
+
+        if (DEBUG_MODE)
+            std::cout << "Color detect result: " << plates.size() << std::endl;
+
+        return plates;
+
 
         //for (int i = 0; i < 1; i++)
         {
-            cv::Mat threshold;
-            threshold = colorMatch(img, 'b');
-            if (DEBUG_MODE)
-                cv::imshow(ss.str() + "-THRESHOLD", threshold);
 
             //cv::blur(threshold, threshold, cv::Size(5, 5));
             //cv::threshold(threshold, threshold, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
@@ -380,7 +388,7 @@ namespace pr
                 grayResult = histeq(grayResult);
 
                 if (verifyColorJump(grayResult, 15)) //颜色跳变检测
-                //if (verifyNonZero(grayResult, 0.3))
+                    //if (verifyNonZero(grayResult, 0.3))
                 {
                     if (saveRecognition){
                         std::stringstream ss(std::stringstream::in | std::stringstream::out);
@@ -396,7 +404,7 @@ namespace pr
         }
         if (DEBUG_MODE)
             std::cout << "\tColor detect result: " << plates.size() << std::endl;
-        return plates;
+        //return plates;
     }
 
     cv::Mat PlateDetection::preprocessImg(cv::Mat &img)
@@ -405,7 +413,6 @@ namespace pr
         cv::Mat gray;
         // cv::cvtColor(img, gray, CV_BGR2GRAY);
         bgr2gray(img, gray);
-
 
         // 均值滤波，去噪
         cv::blur(gray, gray, cv::Size(5, 5));
@@ -421,6 +428,9 @@ namespace pr
                 1,				// 计算导数值时可选的缩放因子，默认值是1
                 0,				// 表示在结果存入目标图之前可选的delta值，默认值为0
                 cv::BORDER_DEFAULT); // 边界模式，默认值为BORDER_DEFAULT
+
+        if (DEBUG_MODE)
+            cv::imshow("SOBEL", sobel);
 
         // 阈值分割得到二值图像，所采用的阈值由Otsu算法得到
         cv::Mat threshold;
@@ -467,22 +477,76 @@ namespace pr
 
     std::vector<Plate> PlateDetection::sobelDetect(cv::Mat &img)
     {
+        std::vector<Plate> plates;
+
         if (DEBUG_MODE)
             std::cout << "Sobel detect..." << std::endl;
 
-        std::vector<Plate> plates;
-
         static int num_img = 0;
-        std::stringstream ss;
-        ss << "Segments-" << num_img++ << "-Sobel";
         if (DEBUG_MODE)
         {
-            cv::imshow(ss.str(), img);
+            cv::imshow("Sub-Image", img);
         }
 
         cv::Mat threshold = preprocessImg(img);
         if (DEBUG_MODE)
-            cv::imshow(ss.str() + "-THRESHOLD", threshold);
+            cv::imshow("THRESHOLD", threshold);
+
+        plates = detectCore(img, threshold);
+
+        if (DEBUG_MODE)
+            std::cout << "Sobel detect result: " << plates.size() << std::endl;
+        return plates;
+    }
+
+    // 返回值为灰度图
+    cv::Mat PlateDetection::segment(const cv::Mat &img, const cv::RotatedRect &rect)
+    {
+        cv::Mat result;
+        img.copyTo(result);
+
+        std::cout << rect.angle << ", " << rect.center << ", " << rect.size << std::endl;
+                cv::Point2f rect_points[4]; 
+                rect.points(rect_points);
+                for (int j = 0; j < 4; j++)
+                    line(result, rect_points[j], rect_points[(j + 1) % 4], cv::Scalar(0, 0, 255), 1, 8);
+
+                // 得到旋转图像区域的矩阵
+                float r = (float)rect.size.width / (float)rect.size.height;
+                float angle = rect.angle;
+                if (r < 1)
+                    angle = 90 + angle;
+                cv::Mat rotmat = cv::getRotationMatrix2D(rect.center, angle, 1);
+
+                // 通过仿射变换旋转输入的图像
+                cv::Mat img_rotated;
+                cv::warpAffine(result, img_rotated, rotmat, result.size(), CV_INTER_CUBIC);
+
+                // 最后裁剪图像
+                cv::Size rect_size = rect.size;
+                if (r < 1)
+                    std::swap(rect_size.width, rect_size.height);
+                cv::Mat img_crop;
+                cv::getRectSubPix(img_rotated, rect_size, rect.center, img_crop);
+                std::cout << img_crop.size() << std::endl;
+
+                cv::Mat resultResized;
+                resultResized.create(36, 136, CV_8UC3);
+                resize(img_crop, resultResized, resultResized.size(), 0, 0, cv::INTER_CUBIC);
+
+                // 为了消除光照影响，对裁剪图像使用直方图均衡化处理
+                cv::Mat grayResult;
+                cv::cvtColor(resultResized, grayResult, CV_BGR2GRAY);
+                cv::blur(grayResult, grayResult, cv::Size(3, 3));
+                grayResult = histeq(grayResult);
+
+        return grayResult;
+    }
+
+    // 输入为二值图像
+    std::vector<Plate> PlateDetection::detectCore(const cv::Mat &img, const cv::Mat &threshold)
+    {
+        std::vector<Plate> plates;
 
         // 使用morphologyEx函数得到包含车牌的区域（但不包含车牌号）
         // 定义一个结构元素structuringElement，维度为17 * 3
@@ -490,7 +554,7 @@ namespace pr
         cv::morphologyEx(threshold, threshold, CV_MOP_CLOSE, structuringElement);
 
         if (DEBUG_MODE)
-            cv::imshow(ss.str() + "-CLOSE", threshold);
+            cv::imshow("CLOSE", threshold);
 
         for (int i = 0; i < 10; i++)
         {
@@ -500,19 +564,14 @@ namespace pr
                     break;
                 cv::Mat structuringElement2 = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(7, 7));
                 cv::morphologyEx(threshold, threshold, CV_MOP_OPEN, structuringElement2);
-                if (DEBUG_MODE)
-                    cv::imshow(ss.str() + "-OPEN", threshold);
             }
             else if (i >= 6)
             {
                 if (!verifyNonZero(threshold, 0.09))
                     break;
                 cv::morphologyEx(threshold, threshold, CV_MOP_CLOSE, structuringElement);
-                if (DEBUG_MODE)
-                    cv::imshow(ss.str() + "CLOSE", threshold);
             }
 
-            
             // 找到可能的车牌的轮廓
             std::vector<std::vector<cv::Point> > contours;
             std::vector<cv::RotatedRect> rects;
@@ -560,44 +619,12 @@ namespace pr
                     cv::Scalar(255, 0, 0), // 颜色
                     3);		// 线粗
             if (DEBUG_MODE)
-                cv::imshow(ss.str() + "-CONTOURS", result);
+                cv::imshow("CONTOURS", result);
 
             for (int k = 0; k < rects.size(); k++)
             {
-                cv::Point2f rect_points[4]; 
-                rects[k].points(rect_points);
-                for (int j = 0; j < 4; j++)
-                    line(result, rect_points[j], rect_points[(j + 1) % 4], cv::Scalar(0, 0, 255), 1, 8);
-
-                // 得到旋转图像区域的矩阵
-                float r = (float)rects[k].size.width / (float)rects[k].size.height;
-                float angle = rects[k].angle;
-                if (r < 1)
-                    angle = 90 + angle;
-                cv::Mat rotmat = cv::getRotationMatrix2D(rects[k].center, angle, 1);
-
-                // 通过仿射变换旋转输入的图像
-                cv::Mat img_rotated;
-                cv::warpAffine(img, img_rotated, rotmat, img.size(), CV_INTER_CUBIC);
-
-                // 最后裁剪图像
-                cv::Size rect_size = rects[k].size;
-                if (r < 1)
-                    std::swap(rect_size.width, rect_size.height);
-                cv::Mat img_crop;
-                cv::getRectSubPix(img_rotated, rect_size, rects[k].center, img_crop);
-
-                cv::Mat resultResized;
-                resultResized.create(36, 136, CV_8UC3);
-                resize(img_crop, resultResized, resultResized.size(), 0, 0, cv::INTER_CUBIC);
-
-                // 为了消除光照影响，对裁剪图像使用直方图均衡化处理
-                cv::Mat grayResult;
-                cv::cvtColor(resultResized, grayResult, CV_BGR2GRAY);
-                cv::blur(grayResult, grayResult, cv::Size(3, 3));
-                grayResult = histeq(grayResult);
+                cv::Mat grayResult = segment(img, rects[k]);
                 if (verifyColorJump(grayResult, 15))
-                //if (verifyNonZero(grayResult, 0.3))
                 {
                     if (saveRecognition)
                     {
@@ -605,21 +632,22 @@ namespace pr
                         ss << "tmp/" << filename << "_" << k << ".jpg";
                         imwrite(ss.str(), grayResult);
                     }
-                    plates.push_back(Plate(grayResult, rects[k].boundingRect()));
 
                     if (DEBUG_MODE)
-                        cv::imshow("Plate - Sobel", grayResult);
+                    {
+                        std::string filename = "Plate";
+                        cv::imshow(filename + char(k), grayResult);
+                    }
+                    plates.push_back(Plate(grayResult, rects[k].boundingRect()));
                 }
             } 
             if (plates.size() > 0)
                 break;
         }
-        if (DEBUG_MODE)
-            std::cout << "\tSobel detect result: " << plates.size() << std::endl;
         return plates;
     }
 
-    std::vector<Plate> PlateDetection::segment(cv::Mat &img)
+    std::vector<Plate> PlateDetection::detect(cv::Mat &img)
     {
         std::vector<Plate> plates;
 

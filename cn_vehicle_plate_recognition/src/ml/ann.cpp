@@ -71,6 +71,7 @@ void ANNClassifier::load_cn_data(const std::string filepath)
             cv::Mat resized;
             resized.create(20, 20, CV_32FC1);
             resize(img, resized, resized.size(), 0, 0, cv::INTER_CUBIC);
+            cv::threshold(resized, resized, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
 
             cv::Mat f = features(resized, 15);
             f = f.reshape(1, 1);
@@ -110,6 +111,7 @@ void ANNClassifier::load_data(const std::string filepath)
             cv::Mat resized;
             resized.create(20, 20, CV_32FC1);
             resize(img, resized, resized.size(), 0, 0, cv::INTER_CUBIC);
+            cv::threshold(resized, resized, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
             
             cv::Mat f = features(resized, 15);
 

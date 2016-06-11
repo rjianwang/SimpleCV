@@ -83,7 +83,7 @@ void OCR::process_chars(Plate &input, const std::vector<Char> &segments)
 {
     // ANN Classifier for digits and letters
     //  ANNClassifier *annClassifier = new ANNClassifier(10, Resources::numSPCharacters);
-    ANNClassifier *annClassifier = new ANNClassifier(100, Resources::numCharacters);
+    ANNClassifier *annClassifier = new ANNClassifier(48, Resources::numCharacters);
 
     //annClassifier->load_xml("../OCR.xml");
     annClassifier->load_data("../data/charSamples/");
@@ -132,14 +132,16 @@ bool OCR::ocr(Plate &input)
     // 字符分割
     std::vector<Char> segments = segment1(input);
     if (segments.size() != 7)
-    {
+        segments = segment2(input);
+    if (segments.size() != 7)
         return false;
-    }
     
     // 训练中文分类器，并识别
     process_cn_char(input, segments[0]);
     // 训练字符分类器，并识别
     process_chars(input, segments);
+
+    return true;
 }
 
 } /* end for namespace pr */

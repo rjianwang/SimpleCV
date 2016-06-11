@@ -1,4 +1,0 @@
-[ 11%] Building CXX object bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o
-bin/CMakeFiles/plate_recognition.dir/build.make:110: recipe for target 'bin/CMakeFiles/plate_recognition.dir/core/ocr.cpp.o' failed
-CMakeFiles/Makefile2:85: recipe for target 'bin/CMakeFiles/plate_recognition.dir/all' failed
-Makefile:83: recipe for target 'all' failed

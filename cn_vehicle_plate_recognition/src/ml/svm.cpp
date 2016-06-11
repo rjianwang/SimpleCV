@@ -13,6 +13,7 @@ namespace pr
 
 SVMClassifier::SVMClassifier()
 {
+    std::cout << "Hello, world~" << std::endl;
     SVM_params.svm_type = CvSVM::C_SVC;
     SVM_params.kernel_type = CvSVM::RBF; // CvSVM::LINEAR
     SVM_params.degree = 0.1; // 0
@@ -40,7 +41,7 @@ SVMClassifier::~SVMClassifier()
 void SVMClassifier::load_data(std::string filepath)
 {
     if (DEBUG_MODE)
-        std::cout << "Loading training data for SVM classifier." << std::endl;
+        std::cout << "Loading training data for SVM classifier..." << std::endl;
 
     std::string paths[2] = {filepath + "/plates0/", filepath + "plates1/"};
     for (int n = 0; n < 2; n++)
@@ -93,20 +94,6 @@ bool SVMClassifier::train()
     
     trainData.convertTo(trainData, CV_32FC1);
     svmClassifier = new CvSVM(trainData, labelData, cv::Mat(), cv::Mat(), SVM_params);
-
-    /*svmClassifier->train_auto(trainData, labelData, cv::Mat(), cv::Mat(), 
-            SVM_params,
-            10,
-            CvSVM::get_default_grid(CvSVM::C),
-            CvSVM::get_default_grid(CvSVM::GAMMA),
-            CvSVM::get_default_grid(CvSVM::P),
-            CvSVM::get_default_grid(CvSVM::NU),
-            CvSVM::get_default_grid(CvSVM::COEF),
-            CvSVM::get_default_grid(CvSVM::DEGREE),
-            bool
-            );
-    */
-
 }
 
 void SVMClassifier::save(std::string filepath)

@@ -127,24 +127,34 @@ namespace pr
         while (itc != contours.end()) 
         {
             cv::Rect mr = cv::boundingRect(cv::Mat(*itc));
-            cv::rectangle(result1, mr, cv::Scalar(0, 125, 255));
             // 裁剪图像
             cv::Mat auxRoi(input.image, mr);
-            // 若没有达到设定的宽高比，则移去该区域
-            if (verifySizes(auxRoi)){
-                auxRoi = preprocessChar(auxRoi);
-                output.push_back(Char(auxRoi, mr));
-            }
+            auxRoi = preprocessChar(auxRoi);
+            output.push_back(Char(auxRoi, mr));
+
             ++itc;
         }
 
         // 按x坐标排序
         qsort(output, 0, output.size() - 1);
         
+        // 合并轮廓，同事删除过小的轮廓
+        mergeContours(output);
+
+        if (DEBUG_MODE)
+        {
+            for (int i = 0; i < output.size(); i++)
+                cv::rectangle(result1, output[i].position, cv::Scalar(0, 125, 255));
+        }
+
         // 获得特殊字符
         int specIndex = getSpecificChar(input, output);
         if (specIndex != 1)
+        {
+            if (DEBUG_MODE && cv::waitKey(0))
+                cv::destroyAllWindows();
             return output;    // 如果为-1，则返回不继续，需对该返回值进行判断
+        }
 
         // 根据特殊字符分割除中文字符（车牌中的第一个字符）外的所有字符
         for (int i = specIndex, j = 1; i < output.size() && j <= 6; i++, j++)
@@ -174,6 +184,30 @@ namespace pr
             cv::destroyAllWindows();
 
         return segments;
+    }
+
+    // 合并检测到的轮廓，删除过小的轮廓
+    void mergeContours(std::vector<Char> &segments)
+    {
+        for (int i = 0; i < segments.size() - 1; i++)
+        {
+            if (segments[i + 1].position.x - (segments[i].position.width + segments[i].position.x) < 3)
+            {
+                if (segments[i].position.width < 8 || segments[i + 1].position.width < 8)
+                {
+                    segments[i].position.width = segments[i + 1].position.width + 
+                        segments[i + 1].position.x - segments[i].position.x;
+                    std::cout << segments[i + 1].position.x << ", " << segments[i].position.x << ", " << segments[i + 1].position.width << std::endl;
+                    segments[i].position.y = std::min(segments[i].position.y, segments[i + 1].position.y);
+                    segments[i].position.height = std::max(segments[i].position.height, segments[i + 1].position.height);
+                }
+            }
+
+            // 若没有达到设定的宽高比，则移去该区域
+            if (!verifySizes(segments[i].image)){
+                segments.erase(segments.begin() + i);
+            }
+        }
     }
 
     /* 获取特殊字符（车牌中的第二个字符） */
@@ -242,55 +276,176 @@ namespace pr
     /* \algorithms
      *  基于投影的字符分割
      */
-    /* 字符分割*/
-    std::vector<Char> segment2(Plate input)
+    // i字符分割
+    // 输入为二值化的车牌图像
+    std::vector<Char> segment2(const Plate &input)
     {
+        if (DEBUG_MODE)
+            std::cout << "Segment by hist..." << std::endl;
+        std::vector<Char> segments;
 
+        cv::Mat threshold = input.image;
+
+        cv::Mat ver_hist = vhist(threshold);
+        cv::Mat hor_hist = hhist(threshold);
+
+        // 获得水平及垂直分区
+        std::vector<std::vector<int>> hsegments = hsegment(ver_hist);
+        std::vector<int> vsegments = vsegment(hor_hist);
+        // 合并垂直分区
+        mergeHist(hsegments);
+
+        if (DEBUG_MODE)
+            std::cout << "\tChar Segment..." << std::endl;
+
+        // 根据垂直分区，获得个字符的x坐标及宽度
+        for (int i = 0; i < hsegments.size(); i++)
+        {
+            int x = hsegments[i][0];
+            int width = hsegments[i][1] - x;
+            int y = vsegments[0];
+            int height = vsegments[1] - y;
+
+            cv::Rect rect(x, y, width, height);
+            cv::Mat img(threshold, rect);
+
+            segments.push_back({img, rect});
+        }
+
+        if (DEBUG_MODE)
+        {
+            cv::Mat result;
+            input.image.copyTo(result);
+            for (int i = 0; i < segments.size(); i++)
+                cv::rectangle(result, segments[i].position, cv::Scalar(255));
+            cv::imshow("Char Segmented by Hist", result);
+            if (cv::waitKey(0))
+                cv::destroyAllWindows();
+            std::cout << "Num chars: " << segments.size() << std::endl;
+        }
+
+        return segments;
     }
 
-    /* 计算垂直投影 */
-    cv::Mat calcProj(const cv::Mat &img)
+    // 计算垂直投影
+    cv::Mat vhist(const cv::Mat &img)
     {
-        cv::Mat vhist = cv::Mat::zeros(1, img.cols, CV_32F);
+        if (DEBUG_MODE)
+            std::cout << "\tCalculate Verticle Hist..." << std::endl;
+        cv::Mat hist = cv::Mat::zeros(1, img.cols, CV_32F);
 
         for(int j = 0; j < img.cols; j++)
         {
             cv::Mat data = img.col(j);
-            vhist.at<float>(0, j) = cv::countNonZero(data);
+            hist.at<float>(0, j) = cv::countNonZero(data);
         }
 
-        return vhist;
+        return hist;
     }
 
-    /* 根据投影分割图片 */
-    std::vector< std::vector<int> > projSegment(cv::Mat &vhist)
+    cv::Mat hhist(const cv::Mat &img)
     {
+        if (DEBUG_MODE)
+            std::cout << "\tCalculate Horizontal Hist..." << std::endl;
+
+        cv::Mat hist = cv::Mat::zeros(1, img.rows, CV_32F);
+        for (int i = 0; i < img.rows; i++)
+            hist.at<float>(0, i) = cv::countNonZero(img.row(i));
+
+        return hist;
+    }
+
+    // 根据投影分割图片
+    std::vector< std::vector<int> > hsegment(const cv::Mat &vhist)
+    {
+        if (DEBUG_MODE)
+            std::cout << "\tHorizontal Segment..." << std::endl;
+
         std::vector< std::vector<int> > ret;
 
         int flag = 0;
         int threshold = 2;
 
-        for(int i = 0; i < vhist.cols; i++)
+        for(int i = 0; i < vhist.cols - 1; i++)
         {
-            std::vector<int> value(2);
-            if(	(vhist.at<float>(0, i) <= threshold)      &&
-                    (vhist.at<float>(0, i + 1) > threshold))
+            int a;
+            if(	(flag == 0 && 
+                    vhist.at<float>(0, i) <= threshold)      &&
+                    vhist.at<float>(0, i + 1) > threshold)
             {
-                value[0] = i;
+                a = i;
                 flag = 1;
             }
-            else if ( (vhist.at<float>(0, i) > threshold)    &&
-                    (vhist.at<float>(0, i + 1) <= threshold) &&
-                    flag)
+            else if (vhist.at<float>(0, i) > threshold    &&
+                    vhist.at<float>(0, i + 1) <= threshold &&
+                    flag == 1)
             {
-                value[1] = i;
                 flag = 0;
-
-                ret.push_back(value);
+                ret.push_back({a, i + 1});
             }		
         }
 
         return ret;
+    }
+
+    // 根据水平投影获得y坐标和高度等信息
+    std::vector<int> vsegment(const cv::Mat &hist)
+    {
+        if (DEBUG_MODE)
+            std::cout << "\tVerticle Segment..." << std::endl;
+
+        std::vector<int> ret(2);
+        bool flag = false;
+        int threshold = 8;
+        int i;
+        for (i = 0; i < hist.cols - 1; i++)
+        {
+            if (flag == false && 
+                    hist.at<float>(0, i) <= threshold &&
+                    hist.at<float>(0, i + 1) > threshold
+                    )
+            {
+                flag = true;
+                ret[0] = i;
+            }
+            if (flag == true && 
+                    hist.at<float>(0, i) > threshold &&
+                    hist.at<float>(0, i + 1) <= threshold
+                    )
+            {
+                flag = false;
+                ret[1] = i;
+            }
+        }
+        if (flag == true)
+            ret[1] = hist.cols;
+
+        return ret;
+    }
+
+    // 合并垂直分区
+    void mergeHist(std::vector<std::vector<int>> &segments)
+    {
+        if (DEBUG_MODE)
+            std::cout << "\tMerge Verticle Hist..." << std::endl;
+
+        int threshold = 4;
+        std::vector<std::vector<int>> ret;
+        for (int i = 0; i < segments.size() - 1; i++)
+        {
+            if (segments[i][1] - segments[i + 1][0] < 2)
+            {
+                if (segments[i][1] - segments[i][0] < 5 ||
+                        segments[i + 1][1] - segments[i + 1][0] < 5)
+                {
+                    segments[i][1] = segments[i + 1][1];
+                    segments.erase(segments.begin() + i + 1);
+                }
+            }
+
+            if (segments[i][1] - segments[i][0] < 3)
+                segments.erase(segments.begin() + i);
+        }
     }
 
 } /* end for namespace pr */
