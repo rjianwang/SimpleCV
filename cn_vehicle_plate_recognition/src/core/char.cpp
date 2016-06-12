@@ -197,7 +197,6 @@ namespace pr
                 {
                     segments[i].position.width = segments[i + 1].position.width + 
                         segments[i + 1].position.x - segments[i].position.x;
-                    std::cout << segments[i + 1].position.x << ", " << segments[i].position.x << ", " << segments[i + 1].position.width << std::endl;
                     segments[i].position.y = std::min(segments[i].position.y, segments[i + 1].position.y);
                     segments[i].position.height = std::max(segments[i].position.height, segments[i + 1].position.height);
                 }

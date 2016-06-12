@@ -38,7 +38,44 @@ bin/CMakeFiles/plate.dir/core/char.cpp.o: /usr/local/include/opencv2/video/backg
 bin/CMakeFiles/plate.dir/core/char.cpp.o: /usr/local/include/opencv2/video/tracking.hpp
 bin/CMakeFiles/plate.dir/core/char.cpp.o: /usr/local/include/opencv2/video/video.hpp
 
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: ../include/core/char.h
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: ../include/core/feature.h
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: ../include/stdafx.h
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: ../src/core/feature.cpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv/cvaux.h
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/calib3d/calib3d.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/contrib/contrib.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/contrib/openfabmap.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/contrib/retina.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/core/core.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/core/core_c.h
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/core/mat.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/core/operations.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/core/types_c.h
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/core/version.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/features2d/features2d.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/flann/config.h
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/flann/defines.h
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/flann/miniflann.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/highgui/highgui.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/highgui/highgui_c.h
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/imgproc/imgproc.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/imgproc/imgproc_c.h
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/imgproc/types_c.h
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/legacy/blobtrack.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/legacy/compat.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/legacy/legacy.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/ml/ml.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/objdetect/objdetect.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/opencv.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/photo/photo.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/photo/photo_c.h
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/video/background_segm.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/video/tracking.hpp
+bin/CMakeFiles/plate.dir/core/feature.cpp.o: /usr/local/include/opencv2/video/video.hpp
+
 bin/CMakeFiles/plate.dir/core/ocr.cpp.o: ../include/core/char.h
+bin/CMakeFiles/plate.dir/core/ocr.cpp.o: ../include/core/feature.h
 bin/CMakeFiles/plate.dir/core/ocr.cpp.o: ../include/core/ocr.h
 bin/CMakeFiles/plate.dir/core/ocr.cpp.o: ../include/core/plate.h
 bin/CMakeFiles/plate.dir/core/ocr.cpp.o: ../include/core/resource.h
@@ -226,6 +263,8 @@ bin/CMakeFiles/plate.dir/main.cpp.o: /usr/local/include/opencv2/video/background
 bin/CMakeFiles/plate.dir/main.cpp.o: /usr/local/include/opencv2/video/tracking.hpp
 bin/CMakeFiles/plate.dir/main.cpp.o: /usr/local/include/opencv2/video/video.hpp
 
+bin/CMakeFiles/plate.dir/ml/ann.cpp.o: ../include/core/char.h
+bin/CMakeFiles/plate.dir/ml/ann.cpp.o: ../include/core/feature.h
 bin/CMakeFiles/plate.dir/ml/ann.cpp.o: ../include/core/resource.h
 bin/CMakeFiles/plate.dir/ml/ann.cpp.o: ../include/ml/ann.h
 bin/CMakeFiles/plate.dir/ml/ann.cpp.o: ../include/stdafx.h

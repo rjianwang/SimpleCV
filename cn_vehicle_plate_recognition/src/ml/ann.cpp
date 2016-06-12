@@ -2,6 +2,7 @@
  * Ann implementation of ANN classifier
  */
 #include "../../include/core/resource.h"
+#include "../../include/core/feature.h"
 #include "../../include/ml/ann.h"
 #include "../../include/tool/tool.h"
 
@@ -29,19 +30,14 @@ ANNClassifier::~ANNClassifier()
 
 }
 
-void ANNClassifier::load_xml(const std::string filename)
+void ANNClassifier::load(const std::string filename)
 {
     if (DEBUG_MODE)
         std::cout << "Loading model for ANN classifier." << std::endl;
-
-    cv::FileStorage fs("OCR.xml", cv::FileStorage::READ);
-    fs["TrainingDataF15"] >> trainData;
-    fs["classes"] >> labelData;
-    
-    fs.release();
+    ann.load(filename.c_str());
 }
 
-void ANNClassifier::load_cn_data(const std::string filepath)
+void ANNClassifier::load_cn(const std::string filepath)
 {
     if (DEBUG_MODE)
     {
@@ -67,14 +63,13 @@ void ANNClassifier::load_cn_data(const std::string filepath)
             if (img.cols == 0)
                 std::cout << "Fail to load images " << path << std::endl;
             
-            // resize to 20 * 20 
+            // resize to 8 * 16 
             cv::Mat resized;
-            resized.create(20, 20, CV_32FC1);
+            resized.create(8, 16, CV_32FC1);
             resize(img, resized, resized.size(), 0, 0, cv::INTER_CUBIC);
             cv::threshold(resized, resized, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
 
-            cv::Mat f = features(resized, 15);
-            f = f.reshape(1, 1);
+            cv::Mat f = features(resized);
             trainData.push_back(f);
             labelData.push_back(n);
         }
@@ -107,167 +102,18 @@ void ANNClassifier::load_data(const std::string filepath)
             if (img.cols == 0)
                 std::cout << "Fail to load images " << path << std::endl;
             
-            // resize to 20 * 20
+            // resize to 8 * 16
             cv::Mat resized;
-            resized.create(20, 20, CV_32FC1);
+            resized.create(8, 16, CV_32FC1);
             resize(img, resized, resized.size(), 0, 0, cv::INTER_CUBIC);
             cv::threshold(resized, resized, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
             
-            cv::Mat f = features(resized, 15);
+            cv::Mat f = features(resized);
 
-            f = f.reshape(1, 1);
             trainData.push_back(f);
             labelData.push_back(n);
         }
     }
-}
-
-cv::Mat ANNClassifier::ProjectedHistogram(cv::Mat img, int t)
-{
-	int sz = (t) ? img.rows : img.cols;
-    cv::Mat mhist = cv::Mat::zeros(1, sz, CV_32F);
-
-	for (int j = 0; j<sz; j++){
-        cv::Mat data = (t) ? img.row(j) : img.col(j);
-		mhist.at<float>(j) = cv::countNonZero(data);
-	}
-
-	// ¹éÒ»»¯Ö±·œÍŒ
-	double min, max;
-    cv::minMaxLoc(mhist, &min, &max);
-
-	if (max>0)
-		mhist.convertTo(mhist, -1, 1.0f / max, 0);
-
-	return mhist;
-}
-
-cv::Mat ANNClassifier::getVisualHistogram(cv::Mat *hist, int type)
-{
-	int size = 100;
-    cv::Mat imHist;
-
-	if (type == HORIZONTAL){
-		imHist.create(cv::Size(size, hist->cols), CV_8UC3);
-	}
-	else{
-		imHist.create(cv::Size(hist->cols, size), CV_8UC3);
-	}
-
-	imHist = cv::Scalar(55, 55, 55);
-
-	for (int i = 0; i<hist->cols; i++){
-		float value = hist->at<float>(i);
-		int maxval = (int)(value*size);
-
-        cv::Point pt1;
-        cv::Point pt2, pt3, pt4;
-
-		if (type == HORIZONTAL)
-		{
-			pt1.x = pt3.x = 0;
-			pt2.x = pt4.x = maxval;
-			pt1.y = pt2.y = i;
-			pt3.y = pt4.y = i + 1;
-
-            cv::line(imHist, pt1, pt2, CV_RGB(220, 220, 220), 1, 8, 0);
-            cv::line(imHist, pt3, pt4, CV_RGB(34, 34, 34), 1, 8, 0);
-
-			pt3.y = pt4.y = i + 2;
-            cv::line(imHist, pt3, pt4, CV_RGB(44, 44, 44), 1, 8, 0);
-			pt3.y = pt4.y = i + 3;
-            cv::line(imHist, pt3, pt4, CV_RGB(50, 50, 50), 1, 8, 0);
-		}
-		else
-		{
-			pt1.x = pt2.x = i;
-			pt3.x = pt4.x = i + 1;
-			pt1.y = pt3.y = 100;
-			pt2.y = pt4.y = 100 - maxval;
-
-            cv::line(imHist, pt1, pt2, CV_RGB(220, 220, 220), 1, 8, 0);
-            cv::line(imHist, pt3, pt4, CV_RGB(34, 34, 34), 1, 8, 0);
-
-			pt3.x = pt4.x = i + 2;
-            cv::line(imHist, pt3, pt4, CV_RGB(44, 44, 44), 1, 8, 0);
-			pt3.x = pt4.x = i + 3;
-            cv::line(imHist, pt3, pt4, CV_RGB(50, 50, 50), 1, 8, 0);
-		}
-	}
-	return imHist;
-}
-
-void ANNClassifier::drawVisualFeatures(cv::Mat character, cv::Mat hhist, 
-        cv::Mat vhist, cv::Mat lowData){
-    cv::Mat img(121, 121, CV_8UC3, cv::Scalar(0, 0, 0));
-    cv::Mat ch;
-    cv::Mat ld;
-
-    cv::cvtColor(character, ch, CV_GRAY2RGB);
-
-    cv::resize(lowData, ld, cv::Size(100, 100), 0, 0, cv::INTER_NEAREST);
-    cv::cvtColor(ld, ld, CV_GRAY2RGB);
-
-    cv::Mat hh = getVisualHistogram(&hhist, HORIZONTAL);
-    cv::Mat hv = getVisualHistogram(&vhist, VERTICAL);
-
-    cv::Mat subImg = img(cv::Rect(0, 101, 20, 20));
-	ch.copyTo(subImg);
-
-	subImg = img(cv::Rect(21, 101, 100, 20));
-	hh.copyTo(subImg);
-
-	subImg = img(cv::Rect(0, 0, 20, 100));
-	hv.copyTo(subImg);
-
-	subImg = img(cv::Rect(21, 0, 100, 100));
-	ld.copyTo(subImg);
-
-    cv::line(img, cv::Point(0, 100), cv::Point(121, 100), 
-            cv::Scalar(0, 0, 255));
-    cv::line(img, cv::Point(20, 0), cv::Point(20, 121), 
-            cv::Scalar(0, 0, 255));
-
-    cv::imshow("Visual Features", img);
-
-    cv::waitKey(0);
-}
-
-// ÌØÕ÷ÌáÈ¡
-cv::Mat ANNClassifier::features(cv::Mat in, int sizeData){
-	//Histogram features
-    cv::Mat vhist = ProjectedHistogram(in, VERTICAL);
-    cv::Mat hhist = ProjectedHistogram(in, HORIZONTAL);
-
-    cv::Mat lowData;
-    cv::resize(in, lowData, cv::Size(sizeData, sizeData));
-
-	/*if (DEBUG_MODE)
-		drawVisualFeatures(in, hhist, vhist, lowData);*/
-
-	int numCols = vhist.cols + hhist.cols + lowData.cols * lowData.cols;
-
-    cv::Mat out = cv::Mat::zeros(1, numCols, CV_32F);
-
-	int j = 0;
-	for (int i = 0; i < vhist.cols; i++)
-	{
-		out.at<float>(j) = vhist.at<float>(i);
-		j++;
-	}
-	for (int i = 0; i < hhist.cols; i++)
-	{
-		out.at<float>(j) = hhist.at<float>(i);
-		j++;
-	}
-	for (int x = 0; x < lowData.cols; x++)
-	{
-		for (int y = 0; y < lowData.rows; y++){
-			out.at<float>(j) = (float)lowData.at<unsigned char>(x, y);
-			j++;
-		}
-	}
-	return out;
 }
 
 void ANNClassifier::train()
@@ -311,9 +157,8 @@ int ANNClassifier::predict(const cv::Mat &sample)
         std::cout << "\tSample size: " << sample.size() << std::endl;
     }
 
-	cv::Mat f = features(sample, 15);
     cv::Mat output(1, this->num_output, CV_32FC1);
-    ann.predict(f, output);
+    ann.predict(sample, output);
     
     cv::Point maxLoc;
     double maxVal;

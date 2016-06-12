@@ -40,7 +40,7 @@ private:
     cv::Mat removeFringe(cv::Mat img);
 
     void process_chars(Plate &input, const std::vector<Char> &segments);
-    void process_cn_char(Plate &input, const Char &cn_char);
+    void process_cn(Plate &input, const Char &cn_char);
 };
 
 } /* end for namespace pr */

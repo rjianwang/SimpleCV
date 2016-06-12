@@ -152,6 +152,33 @@ core/char.cpp.s:
 	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/char.cpp.s
 .PHONY : core/char.cpp.s
 
+core/feature.o: core/feature.cpp.o
+
+.PHONY : core/feature.o
+
+# target to build an object file
+core/feature.cpp.o:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/feature.cpp.o
+.PHONY : core/feature.cpp.o
+
+core/feature.i: core/feature.cpp.i
+
+.PHONY : core/feature.i
+
+# target to preprocess a source file
+core/feature.cpp.i:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/feature.cpp.i
+.PHONY : core/feature.cpp.i
+
+core/feature.s: core/feature.cpp.s
+
+.PHONY : core/feature.s
+
+# target to generate assembly for a file
+core/feature.cpp.s:
+	cd /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build && $(MAKE) -f bin/CMakeFiles/plate.dir/build.make bin/CMakeFiles/plate.dir/core/feature.cpp.s
+.PHONY : core/feature.cpp.s
+
 core/ocr.o: core/ocr.cpp.o
 
 .PHONY : core/ocr.o
@@ -434,6 +461,9 @@ help:
 	@echo "... core/char.o"
 	@echo "... core/char.i"
 	@echo "... core/char.s"
+	@echo "... core/feature.o"
+	@echo "... core/feature.i"
+	@echo "... core/feature.s"
 	@echo "... core/ocr.o"
 	@echo "... core/ocr.i"
 	@echo "... core/ocr.s"

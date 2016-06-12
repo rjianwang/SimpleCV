@@ -10,6 +10,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/plate.dir/tool/tool.cpp.o"
   "CMakeFiles/plate.dir/core/resource.cpp.o"
   "CMakeFiles/plate.dir/imgproc/imgproc.cpp.o"
+  "CMakeFiles/plate.dir/core/feature.cpp.o"
   "plate.pdb"
   "plate"
 )

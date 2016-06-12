@@ -505,40 +505,38 @@ namespace pr
         cv::Mat result;
         img.copyTo(result);
 
-        std::cout << rect.angle << ", " << rect.center << ", " << rect.size << std::endl;
-                cv::Point2f rect_points[4]; 
-                rect.points(rect_points);
-                for (int j = 0; j < 4; j++)
-                    line(result, rect_points[j], rect_points[(j + 1) % 4], cv::Scalar(0, 0, 255), 1, 8);
+        cv::Point2f rect_points[4]; 
+        rect.points(rect_points);
+        for (int j = 0; j < 4; j++)
+            line(result, rect_points[j], rect_points[(j + 1) % 4], cv::Scalar(0, 0, 255), 1, 8);
 
-                // 得到旋转图像区域的矩阵
-                float r = (float)rect.size.width / (float)rect.size.height;
-                float angle = rect.angle;
-                if (r < 1)
-                    angle = 90 + angle;
-                cv::Mat rotmat = cv::getRotationMatrix2D(rect.center, angle, 1);
+        // 得到旋转图像区域的矩阵
+        float r = (float)rect.size.width / (float)rect.size.height;
+        float angle = rect.angle;
+        if (r < 1)
+            angle = 90 + angle;
+        cv::Mat rotmat = cv::getRotationMatrix2D(rect.center, angle, 1);
 
-                // 通过仿射变换旋转输入的图像
-                cv::Mat img_rotated;
-                cv::warpAffine(result, img_rotated, rotmat, result.size(), CV_INTER_CUBIC);
+        // 通过仿射变换旋转输入的图像
+        cv::Mat img_rotated;
+        cv::warpAffine(result, img_rotated, rotmat, result.size(), CV_INTER_CUBIC);
 
-                // 最后裁剪图像
-                cv::Size rect_size = rect.size;
-                if (r < 1)
-                    std::swap(rect_size.width, rect_size.height);
-                cv::Mat img_crop;
-                cv::getRectSubPix(img_rotated, rect_size, rect.center, img_crop);
-                std::cout << img_crop.size() << std::endl;
+        // 最后裁剪图像
+        cv::Size rect_size = rect.size;
+        if (r < 1)
+            std::swap(rect_size.width, rect_size.height);
+        cv::Mat img_crop;
+        cv::getRectSubPix(img_rotated, rect_size, rect.center, img_crop);
 
-                cv::Mat resultResized;
-                resultResized.create(36, 136, CV_8UC3);
-                resize(img_crop, resultResized, resultResized.size(), 0, 0, cv::INTER_CUBIC);
+        cv::Mat resultResized;
+        resultResized.create(36, 136, CV_8UC3);
+        resize(img_crop, resultResized, resultResized.size(), 0, 0, cv::INTER_CUBIC);
 
-                // 为了消除光照影响，对裁剪图像使用直方图均衡化处理
-                cv::Mat grayResult;
-                cv::cvtColor(resultResized, grayResult, CV_BGR2GRAY);
-                cv::blur(grayResult, grayResult, cv::Size(3, 3));
-                grayResult = histeq(grayResult);
+        // 为了消除光照影响，对裁剪图像使用直方图均衡化处理
+        cv::Mat grayResult;
+        cv::cvtColor(resultResized, grayResult, CV_BGR2GRAY);
+        cv::blur(grayResult, grayResult, cv::Size(3, 3));
+        grayResult = histeq(grayResult);
 
         return grayResult;
     }

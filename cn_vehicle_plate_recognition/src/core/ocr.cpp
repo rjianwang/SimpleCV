@@ -7,6 +7,7 @@
 #include "../../include/core/resource.h"
 #include "../../include/core/char.h"
 #include "../../include/core/ocr.h"
+#include "../../include/core/feature.h"
 #include "../../include/tool/tool.h"
 #include "../../include/ml/ann.h"
 
@@ -82,10 +83,8 @@ cv::Mat OCR::removeFringe(cv::Mat img)
 void OCR::process_chars(Plate &input, const std::vector<Char> &segments)
 {
     // ANN Classifier for digits and letters
-    //  ANNClassifier *annClassifier = new ANNClassifier(10, Resources::numSPCharacters);
-    ANNClassifier *annClassifier = new ANNClassifier(48, Resources::numCharacters);
+    ANNClassifier *annClassifier = new ANNClassifier(30, Resources::numCharacters);
 
-    //annClassifier->load_xml("../OCR.xml");
     annClassifier->load_data("../data/charSamples/");
     annClassifier->train();
 
@@ -95,7 +94,8 @@ void OCR::process_chars(Plate &input, const std::vector<Char> &segments)
 
         // 对于每个部分进行分类
         ch.convertTo(ch, CV_32FC1);
-        int character = annClassifier->predict(ch);
+        cv::Mat f = features(ch);
+        int character = annClassifier->predict(f);
         input.chars.push_back(std::string(1, Resources::sp_chars[character]));
         input.charsPos.push_back(segments[i].position);
     }
@@ -103,11 +103,11 @@ void OCR::process_chars(Plate &input, const std::vector<Char> &segments)
     delete annClassifier;
 }
 
-void OCR::process_cn_char(Plate &input, const Char &cn_char)
+void OCR::process_cn(Plate &input, const Char &cn_char)
 {
     // ANN Classifier for Chinese Characters
     ANNClassifier *annClassifier = new ANNClassifier(17, Resources::numCNCharacters);
-    annClassifier->load_cn_data("../data/cn_chars/"); 
+    annClassifier->load_cn("../data/cn_chars/"); 
     annClassifier->train();
 
     // 对字符进行预处理
@@ -115,7 +115,8 @@ void OCR::process_cn_char(Plate &input, const Char &cn_char)
     
     // 对于每个部分进行分类
     ch.convertTo(ch, CV_32FC1);
-    int character = annClassifier->predict(ch);
+    cv::Mat f = features(ch);
+    int character = annClassifier->predict(f);
     input.chars.push_back(Resources::cn_chars[character]);
     input.charsPos.push_back(cn_char.position);
 
@@ -137,7 +138,7 @@ bool OCR::ocr(Plate &input)
         return false;
     
     // 训练中文分类器，并识别
-    process_cn_char(input, segments[0]);
+    process_cn(input, segments[0]);
     // 训练字符分类器，并识别
     process_chars(input, segments);
 
