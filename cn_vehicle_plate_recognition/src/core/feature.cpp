@@ -12,10 +12,13 @@ namespace pr
 
     cv::Mat features(const cv::Mat &img)
     {
-        cv::Mat features(1, 48, CV_32FC1);
         std::vector<float>  f1 = gradientF(img);
-        cv::Mat f2 = pixelF(img);
+        cv::Mat f2 = vhistF(img);
+        cv::Mat f3 = hhistF(img);
+//        cv::Mat f4 = pixelF(img);
 
+//        cv::Mat features(1, f1.size() + f2.cols + f3.cols + f4.cols, CV_32FC1);
+        cv::Mat features(1, f1.size() + f2.cols + f3.cols, CV_32FC1);
         int i = 0;
         for (; i < f1.size(); i++)
         {
@@ -23,8 +26,17 @@ namespace pr
         }
         for (int j = 0; j < f2.cols; i++, j++)
         {
-            features.at<float>(0, i) = f2.at<uchar>(0, j);
+            features.at<float>(0, i) = f2.at<float>(0, j);
         }
+        for (int j = 0; j < f3.cols; i++, j++)
+        {
+            features.at<float>(0, i) = f3.at<float>(0, j);
+        }
+/*        for (int j = 0; j < f4.cols; i++, j++)
+        {
+            features.at<float>(0, i) = f4.at<float>(0, j);
+        }
+*/
 
         return features;        
     }
@@ -68,10 +80,50 @@ namespace pr
     cv::Mat pixelF(const cv::Mat &img)
     {
         cv::Mat resized;
-        cv::resize(img, resized, cv::Size(4, 8));
+        cv::resize(img, resized, cv::Size(8, 16));
         resized = resized.reshape(1, 1);
 
         return resized;
+    }
+
+    // 输入为二值化字符图像
+    cv::Mat hhistF(const cv::Mat &img)
+    {
+        cv::Mat resized;
+        cv::resize(img, resized, cv::Size(8, 16));
+
+        cv::Mat mat(1, resized.rows / 4, CV_32FC1);
+        for (int i = 0; i < mat.rows; i++)
+        {
+            int count = 0;
+            for (int j = 0; j < 4; j++)
+            {
+                count += cv::countNonZero(resized.row(4 * i + j));
+            }
+            mat.at<float>(0, i) = count;
+        }
+
+        return mat;
+    }
+
+    // 输入为二值化字符图像
+    cv::Mat vhistF(const cv::Mat &img)
+    {
+        cv::Mat resized;
+        cv::resize(img, resized, cv::Size(8, 16));
+
+        cv::Mat mat(1, resized.cols / 2, CV_32F);
+        for (int i = 0; i < mat.cols; i++)
+        {
+            int count = 0;
+            for (int j = 0; j < 2; j++)
+            {
+               count += cv::countNonZero(resized.col(2 * i + j));
+            }
+            mat.at<float>(0, i) = count;
+        }
+
+        return mat;
     }
 
 } /* end for namespace pr */

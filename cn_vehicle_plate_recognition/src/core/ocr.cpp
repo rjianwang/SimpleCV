@@ -106,7 +106,7 @@ namespace pr
     void OCR::process_cn(Plate &input, const Char &cn_char)
     {
         // ANN Classifier for Chinese Characters
-        ANNClassifier *annClassifier = new ANNClassifier(17, Resources::numCNCharacters);
+        ANNClassifier *annClassifier = new ANNClassifier(10, Resources::numCNCharacters);
         annClassifier->load_cn("../data/cn_chars/"); 
         annClassifier->train();
 

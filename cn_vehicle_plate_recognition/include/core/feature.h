@@ -14,5 +14,7 @@ namespace pr
     cv::Mat features(const cv::Mat &charImg);
     std::vector<float> gradientF(const cv::Mat &img);
     cv::Mat pixelF(const cv::Mat &img);
+    cv::Mat hhistF(const cv::Mat &img);
+    cv::Mat vhistF(const cv::Mat &img);
 
 } /* end for namespace pr */

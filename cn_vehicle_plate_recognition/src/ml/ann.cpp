@@ -150,7 +150,6 @@ int ANNClassifier::predict(const cv::Mat &sample)
         std::cout << "\tSample size: " << sample.size() << std::endl;
     }
 
-    std::cout << sample << std::endl;
     cv::Mat output(1, this->num_output, CV_32FC1);
     ann.predict(sample, output);
     
