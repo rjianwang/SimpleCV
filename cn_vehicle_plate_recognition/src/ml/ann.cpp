@@ -20,9 +20,10 @@ ANNClassifier::ANNClassifier(int num_neurons, int num_output)
     this->num_neurons = num_neurons;
     this->num_output = num_output;
 
-    params.train_method = CvANN_MLP_TrainParams::BACKPROP;
+/*    params.train_method = CvANN_MLP_TrainParams::BACKPROP;
     params.bp_dw_scale = 0.1;
     params.bp_moment_scale = 0.1;
+    */
 }
 
 ANNClassifier::~ANNClassifier()
@@ -63,13 +64,9 @@ void ANNClassifier::load_cn(const std::string filepath)
             if (img.cols == 0)
                 std::cout << "Fail to load images " << path << std::endl;
             
-            // resize to 8 * 16 
-            cv::Mat resized;
-            resized.create(8, 16, CV_32FC1);
-            resize(img, resized, resized.size(), 0, 0, cv::INTER_CUBIC);
-            cv::threshold(resized, resized, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
+            cv::threshold(img, img, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
 
-            cv::Mat f = features(resized);
+            cv::Mat f = features(img);
             trainData.push_back(f);
             labelData.push_back(n);
         }
@@ -102,13 +99,9 @@ void ANNClassifier::load_data(const std::string filepath)
             if (img.cols == 0)
                 std::cout << "Fail to load images " << path << std::endl;
             
-            // resize to 8 * 16
-            cv::Mat resized;
-            resized.create(8, 16, CV_32FC1);
-            resize(img, resized, resized.size(), 0, 0, cv::INTER_CUBIC);
-            cv::threshold(resized, resized, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
+            cv::threshold(img, img, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
             
-            cv::Mat f = features(resized);
+            cv::Mat f = features(img);
 
             trainData.push_back(f);
             labelData.push_back(n);
@@ -157,6 +150,7 @@ int ANNClassifier::predict(const cv::Mat &sample)
         std::cout << "\tSample size: " << sample.size() << std::endl;
     }
 
+    std::cout << sample << std::endl;
     cv::Mat output(1, this->num_output, CV_32FC1);
     ann.predict(sample, output);
     

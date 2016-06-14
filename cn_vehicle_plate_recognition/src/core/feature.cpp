@@ -34,33 +34,30 @@ namespace pr
     {
         std::vector<float> features;
 
-        cv::Mat gray;
-        cv::resize(img, gray, cv::Size(8, 16));
+        cv::Mat resized;
+        cv::resize(img, resized, cv::Size(8, 16));
 
         float mask[3][3] = {{1, 2, 1},
                     {0, 0, 0},
                     {-1, -2, -1}};
-        cv::Mat y_mask = cv::Mat(3, 3, CV_32F, mask);
+        cv::Mat y_mask = cv::Mat(3, 3, CV_32F, mask) / 8;
         cv::Mat x_mask = y_mask.t();
         cv::Mat sobelX, sobelY;
 
-        cv::filter2D(img, sobelX, CV_32F, x_mask);
-        cv::filter2D(img, sobelY, CV_32F, y_mask);
+        cv::filter2D(resized, sobelX, CV_32F, x_mask);
+        cv::filter2D(resized, sobelY, CV_32F, y_mask);
 
         sobelX = cv::abs(sobelX);
         sobelY = cv::abs(sobelY);
 
-        float totalX = cv::countNonZero(sobelX);
-        float totalY = cv::countNonZero(sobelY);
-
-        for (int i = 0; i < img.rows; i = i + 4)
+        for (int i = 0; i < resized.rows; i = i + 4)
         {
-            for (int j = 0; j < img.cols; j = j + 4)
+            for (int j = 0; j < resized.cols; j = j + 4)
             {
                 cv::Mat subX = sobelX(cv::Rect(j, i, 4, 4)); 
-                features.push_back(cv::countNonZero(subX) / totalX);
+                features.push_back(cv::countNonZero(subX));
                 cv::Mat subY = sobelY(cv::Rect(j, i, 4, 4));
-                features.push_back(cv::countNonZero(subX) / totalY);
+                features.push_back(cv::countNonZero(subX));
             }
         }
 
