@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
     // SVM classifier
    // SVMClassifier svmClassifier;
    // svmClassifier.load_model("SVM_cn.xml");
-    //svmClassifier.load_data("../data/");
+    //svmClassifier.load_plate("../data/");
     //svmClassifier.train();
     //svmClassifier.save("SVM_cn.xml");
 
@@ -104,8 +104,6 @@ int main(int argc, char* argv[])
         cv::imshow(filename + char(i), plates_temp[i].image);
     }
     std::cout << "Num plates detected: " << plates.size() << "\n";
-    if (cv::waitKey(0))
-        cv::destroyAllWindows();
     
     // OCR
     if (!DETECT_MODE)

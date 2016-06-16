@@ -26,7 +26,7 @@ namespace pr
         this->position = pos;
     }
 
-    /* 根据字符大小比例等进行预判断 */
+    // 根据字符大小比例等进行预判断
     bool verifySizes(cv::Mat r)
     {
         bool result = false; //判断结果
@@ -78,7 +78,7 @@ namespace pr
         cv::warpAffine(in, warpImage, transformMat, warpImage.size(), cv::INTER_LINEAR, cv::BORDER_CONSTANT, cv::Scalar(0));
 
         cv::Mat out;
-        cv::resize(warpImage, out, cv::Size(charSize, charSize));
+        cv::resize(warpImage, out, charSize);
 
         return out;
     }
@@ -138,7 +138,7 @@ namespace pr
         // 按x坐标排序
         qsort(output, 0, output.size() - 1);
         
-        // 合并轮廓，同事删除过小的轮廓
+        // 合并轮廓，同时删除过小的轮廓
         mergeContours(output);
 
         if (DEBUG_MODE)
@@ -167,7 +167,7 @@ namespace pr
         for (int i = 0; i < segments.size(); i++)
         {
             // 保存分割结果
-            sprintf(res, "PlateNumber%d.jpg", i);
+            sprintf(res, "chars/PlateNumber%d.jpg", i);
             cv::imwrite(res, segments[i].image);
             // 画出字符分割的轮廓
             cv::rectangle(result2, segments[i].position, cv::Scalar(0, 125, 255));
@@ -311,12 +311,18 @@ namespace pr
             segments.push_back({img, rect});
         }
 
+        cv::Mat result;
+        input.image.copyTo(result);
+        for (int i = 0; i < segments.size(); i++)
+        {
+            // 保存分割结果
+            std::stringstream ss;
+            ss << "PlateNumber" << i << ".jpg";
+            cv::imwrite(ss.str(), segments[i].image);
+            cv::rectangle(result, segments[i].position, cv::Scalar(255));
+        }
         if (DEBUG_MODE)
         {
-            cv::Mat result;
-            input.image.copyTo(result);
-            for (int i = 0; i < segments.size(); i++)
-                cv::rectangle(result, segments[i].position, cv::Scalar(255));
             cv::imshow("Char Segmented by Hist", result);
             if (cv::waitKey(0))
                 cv::destroyAllWindows();
@@ -354,7 +360,7 @@ namespace pr
         return hist;
     }
 
-    // 根据投影分割图片
+    // 根据投影分割图片，获得x坐标及width
     std::vector< std::vector<int> > hsegment(const cv::Mat &vhist)
     {
         if (DEBUG_MODE)

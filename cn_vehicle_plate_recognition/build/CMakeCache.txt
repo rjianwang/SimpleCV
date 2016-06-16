@@ -188,6 +188,18 @@ plate_BINARY_DIR:STATIC=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognitio
 //Value Computed by CMake
 plate_SOURCE_DIR:STATIC=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src
 
+//Value Computed by CMake
+svm_test_BINARY_DIR:STATIC=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin
+
+//Value Computed by CMake
+svm_test_SOURCE_DIR:STATIC=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src
+
+//Value Computed by CMake
+test_BINARY_DIR:STATIC=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/build/bin
+
+//Value Computed by CMake
+test_SOURCE_DIR:STATIC=/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src
+
 
 ########################
 # INTERNAL cache entries

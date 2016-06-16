@@ -2,6 +2,8 @@
  * Define some utilities
  */
 
+#include <iostream>
+#include <string>
 #include "../../include/core/ocr.h"
 #include "../../include/core/char.h"
 #include "../../include/tool/tool.h"

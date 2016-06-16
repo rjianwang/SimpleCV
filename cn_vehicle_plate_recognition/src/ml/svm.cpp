@@ -4,6 +4,8 @@
 
 #include "../../include/ml/svm.h"
 #include "../../include/tool/tool.h"
+#include "../../include/core/resource.h"
+#include "../../include/core/feature.h"
 
 /* \namespace pr
  * Namespace wherea all C++ Plate Recognition functionality resides
@@ -13,7 +15,6 @@ namespace pr
 
 SVMClassifier::SVMClassifier()
 {
-    std::cout << "Hello, world~" << std::endl;
     SVM_params.svm_type = CvSVM::C_SVC;
     SVM_params.kernel_type = CvSVM::RBF; // CvSVM::LINEAR
     SVM_params.degree = 0.1; // 0
@@ -38,7 +39,7 @@ SVMClassifier::~SVMClassifier()
 //     There is a directory "train" and two sub-directories in it,
 //     that is "plates0", "plates1". 
 //     We load datas from "train".
-void SVMClassifier::load_data(std::string filepath)
+void SVMClassifier::load_plate(const std::string filepath)
 {
     if (DEBUG_MODE)
         std::cout << "Loading training data for SVM classifier..." << std::endl;
@@ -67,6 +68,81 @@ void SVMClassifier::load_data(std::string filepath)
             resize(img, resized, resized.size(), 0, 0, cv::INTER_CUBIC);
 
             resized = resized.reshape(1, 1);
+            trainData.push_back(resized);
+            labelData.push_back(n);
+        }
+    }
+}
+
+void SVMClassifier::load_cn(const std::string filepath)
+{
+    if (DEBUG_MODE)
+    {
+        std::cout << "Loading training data(Chinese Characters) for SVM classifier." 
+            << std::endl;
+    }
+
+    for (int n = 0; n < Resources::numCNCharacters; n++)
+    {
+        std::vector<std::string> files;
+        files = getFiles(filepath + Resources::cn_chars[n] + "/");
+
+        if (files.size() == 0)
+            std::cout << "Loading trainning data(Chinese Characters) ERROR. "
+                << "Directory \"" << filepath + Resources::cn_chars[n] << "\" is empty." 
+                << std::endl;
+
+        for (int i = 0; i < files.size(); i++)
+        {
+            std::string path = filepath + Resources::cn_chars[n] + "/" + files[i];
+            cv::Mat img = cv::imread(path.c_str(), CV_LOAD_IMAGE_GRAYSCALE);
+
+            if (img.cols == 0)
+                std::cout << "Fail to load images " << path << std::endl;
+            
+//            cv::threshold(img, img, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
+
+            cv::Mat f = features(img);
+            trainData.push_back(f);
+            labelData.push_back(n);
+        }
+    }
+}
+
+void SVMClassifier::load_char(const std::string filepath)
+{
+    if (DEBUG_MODE)
+    {
+        std::cout << "Loading training data(digits & letters) for SVM classifier." 
+            << std::endl;
+    }
+
+    for (int n = 0; n < Resources::numCharacters; n++)
+    {
+        std::vector<std::string> files;
+        files = getFiles(filepath + Resources::chars[n] + "/");
+
+        if (files.size() == 0)
+            std::cout << "Loading trainning data ERROR. " 
+                << "Directory \"" << filepath + Resources::chars[n] << "\" is empty."
+                << std::endl;
+
+        for (int i = 0; i < files.size(); i++)
+        {
+            std::string path = filepath + Resources::chars[n] + "/" + files[i];
+            cv::Mat img = cv::imread(path.c_str(), CV_LOAD_IMAGE_GRAYSCALE);
+
+            if (img.cols == 0)
+                std::cout << "Fail to load images " << path << std::endl;
+            
+ //           cv::threshold(img, img, 0, 255, CV_THRESH_OTSU + CV_THRESH_BINARY);
+            
+            //cv::Mat f = features(img);
+            cv::Mat resized;
+            resized.create(24, 12, CV_32FC1);
+            cv::resize(img, resized, resized.size());
+            resized = resized.reshape(1, 1);
+
             trainData.push_back(resized);
             labelData.push_back(n);
         }

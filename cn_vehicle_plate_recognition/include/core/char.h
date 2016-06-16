@@ -28,7 +28,7 @@ namespace pr
     };
 
     // 字符大小
-    const int charSize = 20;
+    const cv::Size charSize(12, 24);
 
     // 根据字符大小比例等进行预判断
     bool verifySizes(cv::Mat r);

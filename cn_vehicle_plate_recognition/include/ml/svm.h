@@ -21,7 +21,9 @@ public:
     ~SVMClassifier();
 
 public:
-    void load_data(std::string filepath);
+    void load_plate(const std::string filepath);
+    void load_cn(const std::string filepath);
+    void load_char(const std::string filepath);
     void load_model(std::string filename);
 
 public:

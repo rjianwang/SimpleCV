@@ -7,8 +7,10 @@
 #include "../../include/core/resource.h"
 #include "../../include/core/char.h"
 #include "../../include/core/ocr.h"
+#include "../../include/core/ocr2.h"
 #include "../../include/core/feature.h"
 #include "../../include/tool/tool.h"
+#include "../../include/ml/svm.h"
 #include "../../include/ml/ann.h"
 
 /* \namespace pr
@@ -38,7 +40,7 @@ namespace pr
         cv::Mat threshold;
         cv::threshold(plate.image, threshold, 190, 255, CV_THRESH_BINARY);
         // 去除水平方向边缘或铆钉
-        removeFringe(threshold);
+        //removeFringe(threshold);
 
         if (DEBUG_MODE)
             cv::imshow("Threshold plate", threshold);
@@ -63,7 +65,7 @@ namespace pr
                 if (img.at<char>(i, j) != img.at<char>(i, j))
                     color_jump++;
 
-            if (color_jump < 7)
+            if (color_jump < 5)
                 img.row(i).setTo(cv::Scalar(0));
         }
 
@@ -74,7 +76,7 @@ namespace pr
                 if (img.at<char>(i, j) != img.at<char>(i, j))
                     color_jump++;
 
-            if (color_jump < 7)
+            if (color_jump < 5)
                 img.row(i).setTo(cv::Scalar(0));
         }
         return img;
@@ -83,32 +85,37 @@ namespace pr
     void OCR::process_chars(Plate &input, const std::vector<Char> &segments)
     {
         // ANN Classifier for digits and letters
-        ANNClassifier *annClassifier = new ANNClassifier(40, Resources::numCharacters);
+        SVMClassifier *svmClassifier = new SVMClassifier();
 
-        annClassifier->load_data("../data/charSamples/");
-        annClassifier->train();
+        svmClassifier->load_char("../data/charSamples/");
+        svmClassifier->train();
 
         for (int i = 1; i < segments.size(); i++){
             // 对每个字符进行预处理，使得对所有图像均有相同的大小 
             cv::Mat ch = preprocessChar(segments[i].image);
+            cv::imshow("Char", ch);
+            if (cv::waitKey(0))
+                cv::destroyAllWindows();
 
             // 对于每个部分进行分类
             ch.convertTo(ch, CV_32FC1);
-            cv::Mat f = features(ch);
-            int character = annClassifier->predict(f);
-            input.chars.push_back(std::string(1, Resources::sp_chars[character]));
+            ch = ch.reshape(1, 1);
+            //cv::Mat f = features(ch);
+            int character = svmClassifier->predict(ch);
+            std::cout << character << std::endl;
+            input.chars.push_back(std::string(1, Resources::chars[character]));
             input.charsPos.push_back(segments[i].position);
         }
 
-        delete annClassifier;
+        delete svmClassifier;
     }
 
     void OCR::process_cn(Plate &input, const Char &cn_char)
     {
         // ANN Classifier for Chinese Characters
-        ANNClassifier *annClassifier = new ANNClassifier(10, Resources::numCNCharacters);
-        annClassifier->load_cn("../data/cn_chars/"); 
-        annClassifier->train();
+        SVMClassifier *svmClassifier = new SVMClassifier();
+        svmClassifier->load_cn("../data/cn_chars/"); 
+        svmClassifier->train();
 
         // 对字符进行预处理
         cv::Mat ch = preprocessChar(cn_char.image);
@@ -116,11 +123,11 @@ namespace pr
         // 对于每个部分进行分类
         ch.convertTo(ch, CV_32FC1);
         cv::Mat f = features(ch);
-        int character = annClassifier->predict(f);
+        int character = svmClassifier->predict(f);
         input.chars.push_back(Resources::cn_chars[character]);
         input.charsPos.push_back(cn_char.position);
 
-        delete annClassifier;
+        delete svmClassifier;
     }
 
     bool OCR::ocr(Plate &input)
@@ -140,8 +147,17 @@ namespace pr
         // 训练中文分类器，并识别
         process_cn(input, segments[0]);
         // 训练字符分类器，并识别
-        process_chars(input, segments);
+//        process_chars(input, segments);
 
+        std::vector<int> result = ocr2();
+
+        for (int i = 0; i < result.size(); i++)
+        {
+            std::stringstream ss;
+            ss << Resources::chars[result[i]];
+            input.chars.push_back(ss.str());
+            input.charsPos.push_back(segments[i].position);
+        }
         return true;
     }
 

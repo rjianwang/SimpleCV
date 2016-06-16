@@ -28,6 +28,10 @@ opencv2/ml/ml.hpp
 ../stdafx.h
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/stdafx.h
 
+/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/core/ocr2.h
+../stdafx.h
+/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/stdafx.h
+
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/core/plate.h
 ../stdafx.h
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/stdafx.h
@@ -119,12 +123,28 @@ string
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/core/char.h
 ../../include/core/ocr.h
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/core/ocr.h
+../../include/core/ocr2.h
+/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/core/ocr2.h
 ../../include/core/feature.h
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/core/feature.h
 ../../include/tool/tool.h
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/tool/tool.h
+../../include/ml/svm.h
+/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/ml/svm.h
 ../../include/ml/ann.h
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/ml/ann.h
+
+/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/ocr2.cpp
+string
+-
+../../include/core/ocr2.h
+/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/core/ocr2.h
+../../include/core/resource.h
+/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/core/resource.h
+../../include/core/feature.h
+/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/core/feature.h
+../../include/tool/tool.h
+/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/tool/tool.h
 
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/core/plate.cpp
 ../../include/core/plate.h
@@ -177,12 +197,20 @@ vector
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/ml/svm.h
 ../../include/tool/tool.h
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/tool/tool.h
+../../include/core/resource.h
+/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/core/resource.h
+../../include/core/feature.h
+/home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/core/feature.h
 
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/stdafx.cpp
 ../include/stdafx.h
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/stdafx.h
 
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/src/tool/tool.cpp
+iostream
+-
+string
+-
 ../../include/core/ocr.h
 /home/sony/Projects/bijou_cv/cn_vehicle_plate_recognition/include/core/ocr.h
 ../../include/core/char.h

@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/plate.dir/stdafx.cpp.o"
   "CMakeFiles/plate.dir/core/plate_detect.cpp.o"
   "CMakeFiles/plate.dir/core/ocr.cpp.o"
+  "CMakeFiles/plate.dir/core/ocr2.cpp.o"
   "CMakeFiles/plate.dir/core/char.cpp.o"
   "CMakeFiles/plate.dir/ml/svm.cpp.o"
   "CMakeFiles/plate.dir/core/plate.cpp.o"
