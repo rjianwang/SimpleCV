@@ -131,7 +131,7 @@ namespace pr
             std::cout << "\tverify Color Jump(" << result 
                 << "): lines with matched color jump " << lineCount
                 << std::endl;
-            cv::imshow("candidate Plate", threshold);
+            cv::imshow("Candidate Plate", threshold);
         }
 
         return result;
@@ -662,32 +662,28 @@ namespace pr
                     color_jump[i][1] - color_jump[i][0]);
             cv::Mat mat(img, rect); // 图像裁剪
 
-            std::vector<Plate> temp1 = sobelDetect(mat); // 轮廓检测方法
+            std::vector<Plate> temp = colorDetect(mat); // 颜色检测方法
             if (DEBUG_MODE && cv::waitKey(0))
             {
                 cv::destroyAllWindows();
             }
-            std::vector<Plate> temp2 = colorDetect(mat); // 颜色检测方法
-            if (DEBUG_MODE && cv::waitKey(0))
+            if (temp.empty())
             {
-                cv::destroyAllWindows();
-            }
-
-            if (!temp2.empty())
-            {
-                for (int k = 0; k < temp2.size(); k++)
+                temp = sobelDetect(mat); // 轮廓检测方法
+                if (DEBUG_MODE && cv::waitKey(0))
                 {
-                    temp2[k].position.y += color_jump[i][0];
+                    cv::destroyAllWindows();
                 }
-                plates.insert(plates.end(), temp2.begin(), temp2.end());
-            }
-            else if (!temp1.empty())
-            {
-                for (int k = 0; k < temp1.size(); k++)
-                    temp1[k].position.y = color_jump[i][0];
-                plates.insert(plates.end(), temp1.begin(), temp1.end());
             }
 
+            if (!temp.empty())
+            {
+                for (int k = 0; k < temp.size(); k++)
+                {
+                    temp[k].position.y += color_jump[i][0];
+                }
+                plates.insert(plates.end(), temp.begin(), temp.end());
+            }
         }
         if (plates.empty())
         {

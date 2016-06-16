@@ -93,17 +93,16 @@ namespace pr
     std::vector<Char> segment1(const Plate &input)
     {
         if (DEBUG_MODE)
-        {
             std::cout << "Segmenting..." << std::endl;
-        }
+        
         std::vector<Char> segments(7);
 
-        cv::Mat img_contours;
-        input.image.copyTo(img_contours);
+        cv::Mat threshold;
+        input.image.copyTo(threshold);
 
         // 找到可能的车牌轮廓
         std::vector< std::vector<cv::Point> > contours;
-        cv::findContours(img_contours,
+        cv::findContours(threshold,
                 contours, // 检测的轮廓数组，每一个轮廓用一个point类型的vector表示
                 CV_RETR_EXTERNAL, // 只检测外轮廓
                 CV_CHAIN_APPROX_NONE); //轮廓的近似办法，这里存储所有的轮廓点
@@ -111,41 +110,40 @@ namespace pr
         // 在白色的图上画出轮廓
         cv::Mat result1;
         input.image.copyTo(result1);
-        cv::cvtColor(result1, result1, CV_GRAY2RGB);
         cv::drawContours(result1, contours,
                 -1,  // 所有的轮廓都画出
                 cv::Scalar(255, 0, 0), // 颜色
                 1); // 线粗
 
-        cv::Mat result2;
-        result1.copyTo(result2);
-
         // 对每个轮廓检测和提取最小区域的有界矩形区域
         std::vector<std::vector<cv::Point> >::iterator itc = contours.begin();
+        
         std::vector<Char> output;
         int i = 0;
         while (itc != contours.end()) 
         {
             cv::Rect mr = cv::boundingRect(cv::Mat(*itc));
             // 裁剪图像
-            cv::Mat auxRoi(input.image, mr);
-            auxRoi = preprocessChar(auxRoi);
-            output.push_back(Char(auxRoi, mr));
-
+            cv::Mat auxRoi(threshold, mr);
+            if (verifySizes(auxRoi)){
+                //auxRoi = preprocessChar(auxRoi);
+                output.push_back(Char(auxRoi, mr));
+                cv::rectangle(result1, mr, cv::Scalar(0, 255, 0));
+                // 保存
+                std::stringstream ss;
+                ss << "PlateNumber" << i++ << ".jpg";
+                cv::imwrite(ss.str().c_str(), auxRoi);
+            }
             ++itc;
         }
 
+        if (DEBUG_MODE)
+            cv::imshow("Char Segment by Contours", result1);
+
         // 按x坐标排序
         qsort(output, 0, output.size() - 1);
-        
         // 合并轮廓，同时删除过小的轮廓
-        mergeContours(output);
-
-        if (DEBUG_MODE)
-        {
-            for (int i = 0; i < output.size(); i++)
-                cv::rectangle(result1, output[i].position, cv::Scalar(0, 125, 255));
-        }
+        //mergeContours(output);
 
         // 获得特殊字符
         int specIndex = getSpecificChar(input, output);
@@ -163,12 +161,14 @@ namespace pr
         // 根据特殊字符分割中文字
         segments[0] = getChineseChar(input.image, output[specIndex]);
 
-        char res[20];
+        cv::Mat result2;
+        result1.copyTo(result2);
         for (int i = 0; i < segments.size(); i++)
         {
             // 保存分割结果
-            sprintf(res, "chars/PlateNumber%d.jpg", i);
-            cv::imwrite(res, segments[i].image);
+            std::stringstream ss;
+            ss << "PlateNumber" << i << ".jpg";
+            cv::imwrite(ss.str().c_str(), segments[i].image);
             // 画出字符分割的轮廓
             cv::rectangle(result2, segments[i].position, cv::Scalar(0, 125, 255));
         }
@@ -176,7 +176,6 @@ namespace pr
         {
             std::cout << "Spec index: " << specIndex << std::endl;
             std::cout << "Num chars: " << segments.size() << std::endl;
-            cv::imshow("Segmented Chars by contour", result1);
             cv::imshow("Segmented Chars by spec char", result2);
         }
 
@@ -209,14 +208,13 @@ namespace pr
         }
     }
 
-    /* 获取特殊字符（车牌中的第二个字符） */
+    // 获取特殊字符（车牌中的第二个字符） 
     int getSpecificChar(const Plate &plate, const std::vector<Char> &input)
     {
         if (DEBUG_MODE)
             std::cout << "Find specific char..." << std::endl;
 
         int maxHeight = 0, maxWidth = 0;
-
         for (int i = 0; i < input.size(); i++)
         {
             if (input[i].position.height > maxHeight)
@@ -294,9 +292,6 @@ namespace pr
         // 合并垂直分区
         mergeHist(hsegments);
 
-        if (DEBUG_MODE)
-            std::cout << "\tChar Segment..." << std::endl;
-
         // 根据垂直分区，获得个字符的x坐标及宽度
         for (int i = 0; i < hsegments.size(); i++)
         {
@@ -371,9 +366,9 @@ namespace pr
         int flag = 0;
         int threshold = 2;
 
-        for(int i = 0; i < vhist.cols - 1; i++)
+        int i, a = 0;
+        for(i = 0; i < vhist.cols - 1; i++)
         {
-            int a;
             if(	(flag == 0 && 
                     vhist.at<float>(0, i) <= threshold)      &&
                     vhist.at<float>(0, i + 1) > threshold)
@@ -381,7 +376,7 @@ namespace pr
                 a = i;
                 flag = 1;
             }
-            else if (vhist.at<float>(0, i) > threshold    &&
+            if (vhist.at<float>(0, i) > threshold    &&
                     vhist.at<float>(0, i + 1) <= threshold &&
                     flag == 1)
             {
@@ -389,6 +384,9 @@ namespace pr
                 ret.push_back({a, i + 1});
             }		
         }
+
+        if (flag == 1)
+            ret.push_back({a, i});
 
         return ret;
     }
@@ -440,17 +438,13 @@ namespace pr
         std::vector<std::vector<int>> ret;
         for (int i = 0; i < segments.size() - 1; i++)
         {
-            if (segments[i][1] - segments[i + 1][0] < 2)
+            if (segments[i + 1][0] - segments[i][1] < 3)
             {
-                if (segments[i][1] - segments[i][0] < 5 ||
-                        segments[i + 1][1] - segments[i + 1][0] < 5)
-                {
-                    segments[i][1] = segments[i + 1][1];
-                    segments.erase(segments.begin() + i + 1);
-                }
+            segments[i][1] = segments[i + 1][1];
+                segments.erase(segments.begin() + i + 1);
             }
 
-            if (segments[i][1] - segments[i][0] < 3)
+            if (segments[i][1] - segments[i][0] < 5)
                 segments.erase(segments.begin() + i);
         }
     }

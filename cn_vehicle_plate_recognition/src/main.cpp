@@ -120,7 +120,7 @@ int main(int argc, char* argv[])
             std::cout << "=============================================\n";
             cv::rectangle(img, plate.position, cv::Scalar(0, 0, 255), 2);
             cv::putText(img, licensePlate, cv::Point(plate.position.x, plate.position.y), CV_FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0, 0, 200), 2);
-            cv::imshow("Plate Detected seg", plate.image);
+            cv::imshow("Plate Detected", plate.image);
         }
     }
 

@@ -40,7 +40,7 @@ namespace pr
         cv::Mat threshold;
         cv::threshold(plate.image, threshold, 190, 255, CV_THRESH_BINARY);
         // 去除水平方向边缘或铆钉
-        //removeFringe(threshold);
+        removeFringe(threshold);
 
         if (DEBUG_MODE)
             cv::imshow("Threshold plate", threshold);
@@ -138,23 +138,29 @@ namespace pr
         //预处理
         preprocessPlate(input);
         // 字符分割
-        std::vector<Char> segments = segment1(input);
+        std::vector<Char> segments = segment2(input);
+
         if (segments.size() != 7)
-            segments = segment2(input);
+            segments = segment1(input);
         if (segments.size() != 7)
             return false;
 
         // 训练中文分类器，并识别
-        process_cn(input, segments[0]);
+//        process_cn(input, segments[0]);
         // 训练字符分类器，并识别
 //        process_chars(input, segments);
 
-        std::vector<int> result = ocr2();
+        std::vector<int> result1 = ocr1();
+        std::vector<int> result2 = ocr2();
 
-        for (int i = 0; i < result.size(); i++)
+        
+        input.chars.push_back((Resources::cn_chars[result1[0]]));
+        input.charsPos.push_back(segments[0].position);
+
+        for (int i = 0; i < result2.size(); i++)
         {
             std::stringstream ss;
-            ss << Resources::chars[result[i]];
+            ss << Resources::chars[result2[i]];
             input.chars.push_back(ss.str());
             input.charsPos.push_back(segments[i].position);
         }
