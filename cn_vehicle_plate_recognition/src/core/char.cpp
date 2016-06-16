@@ -399,12 +399,15 @@ namespace pr
         if (DEBUG_MODE)
             std::cout << "\tVerticle Segment..." << std::endl;
 
-        std::vector<int> ret(2);
+        std::vector<int> ret = {0, 35};
         bool flag = false;
-        int threshold = 8;
+        int threshold = 5;
         int i;
         for (i = 0; i < hist.cols - 1; i++)
         {
+            if (i > 20)
+                flag = true;
+
             if (flag == false && 
                     hist.at<float>(0, i) <= threshold &&
                     hist.at<float>(0, i + 1) > threshold
@@ -413,17 +416,16 @@ namespace pr
                 flag = true;
                 ret[0] = i;
             }
+
             if (flag == true && 
                     hist.at<float>(0, i) > threshold &&
                     hist.at<float>(0, i + 1) <= threshold
                     )
             {
                 flag = false;
-                ret[1] = i;
+                ret[1] = i + 1;
             }
         }
-        if (flag == true)
-            ret[1] = hist.cols;
 
         return ret;
     }
