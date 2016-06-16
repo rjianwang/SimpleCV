@@ -651,7 +651,6 @@ namespace pr
 
         // 进行图像颜色跳变检测
         std::vector< std::vector<int> > color_jump = colorJump(img);
-
         for (int i = 0; i < color_jump.size(); i++)
         {
             if (color_jump[i][1] - color_jump[i][0] < 15)
@@ -689,6 +688,12 @@ namespace pr
                 plates.insert(plates.end(), temp1.begin(), temp1.end());
             }
 
+        }
+        if (plates.empty())
+        {
+            plates = colorDetect(img);
+            if (plates.empty())
+                plates = sobelDetect(img);
         }
         return plates;
     }
