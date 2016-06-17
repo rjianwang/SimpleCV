@@ -306,6 +306,8 @@ namespace pr
                 width = 15;
             cv::Rect rect(x, y, width, height);
             cv::Mat img(threshold, rect);
+            if (cv::countNonZero(img) / float(width * height) > 0.5)
+                continue;
 
             segments.push_back({img, rect});
         }
@@ -361,7 +363,6 @@ namespace pr
 
         if (DEBUG_MODE)
         {
-            std::cout << "Hello, world!" << std::endl;
             std::cout << "\t" << hist << std::endl;
         }
         return hist;
@@ -460,8 +461,8 @@ namespace pr
                 }
             }
 
-            if (segments[i][1] - segments[i][0] < 5)
-                segments.erase(segments.begin() + i);
+//            if (segments[i][1] - segments[i][0] < 5)
+//                segments.erase(segments.begin() + i);
         }
     }
 
