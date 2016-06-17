@@ -123,12 +123,12 @@ namespace pr
         while (itc != contours.end()) 
         {
             cv::Rect mr = cv::boundingRect(cv::Mat(*itc));
+            cv::rectangle(result1, mr, cv::Scalar(0, 255, 0));
             // 裁剪图像
             cv::Mat auxRoi(threshold, mr);
             if (verifySizes(auxRoi)){
                 //auxRoi = preprocessChar(auxRoi);
                 output.push_back(Char(auxRoi, mr));
-                cv::rectangle(result1, mr, cv::Scalar(0, 255, 0));
                 // 保存
                 std::stringstream ss;
                 ss << "PlateNumber" << i++ << ".jpg";
@@ -162,7 +162,7 @@ namespace pr
         segments[0] = getChineseChar(input.image, output[specIndex]);
 
         cv::Mat result2;
-        result1.copyTo(result2);
+        input.image.copyTo(result2);
         for (int i = 0; i < segments.size(); i++)
         {
             // 保存分割结果
@@ -301,7 +301,9 @@ namespace pr
             int height = vsegments[1] - y;
 
             if (width < 13) 
+            {
                 width = (x + 13 < threshold.cols) ? 13 : width;
+            }
             if (width >= 20)
                 width = 15;
             cv::Rect rect(x, y, width, height);
