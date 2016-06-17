@@ -376,7 +376,7 @@ namespace pr
         std::vector< std::vector<int> > ret;
 
         int flag = 0;
-        int threshold = 1;
+        int threshold = 2;
 
         int i, a = 0;
         for(i = 0; i < vhist.cols - 1; i++)
@@ -452,7 +452,8 @@ namespace pr
         {
             if (segments[i + 1][0] - segments[i][1] < 3)
             {
-                if (segments[i + 1][1] - segments[i + 1][0] < 5)
+                if (segments[i][1] - segments[i][0] + 
+                        segments[i + 1][1] - segments[i + 1][0] < 18)
                 {
                     segments[i][1] = segments[i + 1][1];
                     segments.erase(segments.begin() + i + 1);

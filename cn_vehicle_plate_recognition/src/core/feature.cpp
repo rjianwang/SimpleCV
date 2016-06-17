@@ -13,25 +13,14 @@ namespace pr
     cv::Mat features(const cv::Mat &img)
     {
         std::vector<float>  f1 = gradientF(img);
-//        cv::Mat f2 = vhistF(img);
-//        cv::Mat f3 = hhistF(img);
         cv::Mat f4 = pixelF(img);
 
-//        cv::Mat features(1, f1.size() + f2.cols + f3.cols + f4.cols, CV_32FC1);
         cv::Mat features(1, f1.size() + f4.cols, CV_32FC1);
         int i = 0;
         for (; i < f1.size(); i++)
         {
             features.at<float>(0, i) = f1[i];
         }
-/*        for (int j = 0; j < f2.cols; i++, j++)
-        {
-            features.at<float>(0, i) = f2.at<float>(0, j);
-        }
-        for (int j = 0; j < f3.cols; i++, j++)
-        {
-            features.at<float>(0, i) = f3.at<float>(0, j);
-        }*/
         for (int j = 0; j < f4.cols; i++, j++)
         {
             features.at<float>(0, i) = f4.at<float>(0, j);
@@ -47,7 +36,7 @@ namespace pr
         std::vector<float> features;
 
         cv::Mat resized;
-        cv::resize(img, resized, cv::Size(12, 24));
+        cv::resize(img, resized, cv::Size(16, 28));
 
         float mask[3][3] = {{1, 2, 1},
                     {0, 0, 0},
@@ -62,25 +51,39 @@ namespace pr
         sobelX = cv::abs(sobelX);
         sobelY = cv::abs(sobelY);
 
+        float totalX = sumMat(sobelX);
+        float totalY = sumMat(sobelY);
+
         for (int i = 0; i < resized.rows; i = i + 4)
         {
             for (int j = 0; j < resized.cols; j = j + 4)
             {
                 cv::Mat subX = sobelX(cv::Rect(j, i, 4, 4)); 
-                features.push_back(cv::countNonZero(subX));
+                features.push_back(sumMat(subX) / totalX);
                 cv::Mat subY = sobelY(cv::Rect(j, i, 4, 4));
-                features.push_back(cv::countNonZero(subX));
+                features.push_back(sumMat(subY) / totalY);
             }
         }
 
         return features;
     }
 
+    float sumMat(const cv::Mat &img)
+    {
+        float sum = 0;
+        for (int i = 0; i < img.rows; i++)
+        {
+            for (int j = 0; j < img.cols; j++)
+                sum += img.at<uchar>(i, j);
+        }
+        return sum;
+    }
+
     // 输入为二值化字符图像
     cv::Mat pixelF(const cv::Mat &img)
     {
         cv::Mat resized;
-        cv::resize(img, resized, cv::Size(12, 24));
+        cv::resize(img, resized, cv::Size(16, 28));
         resized = resized.reshape(1, 1);
 
         return resized;
@@ -90,7 +93,7 @@ namespace pr
     cv::Mat hhistF(const cv::Mat &img)
     {
         cv::Mat resized;
-        cv::resize(img, resized, cv::Size(12, 24));
+        cv::resize(img, resized, cv::Size(16, 28));
 
         cv::Mat mat(1, resized.rows / 4, CV_32FC1);
         for (int i = 0; i < mat.rows; i++)
@@ -110,7 +113,7 @@ namespace pr
     cv::Mat vhistF(const cv::Mat &img)
     {
         cv::Mat resized;
-        cv::resize(img, resized, cv::Size(12, 24));
+        cv::resize(img, resized, cv::Size(12, 28));
 
         cv::Mat mat(1, resized.cols / 2, CV_32F);
         for (int i = 0; i < mat.cols; i++)

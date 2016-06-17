@@ -43,7 +43,7 @@ namespace pr
                     std::cout << "Fail to load images " << path << std::endl;
 
                 cv::Mat resized;
-                resized.create(23, 13, CV_32FC1);
+                resized.create(28, 16, CV_32FC1);
                 cv::resize(img, resized, resized.size());
                 resized = resized.reshape(1, 1);
 
@@ -85,7 +85,7 @@ namespace pr
                     std::cout << "Fail to load images " << path << std::endl;
 
                 cv::Mat resized;
-                resized.create(23, 13, CV_32FC1);
+                resized.create(28, 16, CV_32FC1);
                 cv::resize(img, resized, resized.size());
                 resized = resized.reshape(1, 1);
 
@@ -116,8 +116,9 @@ namespace pr
         std::vector<int> ret;
         cv::Mat img = cv::imread("PlateNumber0.jpg", CV_LOAD_IMAGE_GRAYSCALE);
         cv::Mat resized;
-        resized.create(23, 13, CV_32FC1);
+        resized.create(28, 16, CV_32FC1);
         cv::resize(img, resized, resized.size());
+        pixelF(resized);
         resized = resized.reshape(1, 1);
         resized.convertTo(resized, CV_32FC1);
 
@@ -154,7 +155,7 @@ namespace pr
             ss << "PlateNumber" << i << ".jpg";
             cv::Mat img = cv::imread(ss.str().c_str(), CV_LOAD_IMAGE_GRAYSCALE);
             cv::Mat resized;
-            resized.create(23, 13, CV_32FC1);
+            resized.create(28, 16, CV_32FC1);
             cv::resize(img, resized, resized.size());
             resized = resized.reshape(1, 1);
             resized.convertTo(resized, CV_32FC1);
