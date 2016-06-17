@@ -300,6 +300,10 @@ namespace pr
             int y = vsegments[0];
             int height = vsegments[1] - y;
 
+            if (width < 13) 
+                width = (x + 13 < threshold.cols) ? 13 : width;
+            if (width >= 20)
+                width = 15;
             cv::Rect rect(x, y, width, height);
             cv::Mat img(threshold, rect);
 
@@ -340,6 +344,9 @@ namespace pr
             hist.at<float>(0, j) = cv::countNonZero(data);
         }
 
+        if (DEBUG_MODE)
+            std::cout << "\t" << hist << std::endl;
+
         return hist;
     }
 
@@ -352,6 +359,11 @@ namespace pr
         for (int i = 0; i < img.rows; i++)
             hist.at<float>(0, i) = cv::countNonZero(img.row(i));
 
+        if (DEBUG_MODE)
+        {
+            std::cout << "Hello, world!" << std::endl;
+            std::cout << "\t" << hist << std::endl;
+        }
         return hist;
     }
 
@@ -364,7 +376,7 @@ namespace pr
         std::vector< std::vector<int> > ret;
 
         int flag = 0;
-        int threshold = 2;
+        int threshold = 1;
 
         int i, a = 0;
         for(i = 0; i < vhist.cols - 1; i++)
@@ -440,8 +452,11 @@ namespace pr
         {
             if (segments[i + 1][0] - segments[i][1] < 3)
             {
-            segments[i][1] = segments[i + 1][1];
-                segments.erase(segments.begin() + i + 1);
+                if (segments[i + 1][1] - segments[i + 1][0] < 5)
+                {
+                    segments[i][1] = segments[i + 1][1];
+                    segments.erase(segments.begin() + i + 1);
+                }
             }
 
             if (segments[i][1] - segments[i][0] < 5)

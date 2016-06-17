@@ -32,11 +32,6 @@ namespace pr
 
     void OCR::preprocessPlate(Plate &plate)
     {
-        if (DEBUG_MODE)
-        {
-            cv::imshow("Plate Image", plate.image);
-        }
-
         cv::Mat threshold;
         cv::threshold(plate.image, threshold, 190, 255, CV_THRESH_BINARY);
         // 去除水平方向边缘或铆钉
@@ -57,28 +52,30 @@ namespace pr
             std::cout << "Remove mao ding..." << std::endl;
         }
 
-        int line = 4;
-        for (int i = 0; i < line; i++)
+        for (int i = 0; i < img.rows - 1; i++)
         {
             int color_jump = 0;
+            int non_zero = 0;
+            int non_zero2 = 0;
             for (int j = 0; j < img.cols - 1; j++)
+            {
                 if (img.at<char>(i, j) != img.at<char>(i, j))
+                {
                     color_jump++;
+                    non_zero2 = 0;
+                }
+                else
+                    non_zero2++;
+            }
 
-            if (color_jump < 5)
-                img.row(i).setTo(cv::Scalar(0));
+//            if (color_jump < 5)
+//                img.row(i).setTo(cv::Scalar(0));
+
+            non_zero = cv::countNonZero(img.row(i));
+            if (non_zero > 70)
+               img.row(i).setTo(cv::Scalar(0));
         }
 
-        for (int i = img.rows - line; i < img.rows; i++)
-        {
-            int color_jump = 0;
-            for (int j = 0; j < img.cols; j++)
-                if (img.at<char>(i, j) != img.at<char>(i, j))
-                    color_jump++;
-
-            if (color_jump < 5)
-                img.row(i).setTo(cv::Scalar(0));
-        }
         return img;
     }
 
