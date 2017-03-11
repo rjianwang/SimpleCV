@@ -1,6 +1,6 @@
 SimpleCV
 ===
-Here are some small and exciting computer vision projects.
+Here are some simple and exciting computer vision projects.
 
 Have fun!
 
