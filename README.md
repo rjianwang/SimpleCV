@@ -1,6 +1,6 @@
-Bijou CV
+SimpleCV
 ===
-Here are some small and awesome computer vision projects.
+Here are some small and exciting computer vision projects.
 
 Have fun!
 
